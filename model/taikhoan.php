@@ -1,0 +1,70 @@
+<?php
+function dangnhap($user,$pass) {
+    $sql = "SELECT * FROM `user` WHERE `username` ='$user' and `password` ='$pass'";
+    $taikhoan = pdo_query_one($sql);
+
+    return $taikhoan;
+}
+
+
+function check_email($email) {
+    $sql="SELECT * FROM user WHERE email = '$email'";
+    $result = pdo_query_one($sql);
+
+    if($result){
+        return $result;
+    }else{
+        return false;
+    }
+}
+
+function check_user($username) {
+    $sql="SELECT * FROM user WHERE username='$username'";
+    $result = pdo_query_one($sql);
+
+    if($result){
+        return true;
+    }else{
+        return false;
+    }
+}
+
+function sendMail($email, $username, $pass) {
+    require 'PHPMailer/src/Exception.php';
+    require 'PHPMailer/src/PHPMailer.php';
+    require 'PHPMailer/src/SMTP.php';
+
+    $mail = new PHPMailer\PHPMailer\PHPMailer(true);
+
+    try {
+            //Server settings
+         $mail->SMTPDebug = PHPMailer\PHPMailer\SMTP::DEBUG_OFF;                      //Enable verbose debug output
+        $mail->isSMTP();                                            //Send using SMTP
+        $mail->Host       = 'sandbox.smtp.mailtrap.io';                     //Set the SMTP server to send through
+        $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+        $mail->Username   = '98924bdf0c97aa';                     //SMTP username
+        $mail->Password   = '441236ce976431';                               //SMTP password
+        $mail->SMTPSecure = PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_STARTTLS;            //Enable implicit TLS encryption
+        $mail->Port       = 587;                                   //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+        $mail->CharSet = 'UTF-8';
+
+        //Recipients
+        $mail->setFrom('testduanmau@example.com', 'DuAnMau');
+        $mail->addAddress($email, $username);     //Add a recipient
+
+        //Content
+        $mail->isHTML(true);                                  //Set email format to HTML
+        $mail->Subject = 'Lấy lại mật khẩu';
+        $mail->Body    = 'Mật khẩu của bạn là ' .$pass;
+
+        $mail->send();
+        } catch (Exception $e) {
+            echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+    }
+}
+
+function add_taikhoan($email,$user,$pass){
+    $sql="INSERT INTO `user` ( `email`, `username`, `password`) VALUES ( '$email', '$user','$pass'); ";
+    pdo_execute($sql);
+}
+?>

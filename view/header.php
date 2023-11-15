@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="Ansonika">
-    <title>Allaia | Bootstrap eCommerce Template - ThemeForest</title>
+    <title>Shop giày nhóm 3</title>
 
     <!-- Favicons-->
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
@@ -27,6 +27,7 @@
 
 	<!-- SPECIFIC CSS -->
     <link href="css/home_1.css" rel="stylesheet">
+	<link href="css/listing.css" rel="stylesheet">
 
     <!-- YOUR CUSTOM CSS -->
     <link href="css/custom.css" rel="stylesheet">
@@ -44,7 +45,7 @@
 				<div class="row small-gutters">
 					<div class="col-xl-3 col-lg-3 d-lg-flex align-items-center">
 						<div id="logo">
-							<a href="index.html"><img src="img/logo_black.svg" alt="" width="100" height="35"></a>
+							<a href="index.php"><img src="img/logo_black.svg" alt="" width="100" height="35"></a>
 						</div>
 					</div>
 					<nav class="col-xl-6 col-lg-7">
@@ -58,100 +59,49 @@
 						<!-- Mobile menu button -->
 						<div class="main-menu">
 							<div id="header_menu">
-								<a href="index.html"><img src="img/logo_black.svg" alt="" width="100" height="35"></a>
+								<a href="index.php"><img src="img/logo_black.svg" alt="" width="100" height="35"></a>
 								<a href="#" class="open_close" id="close_in"><i class="ti-close"></i></a>
 							</div>
 							<ul>
-								<li class="submenu">
-									<a href="javascript:void(0);" class="show-submenu">Home</a>
-									<ul>
+								<li class="megamenu">
+									<a href="index.php" class="show-submenu">Trang chủ</a>
+									<!-- <ul>
 										<li><a href="index.html">Slider</a></li>
 										<li><a href="index-2.html">Video Background</a></li>
 										<li><a href="index-3.html">Vertical Slider</a></li>
 										<li><a href="index-4.html">GDPR Cookie Bar</a></li>
-									</ul>
+									</ul> -->
 								</li>
-								<li class="megamenu submenu">
-									<a href="javascript:void(0);" class="show-submenu-mega">Pages</a>
-									<div class="menu-wrapper">
-										<div class="row small-gutters">
-											<div class="col-lg-3">
-												<h3>Listing grid</h3>
-												<ul>
-													<li><a href="listing-grid-1-full.html">Grid Full Width</a></li>
-													<li><a href="listing-grid-2-full.html">Grid Full Width 2</a></li>
-													<li><a href="listing-grid-3.html">Grid Boxed</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">Grid Sidebar Left</a></li>
-													<li><a href="listing-grid-5-sidebar-right.html">Grid Sidebar Right</a></li>
-													<li><a href="listing-grid-6-sidebar-left.html">Grid Sidebar Left 2</a></li>
-													<li><a href="listing-grid-7-sidebar-right.html">Grid Sidebar Right 2</a></li>
-												</ul>
-											</div>
-											<div class="col-lg-3">
-												<h3>Listing row &amp; Product</h3>
-												<ul>
-													<li><a href="listing-row-1-sidebar-left.html">Row Sidebar Left</a></li>
-													<li><a href="listing-row-2-sidebar-right.html">Row Sidebar Right</a></li>
-													<li><a href="listing-row-3-sidebar-left.html">Row Sidebar Left 2</a></li>
-													<li><a href="listing-row-4-sidebar-extended.html">Row Sidebar Extended</a></li>
-													<li><a href="product-detail-1.html">Product Large Image</a></li>
-													<li><a href="product-detail-2.html">Product Carousel</a></li>
-													<li><a href="product-detail-3.html">Product Sticky Info</a></li>
-												</ul>
-											</div>
-											<div class="col-lg-3">
-												<h3>Other pages</h3>
-												<ul>
-													<li><a href="cart.html">Cart Page</a></li>
-													<li><a href="checkout.html">Check Out Page</a></li>
-													<li><a href="confirm.html">Confirm Purchase Page</a></li>
-													<li><a href="account.html">Create Account Page</a></li>
-													<li><a href="track-order.html">Track Order</a></li>
-													<li><a href="help.html">Help Page</a></li>
-													<li><a href="help-2.html">Help Page 2</a></li>
-													<li><a href="leave-review.html">Leave a Review</a></li>
-												</ul>
-											</div>
-											<div class="col-lg-3 d-xl-block d-lg-block d-md-none d-sm-none d-none">
-												<div class="banner_menu">
-													<a href="#0">
-														<img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="img/banner_menu.jpg" width="400" height="550" alt="" class="img-fluid lazy">
-													</a>
-												</div>
-											</div>
-										</div>
-										<!-- /row -->
-									</div>
-									<!-- /menu-wrapper -->
+								<li class="megamenu">
+									<a href="index.php" class="show-submenu">Giới thiệu</a>
+									<!-- <ul>
+										<li><a href="index.html">Slider</a></li>
+										<li><a href="index-2.html">Video Background</a></li>
+										<li><a href="index-3.html">Vertical Slider</a></li>
+										<li><a href="index-4.html">GDPR Cookie Bar</a></li>
+									</ul> -->
 								</li>
-								<li class="submenu">
-									<a href="javascript:void(0);" class="show-submenu">Extra Pages</a>
-									<ul>
-										<li><a href="header-2.html">Header Style 2</a></li>
-										<li><a href="header-3.html">Header Style 3</a></li>
-										<li><a href="header-4.html">Header Style 4</a></li>
-										<li><a href="header-5.html">Header Style 5</a></li>
-										<li><a href="404.html">404 Page</a></li>
-										<li><a href="sign-in-modal.html">Sign In Modal</a></li>
-										<li><a href="contacts.html">Contact Us</a></li>
-										<li><a href="about.html">About 1</a></li>
-										<li><a href="about-2.html">About 2</a></li>
-										<li><a href="modal-advertise.html">Modal Advertise</a></li>
-										<li><a href="modal-newsletter.html">Modal Newsletter</a></li>
-									</ul>
+								<li class="megamenu">
+									<a href="index.php?act=sanpham" class="show-submenu-mega">Sản phẩm</a>
+								</li>
+								<!-- <li class="megamenu">
+									<a href="index.php?act=sanpham&iddm=2" class="show-submenu-mega">Nike</a>
+								</li>
+								<li class="megamenu">
+									<a href="index.php?act=sanpham&iddm=3" class="show-submenu-mega">Adidas</a>
+								</li> -->
+								<li>
+									<a href="#">Blog</a>
 								</li>
 								<li>
-									<a href="blog.html">Blog</a>
-								</li>
-								<li>
-									<a href="#0">Buy Template</a>
+									<a href="#">Liên hệ</a>
 								</li>
 							</ul>
 						</div>
 						<!--/main-menu -->
 					</nav>
 					<div class="col-xl-3 col-lg-2 d-lg-flex align-items-center justify-content-end text-end">
-						<a class="phone_top" href="tel://9438843343"><strong><span>Need Help?</span>+94 423-23-221</strong></a>
+						<a class="phone_top" href="tel://19001009"><strong><span>Cần hỗ trợ?</span>+1900 1009</strong></a>
 					</div>
 				</div>
 				<!-- /row -->
@@ -172,61 +122,15 @@
 													<span class="hamburger-inner"></span>
 												</span>
 											</span>
-											Categories
+											Danh mục sản phẩm
 										</a>
 									</span>
 									<div id="menu">
 										<ul>
-											<li><span><a href="#0">Collections</a></span>
-												<ul>
-													<li><a href="listing-grid-1-full.html">Trending</a></li>
-													<li><a href="listing-grid-2-full.html">Life style</a></li>
-													<li><a href="listing-grid-3.html">Running</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">Training</a></li>
-													<li><a href="listing-grid-5-sidebar-right.html">View all Collections</a></li>
-												</ul>
-											</li>
-											<li><span><a href="#">Men</a></span>
-												<ul>
-													<li><a href="listing-grid-6-sidebar-left.html">Offers</a></li>
-													<li><a href="listing-grid-7-sidebar-right.html">Shoes</a></li>
-													<li><a href="listing-row-1-sidebar-left.html">Clothing</a></li>
-													<li><a href="listing-row-3-sidebar-left.html">Accessories</a></li>
-													<li><a href="listing-row-4-sidebar-extended.html">Equipment</a></li>
-												</ul>
-											</li>
-											<li><span><a href="#">Women</a></span>
-												<ul>
-													<li><a href="listing-grid-1-full.html">Best Sellers</a></li>
-													<li><a href="listing-grid-2-full.html">Clothing</a></li>
-													<li><a href="listing-grid-3.html">Accessories</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">Shoes</a></li>
-												</ul>
-											</li>
-											<li><span><a href="#">Boys</a></span>
-												<ul>
-													<li><a href="listing-grid-6-sidebar-left.html">Easy On Shoes</a></li>
-													<li><a href="listing-grid-7-sidebar-right.html">Clothing</a></li>
-													<li><a href="listing-row-3-sidebar-left.html">Must Have</a></li>
-													<li><a href="listing-row-4-sidebar-extended.html">All Boys</a></li>
-												</ul>
-											</li>
-											<li><span><a href="#">Girls</a></span>
-												<ul>
-													<li><a href="listing-grid-1-full.html">New Releases</a></li>
-													<li><a href="listing-grid-2-full.html">Clothing</a></li>
-													<li><a href="listing-grid-3.html">Sale</a></li>
-													<li><a href="listing-grid-4-sidebar-left.html">Best Sellers</a></li>
-												</ul>
-											</li>
-											<li><span><a href="#">Customize</a></span>
-												<ul>
-													<li><a href="listing-row-1-sidebar-left.html">For Men</a></li>
-													<li><a href="listing-row-2-sidebar-right.html">For Women</a></li>
-													<li><a href="listing-row-4-sidebar-extended.html">For Boys</a></li>
-													<li><a href="listing-grid-1-full.html">For Girls</a></li>
-												</ul>
-											</li>
+											<?php
+												foreach ($danhmuc as $dm) : ?>
+													<li><span><a href="index.php?act=sanpham&iddm=<?= $dm['category_id'] ?>"><?= $dm['category_name'] ?></a></span></li>
+											<?php endforeach; ?>
 										</ul>
 									</div>
 								</li>
@@ -234,10 +138,13 @@
 						</nav>
 					</div>
 					<div class="col-xl-6 col-lg-7 col-md-6 d-none d-md-block">
+						<form action="index.php" method="GET">
 						<div class="custom-search-input">
-							<input type="text" placeholder="Search over 10.000 products">
+							<input type="hidden" name="act" value="sanpham">
+							<input type="text" name="search" placeholder="Tìm kiếm sản phẩm">
 							<button type="submit"><i class="header-icon_search_custom"></i></button>
 						</div>
+						</form>
 					</div>
 					<div class="col-xl-3 col-lg-2 col-md-3">
 						<ul class="top_tools">
@@ -274,9 +181,14 @@
 							</li>
 							<li>
 								<div class="dropdown dropdown-access">
-									<a href="account.html" class="access_link"><span>Account</span></a>
+									<a href="#" class="access_link"><span>Account</span></a>
 									<div class="dropdown-menu">
-										<a href="account.html" class="btn_1">Sign In or Sign Up</a>
+										<?php
+											if(!isset($_SESSION['user'])){
+												echo "<a href='index.php?act=dangnhap' class='btn_1'>Đăng nhập / Đăng ký</a>";
+											}
+										?>
+										
 										<ul>
 											<li>
 												<a href="track-order.html"><i class="ti-truck"></i>Track your Order</a>
@@ -288,7 +200,7 @@
 												<a href="account.html"><i class="ti-user"></i>My Profile</a>
 											</li>
 											<li>
-												<a href="help.html"><i class="ti-help-alt"></i>Help and Faq</a>
+												<a href="index.php?act=dangxuat"><i class="ti-power-off"></i>Đăng xuất</a>
 											</li>
 										</ul>
 									</div>

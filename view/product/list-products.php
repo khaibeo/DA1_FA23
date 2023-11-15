@@ -1,441 +1,204 @@
-
-	<main>
-		<div class="top_banner">
-			<div class="opacity-mask d-flex align-items-center" data-opacity-mask="rgba(0, 0, 0, 0.3)">
-				<div class="container">
-					<div class="breadcrumbs">
-						<ul>
-							<li><a href="#">Home</a></li>
-							<li><a href="#">Category</a></li>
-							<li>Page active</li>
-						</ul>
-					</div>
-					<h1>Shoes - Grid listing</h1>
+<main>
+	<!-- <div class="top_banner">
+		<div class="opacity-mask d-flex align-items-center" data-opacity-mask="rgba(0, 0, 0, 0.3)">
+			<div class="container">
+				<div class="breadcrumbs">
+					<ul>
+						<li><a href="#">Home</a></li>
+						<li><a href="#">Category</a></li>
+						<li>Page active</li>
+					</ul>
 				</div>
+				<h1>Shoes - Grid listing</h1>
 			</div>
-			<img src="img/bg_cat_shoes.jpg" class="img-fluid" alt="">
 		</div>
-		<!-- /top_banner -->
-			<div id="stick_here"></div>		
-			<div class="toolbox elemento_stick">
-				<div class="container">
-				<ul class="clearfix">
-					<li>
-						<div class="sort_select">
-							<select name="sort" id="sort">
-                                    <option value="popularity" selected="selected">Sort by popularity</option>
-                                    <option value="rating">Sort by average rating</option>
-                                    <option value="date">Sort by newness</option>
-                                    <option value="price">Sort by price: low to high</option>
-                                    <option value="price-desc">Sort by price: high to 
-							</select>
-						</div>
-					</li>
-					<li>
-						<a href="#0"><i class="ti-view-grid"></i></a>
-						<a href="listing-row-1-sidebar-left.html"><i class="ti-view-list"></i></a>
-					</li>
-					<li>
-						<a href="#0" class="open_filters">
-							<i class="ti-filter"></i><span>Filters</span>
-						</a>
-					</li>
-				</ul>
-				</div>
-			</div>
-			<!-- /toolbox -->
-			
-			<div class="container margin_30">
-			
-			<div class="row">
-				<aside class="col-lg-3" id="sidebar_fixed">
-				    <div class="filter_col">
-				        <div class="inner_bt"><a href="#" class="open_filters"><i class="ti-close"></i></a></div>
-				        <div class="filter_type version_2">
-				            <h4><a href="#filter_1" data-bs-toggle="collapse" class="opened">Categories</a></h4>
-				            <div class="collapse show" id="filter_1">
-				                <ul>
-				                    <li>
-				                        <label class="container_check">Men <small>12</small>
-				                            <input type="checkbox">
-				                            <span class="checkmark"></span>
-				                        </label>
-				                    </li>
-				                    <li>
-				                        <label class="container_check">Women <small>24</small>
-				                            <input type="checkbox">
-				                            <span class="checkmark"></span>
-				                        </label>
-				                    </li>
-				                    <li>
-				                        <label class="container_check">Running <small>23</small>
-				                            <input type="checkbox">
-				                            <span class="checkmark"></span>
-				                        </label>
-				                    </li>
-				                    <li>
-				                        <label class="container_check">Training <small>11</small>
-				                            <input type="checkbox">
-				                            <span class="checkmark"></span>
-				                        </label>
-				                    </li>
-				                </ul>
-				            </div>
-				            <!-- /filter_type -->
-				        </div>
-				        <!-- /filter_type -->
-				        <div class="filter_type version_2">
-				            <h4><a href="#filter_2" data-bs-toggle="collapse" class="opened">Color</a></h4>
-				            <div class="collapse show" id="filter_2">
-				                <ul>
-				                    <li>
-				                        <label class="container_check">Blue <small>06</small>
-				                            <input type="checkbox">
-				                            <span class="checkmark"></span>
-				                        </label>
-				                    </li>
-				                    <li>
-				                        <label class="container_check">Red <small>12</small>
-				                            <input type="checkbox">
-				                            <span class="checkmark"></span>
-				                        </label>
-				                    </li>
-				                    <li>
-				                        <label class="container_check">Orange <small>17</small>
-				                            <input type="checkbox">
-				                            <span class="checkmark"></span>
-				                        </label>
-				                    </li>
-				                    <li>
-				                        <label class="container_check">Black <small>43</small>
-				                            <input type="checkbox">
-				                            <span class="checkmark"></span>
-				                        </label>
-				                    </li>
-				                </ul>
-				            </div>
-				        </div>
-				        <!-- /filter_type -->
-				        <div class="filter_type version_2">
-				            <h4><a href="#filter_3" data-bs-toggle="collapse" class="closed">Brands</a></h4>
-				            <div class="collapse" id="filter_3">
-				                <ul>
-				                    <li>
-				                        <label class="container_check">Adidas <small>11</small>
-				                            <input type="checkbox">
-				                            <span class="checkmark"></span>
-				                        </label>
-				                    </li>
-				                    <li>
-				                        <label class="container_check">Nike <small>08</small>
-				                            <input type="checkbox">
-				                            <span class="checkmark"></span>
-				                        </label>
-				                    </li>
-				                    <li>
-				                        <label class="container_check">Vans <small>05</small>
-				                            <input type="checkbox">
-				                            <span class="checkmark"></span>
-				                        </label>
-				                    </li>
-				                    <li>
-				                        <label class="container_check">Puma <small>18</small>
-				                            <input type="checkbox">
-				                            <span class="checkmark"></span>
-				                        </label>
-				                    </li>
-				                </ul>
-				            </div>
-				        </div>
-				        <!-- /filter_type -->
-				        <div class="filter_type version_2">
-				            <h4><a href="#filter_4" data-bs-toggle="collapse" class="closed">Price</a></h4>
-				            <div class="collapse" id="filter_4">
-				                <ul>
-				                    <li>
-				                        <label class="container_check">$0 — $50<small>11</small>
-				                            <input type="checkbox">
-				                            <span class="checkmark"></span>
-				                        </label>
-				                    </li>
-				                    <li>
-				                        <label class="container_check">$50 — $100<small>08</small>
-				                            <input type="checkbox">
-				                            <span class="checkmark"></span>
-				                        </label>
-				                    </li>
-				                    <li>
-				                        <label class="container_check">$100 — $150<small>05</small>
-				                            <input type="checkbox">
-				                            <span class="checkmark"></span>
-				                        </label>
-				                    </li>
-				                    <li>
-				                        <label class="container_check">$150 — $200<small>18</small>
-				                            <input type="checkbox">
-				                            <span class="checkmark"></span>
-				                        </label>
-				                    </li>
-				                </ul>
-				            </div>
-				        </div>
-				        <!-- /filter_type -->
-				        <div class="buttons">
-				            <a href="#0" class="btn_1">Filter</a> <a href="#0" class="btn_1 gray">Reset</a>
-				        </div>
-				    </div>
-				</aside>
-				<!-- /col -->
-				<div class="col-lg-9">
-					<div class="row small-gutters">
-						<div class="col-6 col-md-4">
-							<div class="grid_item">
-								<span class="ribbon off">-30%</span>
-								<figure>
-									<a href="product-detail-1.html">
-										<img class="img-fluid lazy" src="img/products/product_placeholder_square_medium.jpg" data-src="img/products/shoes/1.jpg" alt="">
-									</a>
-									<div data-countdown="2019/05/15" class="countdown"></div>
-								</figure>
-								<a href="product-detail-1.html">
-									<h3>Armor Air x Fear</h3>
-								</a>
-								<div class="price_box">
-									<span class="new_price">$48.00</span>
-									<span class="old_price">$60.00</span>
-								</div>
-								<ul>
-									<li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to favorites"><i class="ti-heart"></i><span>Add to favorites</span></a></li>
-									<li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to compare"><i class="ti-control-shuffle"></i><span>Add to compare</span></a></li>
-									<li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to cart"><i class="ti-shopping-cart"></i><span>Add to cart</span></a></li>
-								</ul>
-							</div>
-							<!-- /grid_item -->
-						</div>
-						<!-- /col -->
-
-						<div class="col-6 col-md-4">
-							<div class="grid_item">
-								<span class="ribbon off">-30%</span>
-								<figure>
-									<a href="product-detail-1.html">
-										<img class="img-fluid lazy" src="img/products/product_placeholder_square_medium.jpg" data-src="img/products/shoes/2.jpg" alt="">
-									</a>
-									<div data-countdown="2019/05/10" class="countdown"></div>
-								</figure>
-								<a href="product-detail-1.html">
-									<h3>Armor Okwahn II</h3>
-								</a>
-								<div class="price_box">
-									<span class="new_price">$90.00</span>
-									<span class="old_price">$170.00</span>
-								</div>
-								<ul>
-									<li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to favorites"><i class="ti-heart"></i><span>Add to favorites</span></a></li>
-									<li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to compare"><i class="ti-control-shuffle"></i><span>Add to compare</span></a></li>
-									<li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to cart"><i class="ti-shopping-cart"></i><span>Add to cart</span></a></li>
-								</ul>
-							</div>
-							<!-- /grid_item -->
-						</div>
-						<!-- /col -->
-
-						<div class="col-6 col-md-4">
-							<div class="grid_item">
-								<span class="ribbon off">-50%</span>
-								<figure>
-									<a href="product-detail-1.html">
-										<img class="img-fluid lazy" src="img/products/product_placeholder_square_medium.jpg" data-src="img/products/shoes/3.jpg" alt="">
-									</a>
-									<div data-countdown="2019/05/21" class="countdown"></div>
-								</figure>
-								<a href="product-detail-1.html">
-									<h3>Armor Air Wildwood ACG</h3>
-								</a>
-								<div class="price_box">
-									<span class="new_price">$75.00</span>
-									<span class="old_price">$155.00</span>
-								</div>
-								<ul>
-									<li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to favorites"><i class="ti-heart"></i><span>Add to favorites</span></a></li>
-									<li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to compare"><i class="ti-control-shuffle"></i><span>Add to compare</span></a></li>
-									<li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to cart"><i class="ti-shopping-cart"></i><span>Add to cart</span></a></li>
-								</ul>
-							</div>
-							<!-- /grid_item -->
-						</div>
-						<!-- /col -->
-
-						<div class="col-6 col-md-4">
-							<div class="grid_item">
-								<span class="ribbon new">New</span>
-								<figure>
-									<a href="product-detail-1.html">
-										<img class="img-fluid lazy" src="img/products/product_placeholder_square_medium.jpg" data-src="img/products/shoes/4.jpg" alt="">
-									</a>
-								</figure>
-								<a href="product-detail-1.html">
-									<h3>Armor ACG React Terra</h3>
-								</a>
-								<div class="price_box">
-									<span class="new_price">$110.00</span>
-								</div>
-								<ul>
-									<li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to favorites"><i class="ti-heart"></i><span>Add to favorites</span></a></li>
-									<li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to compare"><i class="ti-control-shuffle"></i><span>Add to compare</span></a></li>
-									<li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to cart"><i class="ti-shopping-cart"></i><span>Add to cart</span></a></li>
-								</ul>
-							</div>
-							<!-- /grid_item -->
-						</div>
-						<!-- /col -->
-
-						<div class="col-6 col-md-4">
-							<div class="grid_item">
-								<span class="ribbon new">New</span>
-								<figure>
-									<a href="product-detail-1.html">
-										<img class="img-fluid lazy" src="img/products/product_placeholder_square_medium.jpg" data-src="img/products/shoes/5.jpg" alt="">
-									</a>
-								</figure>
-								<a href="product-detail-1.html">
-									<h3>Armor Air Zoom Alpha</h3>
-								</a>
-								<div class="price_box">
-									<span class="new_price">$140.00</span>
-								</div>
-								<ul>
-									<li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to favorites"><i class="ti-heart"></i><span>Add to favorites</span></a></li>
-									<li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to compare"><i class="ti-control-shuffle"></i><span>Add to compare</span></a></li>
-									<li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to cart"><i class="ti-shopping-cart"></i><span>Add to cart</span></a></li>
-								</ul>
-							</div>
-							<!-- /grid_item -->
-						</div>
-						<!-- /col -->
-
-						<div class="col-6 col-md-4">
-							<div class="grid_item">
-								<span class="ribbon new">New</span>
-								<figure>
-									<a href="product-detail-1.html">
-										<img class="img-fluid lazy" src="img/products/product_placeholder_square_medium.jpg" data-src="img/products/shoes/6.jpg" alt="">
-									</a>
-								</figure>
-								<a href="product-detail-1.html">
-									<h3>Armor Air Alpha</h3>
-								</a>
-								<div class="price_box">
-									<span class="new_price">$130.00</span>
-								</div>
-								<ul>
-									<li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to favorites"><i class="ti-heart"></i><span>Add to favorites</span></a></li>
-									<li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to compare"><i class="ti-control-shuffle"></i><span>Add to compare</span></a></li>
-									<li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to cart"><i class="ti-shopping-cart"></i><span>Add to cart</span></a></li>
-								</ul>
-							</div>
-							<!-- /grid_item -->
-						</div>
-						<!-- /col -->
-
-						<div class="col-6 col-md-4">
-							<div class="grid_item">
-								<span class="ribbon hot">Hot</span>
-								<figure>
-									<a href="product-detail-1.html">
-										<img class="img-fluid lazy" src="img/products/product_placeholder_square_medium.jpg" data-src="img/products/shoes/7.jpg" alt="">
-									</a>
-								</figure>
-								<a href="product-detail-1.html">
-									<h3>Armor Air 98</h3>
-								</a>
-								<div class="price_box">
-									<span class="new_price">$115.00</span>
-								</div>
-								<ul>
-									<li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to favorites"><i class="ti-heart"></i><span>Add to favorites</span></a></li>
-									<li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to compare"><i class="ti-control-shuffle"></i><span>Add to compare</span></a></li>
-									<li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to cart"><i class="ti-shopping-cart"></i><span>Add to cart</span></a></li>
-								</ul>
-							</div>
-							<!-- /grid_item -->
-						</div>
-						<!-- /col -->
-
-						<div class="col-6 col-md-4">
-							<div class="grid_item">
-								<span class="ribbon hot">Hot</span>
-								<figure>
-									<a href="product-detail-1.html">
-										<img class="img-fluid lazy" src="img/products/product_placeholder_square_medium.jpg" data-src="img/products/shoes/8.jpg" alt="">
-									</a>
-								</figure>
-								<a href="product-detail-1.html">
-									<h3>Armor Air 720</h3>
-								</a>
-								<div class="price_box">
-									<span class="new_price">$120.00</span>
-								</div>
-								<ul>
-									<li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to favorites"><i class="ti-heart"></i><span>Add to favorites</span></a></li>
-									<li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to compare"><i class="ti-control-shuffle"></i><span>Add to compare</span></a></li>
-									<li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to cart"><i class="ti-shopping-cart"></i><span>Add to cart</span></a></li>
-								</ul>
-							</div>
-							<!-- /grid_item -->
-						</div>
-						<!-- /col -->
-						
-						<div class="col-6 col-md-4">
-							<div class="grid_item">
-								<span class="ribbon hot">Hot</span>
-								<figure>
-									<a href="product-detail-1.html">
-										<img class="img-fluid lazy" src="img/products/product_placeholder_square_medium.jpg" data-src="img/products/shoes/9.jpg" alt="">
-									</a>
-								</figure>
-								<a href="product-detail-1.html">
-									<h3>Armor 720</h3>
-								</a>
-								<div class="price_box">
-									<span class="new_price">$100.00</span>
-								</div>
-								<ul>
-									<li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to favorites"><i class="ti-heart"></i><span>Add to favorites</span></a></li>
-									<li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to compare"><i class="ti-control-shuffle"></i><span>Add to compare</span></a></li>
-									<li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to cart"><i class="ti-shopping-cart"></i><span>Add to cart</span></a></li>
-								</ul>
-							</div>
-							<!-- /grid_item -->
-						</div>
-						<!-- /col -->		
-						
+		<img src="img/bg_cat_shoes.jpg" class="img-fluid" alt="">
+	</div> -->
+	<!-- /top_banner -->
+	<!-- <div id="stick_here"></div>
+	<div class="toolbox elemento_stick">
+		<div class="container">
+			<ul class="clearfix">
+				<li>
+					<div class="sort_select">
+						<select name="sort" id="sort">
+							<option value="popularity" selected="selected">Sort by popularity</option>
+							<option value="rating">Sort by average rating</option>
+							<option value="date">Sort by newness</option>
+							<option value="price">Sort by price: low to high</option>
+							<option value="price-desc">Sort by price: high to
+						</select>
 					</div>
-					<!-- /row -->
-					<div class="pagination__wrapper">
-						<ul class="pagination">
-							<li><a href="#0" class="prev" title="previous page">&#10094;</a></li>
-							<li>
-								<a href="#0" class="active">1</a>
-							</li>
-							<li>
-								<a href="#0">2</a>
-							</li>
-							<li>
-								<a href="#0">3</a>
-							</li>
-							<li>
-								<a href="#0">4</a>
-							</li>
-							<li><a href="#0" class="next" title="next page">&#10095;</a></li>
-						</ul>
-					</div>
-				</div>
-				<!-- /col -->
-			</div>
-			<!-- /row -->			
-				
+				</li>
+				<li>
+					<a href="#0"><i class="ti-view-grid"></i></a>
+					<a href="listing-row-1-sidebar-left.html"><i class="ti-view-list"></i></a>
+				</li>
+				<li>
+					<a href="#0" class="open_filters">
+						<i class="ti-filter"></i><span>Filters</span>
+					</a>
+				</li>
+			</ul>
 		</div>
-		<!-- /container -->
-	</main>
-	<!-- /main -->
+	</div> -->
+	<!-- /toolbox -->
+
+	<div class="container margin_30">
+
+		<div class="row">
+			<aside class="col-lg-3" id="sidebar_fixed">
+				<form id="filterForm" method="post" action="index.php?act=filter">
+				<div class="filter_col">
+					<div class="inner_bt"><a href="#" class="open_filters"><i class="ti-close"></i></a></div>
+					<div class="filter_type version_2">
+						<h4><a href="#filter_1" data-bs-toggle="collapse" class="opened">Thương hiệu</a></h4>
+						<div class="collapse show" id="filter_1">
+							<ul>
+								<?php foreach ($danhmuc as $dm) { ?>
+									<li>
+									<label class="container_check"><?= $dm['category_name'] ?> <small><?= $dm['product_count'] ?></small>
+										<input name="thuong_hieu" type="checkbox" value="<?= $dm['category_id'] ?>">
+										<span class="checkmark"></span>
+									</label>
+								</li>
+								<?php } ?>
+							</ul>
+						</div>
+						<!-- /filter_type -->
+					</div>
+					
+					<div class="filter_type version_2">
+						<h4><a href="#filter_4" data-bs-toggle="collapse" class="opened">Giá</a></h4>
+						<div class="collapse show" id="filter_4">
+							<ul>
+								<li>
+									<label class="container_check">Dưới 1 triệu<small></small>
+										<input name="gia" type="checkbox" value="1">
+										<span class="checkmark"></span>
+									</label>
+								</li>
+								<li>
+									<label class="container_check" >Từ 1 - 2 triệu<small></small>
+										<input name="gia" type="checkbox" value="2">
+										<span class="checkmark"></span>
+									</label>
+								</li>
+								<li>
+									<label class="container_check">Từ 2 - 3 triệu<small></small>
+										<input name="gia" type="checkbox" value="3">
+										<span class="checkmark"></span>
+									</label>
+								</li>
+								<li>
+									<label class="container_check">Trên 3 triệu<small></small>
+										<input name="gia" type="checkbox" value="4">
+										<span class="checkmark"></span>
+									</label>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<!-- /filter_type -->
+					<input type="hidden" id="brandInput" name="brandInput">
+					<input type="hidden" id="priceInput" name="priceInput">
+					<div class="buttons">
+						<button id="filterButton" type="submit" class="btn_1">Lọc</button>
+						<button class="btn_1 gray" type="reset">Bỏ chọn</button>
+					</div>
+				</div>
+			</form>
+			</aside>
+			<!-- /col -->
+			<div class="col-lg-9">
+				<div class="row small-gutters">
+					<?php foreach ($listsp as $sp) { 
+						extract($sp) ?>
+						<div class="col-6 col-md-4">
+							<div class="grid_item">
+								<span class="ribbon off">Hot</span>
+								<figure>
+									<a href="index.php?act=spchitiet&id=<?= $product_id ?>">
+										<img class="img-fluid lazy" src="upload/<?= $img_name ?>" data-src="upload/<?= $img_name ?>" alt="">
+									</a>
+									
+								</figure>
+								<a href="product-detail-1.html">
+									<h3><?= $product_name ?></h3>
+								</a>
+								<div class="price_box">
+									<span class="new_price"><?= $product_price ?></span>
+									<span class="old_price"><?= $discounted_price ?></span>
+								</div>
+								<ul>
+									<li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to favorites"><i class="ti-heart"></i><span>Add to favorites</span></a></li>
+									<!-- <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to compare"><i class="ti-control-shuffle"></i><span>Add to compare</span></a></li> -->
+									<li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to cart"><i class="ti-shopping-cart"></i><span>Add to cart</span></a></li>
+								</ul>
+							</div>
+							<!-- /grid_item -->
+						</div>
+						<!-- /col -->
+
+					<?php } ?>
+
+				</div>
+				<!-- /row -->
+				<div class="pagination__wrapper">
+					<?php if(!empty($pagging)) echo $pagging ?>
+				</div>
+			</div>
+			<!-- /col -->
+		</div>
+		<!-- /row -->
+
+	</div>
+	<!-- /container -->
+</main>
+<!-- /main -->
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Lắng nghe sự kiện khi nút "Lọc" được nhấn
+    var filterButton = document.getElementById('filterButton');
+    filterButton.addEventListener('click', function() {
+      // Gọi hàm để lấy thông tin và truyền vào các input
+      filterResults();
+    });
+  });
+
+  function filterResults() {
+	var filterForm = document.getElementById('filterForm');
+    filterForm.addEventListener('submit', function(event) {
+      // Chặn việc submit mặc định của form
+      event.preventDefault();
+	})
+    // Lấy thông tin từ các ô checkbox được chọn
+    var selectedBrands = document.querySelectorAll('input[name="thuong_hieu"]:checked');
+    var selectedPrices = document.querySelectorAll('input[name="gia"]:checked');
+
+	console.log(selectedBrands);
+	console.log(selectedPrices);
+
+    // Xử lý thông tin và truyền vào input
+    var brandInput = document.getElementById('brandInput');
+    var priceInput = document.getElementById('priceInput');
+
+    // Lấy thông tin thương hiệu
+    var brandValues = Array.from(selectedBrands).map(function(checkbox) {
+      return checkbox.value;
+    });
+
+    // Lấy thông tin giá
+    var priceValues = Array.from(selectedPrices).map(function(checkbox) {
+      return checkbox.value;
+    });
+
+    // Truyền thông tin vào input
+    brandInput.value = brandValues.join(', ');
+    priceInput.value = priceValues.join(', ');
+
+    // Submit form
+	filterForm.submit();
+  }
+</script>

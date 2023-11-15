@@ -2,15 +2,15 @@
 	<main class="bg_gray">
 		
 	<div class="container margin_30">
-		<div class="page_header">
+		<div class="page_header text-center">
 			<div class="breadcrumbs">
 				<ul>
-					<li><a href="#">Home</a></li>
-					<li><a href="#">Category</a></li>
+					<li><a href="#">Trang chủ</a></li>
+					<li><a href="#">Đăng nhập/Đăng ký</a></li>
 					<li>Page active</li>
 				</ul>
 		</div>
-		<h1>Sign In or Create an Account</h1>
+		<h1>Đăng nhập hoặc tạo tài khoản</h1>
 	</div>
 	<!-- /page_header -->
 			<div class="row justify-content-center">
@@ -175,7 +175,7 @@
 								</div>
 							</div>
 							<!-- /row -->
-							<div class="row no-gutters">
+							<!-- <div class="row no-gutters">
 								<div class="col-6 pr-1">
 									<div class="form-group">
 										<div class="custom-select-form">
@@ -193,7 +193,7 @@
 										<input type="text" class="form-control" placeholder="Telephone *">
 									</div>
 								</div>
-							</div>
+							</div> -->
 							<!-- /row -->
 						</div>
 						<!-- /company -->
