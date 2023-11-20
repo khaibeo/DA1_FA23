@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 20, 2023 lúc 10:58 AM
+-- Thời gian đã tạo: Th10 20, 2023 lúc 05:13 PM
 -- Phiên bản máy phục vụ: 10.4.28-MariaDB
--- Phiên bản PHP: 8.2.4
+-- Phiên bản PHP: 8.1.17
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -73,7 +73,8 @@ CREATE TABLE `categories` (
 INSERT INTO `categories` (`category_id`, `category_name`) VALUES
 (1, 'Chưa phân loại'),
 (2, 'Giày Nike'),
-(3, 'ADIDAS');
+(6, 'Giày Puma '),
+(7, 'Giày Adidas');
 
 -- --------------------------------------------------------
 
@@ -158,9 +159,10 @@ CREATE TABLE `products` (
   `product_price` int(11) NOT NULL,
   `discounted_price` int(11) DEFAULT NULL,
   `product_describe` text DEFAULT NULL,
+  `product_image` varchar(255) NOT NULL COMMENT 'avatar sản phâm',
   `date_add` timestamp NOT NULL DEFAULT current_timestamp(),
   `category_id` int(11) NOT NULL,
-  `view` int(11) DEFAULT NULL,
+  `view` int(11) DEFAULT 0,
   `highlight` tinyint(1) NOT NULL DEFAULT 0,
   `status` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vietnamese_ci;
@@ -169,17 +171,11 @@ CREATE TABLE `products` (
 -- Đang đổ dữ liệu cho bảng `products`
 --
 
-INSERT INTO `products` (`product_id`, `product_name`, `product_price`, `discounted_price`, `product_describe`, `date_add`, `category_id`, `view`, `highlight`, `status`) VALUES
-(1, 'AIR FORCE 1', 3300000, NULL, 'hiết kế mẫu giày Nike Air Force 1 được xem là đôi giày mang tính cách mạng trong thế giới sneaker, khi mà các nhà thiết kế kết hợp với các nhà khoa học cho ra mẫu giày có công nghệ ‘Air’ – một túi khí ở gót chân để đệm hỗ trợ.\r\n\r\nGiày Nike Sneaker AIR FORCE 1 \'07 Nam | KingShoes.vn Bán Giày Sneaker Chính Hãng Tại Tphcm\r\n\r\nCái tên ‘Air Force One’ được lấy ý tưởng từ chiếc chuyên cơ cùng tên chuyên dùng chở tổng thống Mỹ. AF1 có 3 hình thức chính: low (thấp) – mid (trung) – top (cao). Với các style Mid – Top, chúng ta dễ dàng nhận thấy một cọng dây đeo có khoá hoặc dán tạo vẻ chắc chắn cho đôi giày và có thể dịch chuyển theo tuỳ phiên bản. Đây là một sự đặc biệt của đôi giày Nike Air Force 1 so với các đôi giày khác cùng thời. Một điểm nhận dạng khác của các Nike Air Force 1 là một huy hiệu nhỏ ở giữa dây giày được làm bằng thiếc (có phiên bản được làm bằng nhựa hoặc bạc) có khắc dòng chữ ‘AF1’.\r\n\r\nGiày Nike Sneaker AIR FORCE 1 \'07 Nam | KingShoes.vn Bán Giày Sneaker Chính Hãng Tại Tphcm\r\n\r\nNike Air Force 1 có hơn 1.700 bản phối với nhiều màu khác nhau và ngày càng tăng lên. Nhưng 2 màu cơ bản White – on – White và Black – on – Black vẫn là hai phiên bản thành công nhất với số lượng sản phẩm bán ra chạy nhất trong suốt nhiều thập kỷ qua. 12 triệu là số lượng giày được bán ra trong thời kì đỉnh cao của Nike Air Force 1 vào năm 2005. Con số đã phần nào thể hiện được sự phổ biến của nó trên toàn thế giới. Nike Air Force 1 thu về hơn 800 triệu USD mỗi năm cho Nike, sự tồn tại của đôi giày này trong hơn 25 năm qua cho ta thấy vị trí của nó trong trái tim những người đam mê ‘footwear’ cao đến mức nào.\r\n\r\nVậy có nên mua giày Nike Air Force 1 không?\r\n\r\nNói đến đây thì chắc hẳn bạn đã biết được có nên mua giày Nike Air Force 1 rồi đúng không. Hiện nay, trên thị trường có rất nhiều giày Nike Air Force 1 fake.\r\n\r\nMua giày Nike Air Force 1 chính hãng hãy ghé King Shoes để luôn được trao tận tay những đôi giày Real và giá luôn luôn hấp dẫn.', '2023-11-09 08:31:49', 2, 0, 0, 1),
-(2, 'NIKE ACG MOUNTAIN FLY 2 LOW', 4800000, NULL, NULL, '2023-11-14 03:48:24', 2, 0, 0, 1),
-(3, 'NIKE TECH HERA', 3200000, NULL, NULL, '2023-11-14 03:51:54', 2, 0, 0, 1),
-(4, 'AIR MAX 1', 4800000, NULL, NULL, '2023-11-14 03:51:54', 2, 0, 0, 1),
-(5, 'REACT INFINITY RUN FK 3', 3800000, NULL, NULL, '2023-11-14 03:53:54', 2, 0, 0, 1),
-(6, 'ADIDAS NMD_S1', 2900000, 3600000, NULL, '2023-11-14 04:00:44', 3, 0, 0, 1),
-(7, 'ADIDAS DURAMO SL WIDE', 2200000, NULL, NULL, '2023-11-14 04:00:44', 3, 0, 0, 1),
-(8, 'ADIDAS NMD_G1', 2900000, NULL, NULL, '2023-11-14 04:00:44', 3, 0, 0, 1),
-(9, 'ADIDAS RUN FALCON 2.0', 1800000, NULL, NULL, '2023-11-14 04:00:44', 3, 0, 0, 1),
-(10, 'ADIDAS SAMBA CLASSIC', 3200000, NULL, NULL, '2023-11-14 04:00:44', 3, 0, 0, 1);
+INSERT INTO `products` (`product_id`, `product_name`, `product_price`, `discounted_price`, `product_describe`, `product_image`, `date_add`, `category_id`, `view`, `highlight`, `status`) VALUES
+(1, 'AIR FORCE 1', 3300000, 2500000, 'Huyền thoại lịch sử thương hiệu Nike – Nike Air Force 1 \r\nVới những người yêu thích sneaker thì chắc hẳn không thể thiếu một đôi Air Force 1 trong tủ giày của mình phải không nào. Đôi giày này trở thành đặc trưng của thương hiệu Nike và là mẫu giày được bán chạy nhất trong suốt 40 năm liên tục.\r\nĐể khẳng định đây là đôi giày hàng đầu dành cho các dân chơi bóng rổ, Nike đã không ngần ngại tốn chi phí khổng lồ để xâm nhập bà NBA và đã được nhiều ngôi sao Giải bóng rổ sử dụng trong các giải đấu lẫn ngoài đời thực. Và đây cũng chính là yếu tố giúp các sản phẩm của Nike Air Force  1 bán chạy.\r\nKhông chỉ chú trong tính thời trang trong từng đôi giày, công nghệ làm giày cũng được ông lớn Nike để ý hơn bao giờ hết. Cũng như những sản phẩm khác của Nike Air, Nike Air Force 1 Low 07 Fresh White sử dụng cộng nghệ Air tiên tiến với túi khí bên trong giúp giảm thiểu chấn thương cho người mang\r\nPhần đế giày được sử dụng cấu trúc đặc từ cao su để chống trơn trượt, tăng độ đàn hồi và mang cảm giác dễ chịu êm chân khi sử dụng. Phần upper có nhiều lỗ khí tạo sự thông thoáng khi đeo\r\nAir Force 1 thực sự đã làm rúng động làng sneaker và chưa có dấu hiệu hạ nhiệt. Sẽ thật là thiếu sót nếu bạn không sắm ngay một em Nike Air Force 1 Low 07 Fresh White DM0211-100', 'AF1-1.jpeg', '2023-11-09 08:31:49', 7, 0, 0, 1),
+(2, 'Samba', 2550000, 2500000, 'SAMBA ORIGINALS\r\nRa đời trên sân bóng, giày Samba là biểu tượng kinh điển của phong cách đường phố. Phiên bản này trung thành với di sản, thể hiện qua thân giày bằng da mềm, dáng thấp, nhã nhặn, các chi tiết phủ ngoài bằng da lộn và đế gum, biến đôi giày trở thành item không thể thiếu trong tủ đồ của tất cả mọi người - cả trong và ngoài sân cỏ.', 'Samba-1.avif', '2023-11-12 10:19:13', 7, 0, 0, 1),
+(3, 'FORUM 84 LOW', 2600000, 1800000, 'ĐÔI GIÀY TRAINER CỔ THẤP TÔN VINH PHONG CÁCH BÓNG RỔ THẬP NIÊN 80.\r\nLà lựa chọn yêu thích của những huyền thoại bóng rổ, các nghệ sĩ âm nhạc sở hữu đĩa bạch kim cũng như các tín đồ thời trang, giày adidas Forum là biểu tượng của sự vĩ đại. Mặc dù đã rời sân bóng rổ nhưng phiên bản này vẫn tiếp nối di sản giày Forum với các chi tiết thiết kế nguyên bản năm 1984 như quai dán ở cổ chân và chi tiết chữ X biểu tượng. Thân giày bằng da cao cấp và đế ngoài hầm hố cho phong cách đẳng cấp thường ngày.', 'FORUM 84 LOW-1.avif', '2023-11-12 10:30:39', 7, NULL, 0, 1),
+(4, 'Air Jordan 1 Mid', 3500000, 2700000, 'Không bao giờ lộn xộn với một cổ điển. Giữ nét truyền thống trên đôi chân của bạn với vẻ ngoài trắng-trắng sẽ không bao giờ lỗi mốt.\r\n\r\nNhững lợi ích\r\nDa thật và da tổng hợp mang lại độ bền và kiểu dáng vượt trội.\r\nLưỡi đệm và phần trên bên trong để tăng thêm sự thoải mái và an toàn.\r\nLogo Air Jordan có cánh mang tính biểu tượng ở phía trên dành cho thương hiệu truyền thống.\r\nBộ phận Encapsulated Air ở gót chân mang lại lớp đệm nhẹ mà bạn biết và yêu thích.\r\nĐế ngoài bằng cao su rắn với rãnh cho lực kéo tiêu chuẩn.\r\n\r\nThông tin chi tiết sản phẩm\r\nLogo Swoosh được khâu xuống\r\nLogo đôi cánh trên cổ áo\r\nMàu sắc hiển thị: Trắng/Trắng/Đen\r\nPhong cách: DV0991-101\r\nQuốc gia/Khu vực xuất xứ: Việt Nam', 'b7d9211c-26e7-431a-ac24-b0540fb3c00f.webp', '2023-11-12 10:36:10', 7, 0, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -199,9 +195,11 @@ CREATE TABLE `products_detail` (
 --
 
 INSERT INTO `products_detail` (`product_detail_id`, `product_id`, `product_quantity`, `product_size`) VALUES
-(1, 1, 5, 40),
-(2, 1, 0, 41),
-(3, 1, 3, 42);
+(1, 1, 202, 40),
+(2, 1, 200, 41),
+(3, 1, 102, 42),
+(38, 2, 302, 40),
+(39, 2, 203, 41);
 
 -- --------------------------------------------------------
 
@@ -220,55 +218,14 @@ CREATE TABLE `products_image` (
 --
 
 INSERT INTO `products_image` (`image_id`, `product_id`, `image_name`) VALUES
-(1, 1, 'AF1.png'),
-(2, 1, 'AF1-1.png'),
-(3, 1, 'AF1-2.png'),
-(4, 1, 'AF1-3.png'),
-(5, 1, 'AF1-4.png'),
-(6, 2, 'MT5.png'),
-(7, 2, 'MT1.png'),
-(8, 2, 'MT2.png'),
-(9, 2, 'MT3.png'),
-(10, 2, 'MT4.png'),
-(11, 3, 'TECH5.png'),
-(12, 3, 'TECH1.png'),
-(13, 3, 'TECH2.png'),
-(14, 3, 'TECH3.png'),
-(15, 3, 'TECH4.png'),
-(16, 4, 'MAX5.png'),
-(17, 4, 'MAX1.png'),
-(18, 4, 'MAX2.png'),
-(19, 4, 'MAX3.png'),
-(20, 4, 'MAX4.png'),
-(21, 5, 'FK5.png'),
-(22, 5, 'FK1.png'),
-(23, 5, 'FK2.png'),
-(24, 5, 'FK3.png'),
-(25, 5, 'FK4.png'),
-(26, 6, 'S1.jpg'),
-(27, 6, 'S12.jpg'),
-(28, 6, 'S13.jpg'),
-(29, 6, 'S14.jpg'),
-(30, 7, 'SL.jpg'),
-(31, 7, 'SL1.jpg'),
-(32, 7, 'SL2.jpg'),
-(33, 7, 'SL3.jpg'),
-(34, 7, 'SL4.jpg'),
-(35, 8, 'G1.jpg'),
-(36, 8, 'G2.jpg'),
-(37, 8, 'G13.jpg'),
-(38, 8, 'G14.jpg'),
-(39, 8, 'G15.jpg'),
-(40, 9, 'FA.jpg'),
-(41, 9, 'FA1.jpg'),
-(42, 9, 'FA2.jpg'),
-(43, 9, 'FA3.jpg'),
-(44, 9, 'FA4.jpg'),
-(45, 10, 'SAM.jpg'),
-(46, 10, 'SAM1.jpg'),
-(47, 10, 'SAM2.jpg'),
-(48, 10, 'SAM3.jpg'),
-(49, 10, 'SAM4.jpg');
+(1, 1, 'AF1.jpg'),
+(2, 1, 'AF1-1.jpg'),
+(3, 1, 'AF1-2.jpg'),
+(4, 1, 'AF1-3.jpg'),
+(5, 1, 'AF1-4.jpg'),
+(6, 2, 'samba'),
+(7, 2, 'samba-2'),
+(8, 2, 'samba-3');
 
 -- --------------------------------------------------------
 
@@ -293,9 +250,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`user_id`, `username`, `fullname`, `email`, `password`, `tel`, `address`, `avatar`, `role`) VALUES
-(1, 'Admin', 'Admin', 'Admin@gmail.com', 'admin', '', '', '', 'admin'),
-(2, 'customer', 'customer', 'customer@gmail.com', 'customer', '', '', '', 'customer'),
-(4, 'khaimv13', 'Ma Văn Khải', 'khaimv13@gmail.com', 'khai', '0346315304', 'Kim Tân, Kim Phượng, Định Hóa, Thái Nguyên', 'khainopro.jpg', 'admin');
+(1, 'Admin', 'Admin', 'Admin@gmail.com', 'admin', '1234567890', 'abc', '550AEACE-8837-4075-B0D2-FD0757175A40 (1).jpeg', 'admin'),
+(2, 'Customer', 'Customer', 'Customer@gmail.com', 'customer', 'Customer', 'Customer', 'download.jpeg', 'customer');
 
 -- --------------------------------------------------------
 
@@ -420,7 +376,7 @@ ALTER TABLE `cart_detail`
 -- AUTO_INCREMENT cho bảng `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT cho bảng `evaluation`
@@ -450,19 +406,19 @@ ALTER TABLE `order_evaluation`
 -- AUTO_INCREMENT cho bảng `products`
 --
 ALTER TABLE `products`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT cho bảng `products_detail`
 --
 ALTER TABLE `products_detail`
-  MODIFY `product_detail_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `product_detail_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT cho bảng `products_image`
 --
 ALTER TABLE `products_image`
-  MODIFY `image_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `image_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT cho bảng `user`
