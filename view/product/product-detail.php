@@ -1,387 +1,236 @@
-
+	<?php
+	extract($sp);
+	$list_img = explode(",", $anh);
+	?>
 	<main>
-	    <div class="container margin_30">
-	        <div class="countdown_inner">-20% This offer ends in <div data-countdown="2019/05/15" class="countdown"></div>
-	        </div>
-	        <div class="row">
-	            <div class="col-md-6">
-	                <div class="all">
-	                    <div class="slider">
-	                        <div class="owl-carousel owl-theme main">
-	                            <div style="background-image: url(img/products/shoes/1.jpg);" class="item-box"></div>
-	                            <div style="background-image: url(img/products/shoes/2.jpg);" class="item-box"></div>
-	                            <div style="background-image: url(img/products/shoes/3.jpg);" class="item-box"></div>
-	                            <div style="background-image: url(img/products/shoes/4.jpg);" class="item-box"></div>
-	                            <div style="background-image: url(img/products/shoes/5.jpg);" class="item-box"></div>
-	                            <div style="background-image: url(img/products/shoes/6.jpg);" class="item-box"></div>
-	                        </div>
-	                        <div class="left nonl"><i class="ti-angle-left"></i></div>
-	                        <div class="right"><i class="ti-angle-right"></i></div>
-	                    </div>
-	                    <div class="slider-two">
-	                        <div class="owl-carousel owl-theme thumbs">
-	                            <div style="background-image: url(img/products/shoes/1.jpg);" class="item active"></div>
-	                            <div style="background-image: url(img/products/shoes/2.jpg);" class="item"></div>
-	                            <div style="background-image: url(img/products/shoes/3.jpg);" class="item"></div>
-	                            <div style="background-image: url(img/products/shoes/4.jpg);" class="item"></div>
-	                            <div style="background-image: url(img/products/shoes/5.jpg);" class="item"></div>
-	                            <div style="background-image: url(img/products/shoes/6.jpg);" class="item"></div>
-	                        </div>
-	                        <div class="left-t nonl-t"></div>
-	                        <div class="right-t"></div>
-	                    </div>
-	                </div>
-	            </div>
-	            <div class="col-md-6">
-	                <div class="breadcrumbs">
-	                    <ul>
-	                        <li><a href="#">Home</a></li>
-	                        <li><a href="#">Category</a></li>
-	                        <li>Page active</li>
-	                    </ul>
-	                </div>
-	                <!-- /page_header -->
-	                <div class="prod_info">
-	                    <h1>Armor Air X Fear</h1>
-	                    <span class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i><em>4 reviews</em></span>
-	                    <p><small>SKU: MTKRY-001</small><br>Sed ex labitur adolescens scriptorem. Te saepe verear tibique sed. Et wisi ridens vix, lorem iudico blandit mel cu. Ex vel sint zril oportere, amet wisi aperiri te cum.</p>
-	                    <div class="prod_options">
-	                        <div class="row">
-	                            <label class="col-xl-5 col-lg-5  col-md-6 col-6 pt-0"><strong>Color</strong></label>
-	                            <div class="col-xl-4 col-lg-5 col-md-6 col-6 colors">
-	                                <ul>
-	                                    <li><a href="#0" class="color color_1 active"></a></li>
-	                                    <li><a href="#0" class="color color_2"></a></li>
-	                                    <li><a href="#0" class="color color_3"></a></li>
-	                                    <li><a href="#0" class="color color_4"></a></li>
-	                                </ul>
-	                            </div>
-	                        </div>
-	                        <div class="row">
-	                            <label class="col-xl-5 col-lg-5 col-md-6 col-6"><strong>Size</strong> - Size Guide <a href="#0" data-bs-toggle="modal" data-bs-target="#size-modal"><i class="ti-help-alt"></i></a></label>
-	                            <div class="col-xl-4 col-lg-5 col-md-6 col-6">
-	                                <div class="custom-select-form">
-	                                    <select class="wide">
-	                                        <option value="" selected>Small (S)</option>
-	                                        <option value="">M</option>
-	                                        <option value=" ">L</option>
-	                                        <option value=" ">XL</option>
-	                                    </select>
-	                                </div>
-	                            </div>
-	                        </div>
-	                        <div class="row">
-	                            <label class="col-xl-5 col-lg-5  col-md-6 col-6"><strong>Quantity</strong></label>
-	                            <div class="col-xl-4 col-lg-5 col-md-6 col-6">
-	                                <div class="numbers-row">
-	                                    <input type="text" value="1" id="quantity_1" class="qty2" name="quantity_1">
-	                                </div>
-	                            </div>
-	                        </div>
-	                    </div>
-	                    <div class="row">
-	                        <div class="col-lg-5 col-md-6">
-	                            <div class="price_main"><span class="new_price">$148.00</span><span class="percentage">-20%</span> <span class="old_price">$160.00</span></div>
-	                        </div>
-	                        <div class="col-lg-4 col-md-6">
-	                            <div class="btn_add_to_cart"><a href="#0" class="btn_1">Add to Cart</a></div>
-	                        </div>
-	                    </div>
-	                </div>
-	                <!-- /prod_info -->
-	                <div class="product_actions">
-	                    <ul>
-	                        <li>
-	                            <a href="#"><i class="ti-heart"></i><span>Add to Wishlist</span></a>
-	                        </li>
-	                        <li>
-	                            <a href="#"><i class="ti-control-shuffle"></i><span>Add to Compare</span></a>
-	                        </li>
-	                    </ul>
-	                </div>
-	                <!-- /product_actions -->
-	            </div>
-	        </div>
-	        <!-- /row -->
-	    </div>
-	    <!-- /container -->
-	    
-	    <div class="tabs_product">
-	        <div class="container">
-	            <ul class="nav nav-tabs" role="tablist">
-	                <li class="nav-item">
-	                    <a id="tab-A" href="#pane-A" class="nav-link active" data-bs-toggle="tab" role="tab">Description</a>
-	                </li>
-	                <li class="nav-item">
-	                    <a id="tab-B" href="#pane-B" class="nav-link" data-bs-toggle="tab" role="tab">Reviews</a>
-	                </li>
-	            </ul>
-	        </div>
-	    </div>
-	    <!-- /tabs_product -->
-	    <div class="tab_content_wrapper">
-	        <div class="container">
-	            <div class="tab-content" role="tablist">
-	                <div id="pane-A" class="card tab-pane fade active show" role="tabpanel" aria-labelledby="tab-A">
-	                    <div class="card-header" role="tab" id="heading-A">
-	                        <h5 class="mb-0">
-	                            <a class="collapsed" data-bs-toggle="collapse" href="#collapse-A" aria-expanded="false" aria-controls="collapse-A">
-	                                Description
-	                            </a>
-	                        </h5>
-	                    </div>
-	                    <div id="collapse-A" class="collapse" role="tabpanel" aria-labelledby="heading-A">
-	                        <div class="card-body">
-	                            <div class="row justify-content-between">
-	                                <div class="col-lg-6">
-	                                    <h3>Details</h3>
-	                                    <p>Lorem ipsum dolor sit amet, in eleifend <strong>inimicus elaboraret</strong> his, harum efficiendi mel ne. Sale percipit vituperata ex mel, sea ne essent aeterno sanctus, nam ea laoreet civibus electram. Ea vis eius explicari. Quot iuvaret ad has.</p>
-	                                    <p>Vis ei ipsum conclusionemque. Te enim suscipit recusabo mea, ne vis mazim aliquando, everti insolens at sit. Cu vel modo unum quaestio, in vide dicta has. Ut his laudem explicari adversarium, nisl <strong>laboramus hendrerit</strong> te his, alia lobortis vis ea.</p>
-	                                    <p>Perfecto eleifend sea no, cu audire voluptatibus eam. An alii praesent sit, nobis numquam principes ea eos, cu autem constituto suscipiantur eam. Ex graeci elaboraret pro. Mei te omnis tantas, nobis viderer vivendo ex has.</p>
-	                                </div>
-	                                <div class="col-lg-5">
-	                                    <h3>Specifications</h3>
-	                                    <div class="table-responsive">
-	                                        <table class="table table-sm table-striped">
-	                                            <tbody>
-	                                                <tr>
-	                                                    <td><strong>Color</strong></td>
-	                                                    <td>Blue, Purple</td>
-	                                                </tr>
-	                                                <tr>
-	                                                    <td><strong>Size</strong></td>
-	                                                    <td>150x100x100</td>
-	                                                </tr>
-	                                                <tr>
-	                                                    <td><strong>Weight</strong></td>
-	                                                    <td>0.6kg</td>
-	                                                </tr>
-	                                                <tr>
-	                                                    <td><strong>Manifacturer</strong></td>
-	                                                    <td>Manifacturer</td>
-	                                                </tr>
-	                                            </tbody>
-	                                        </table>
-	                                    </div>
-	                                    <!-- /table-responsive -->
-	                                </div>
-	                            </div>
-	                        </div>
-	                    </div>
-	                </div>
-	                <!-- /TAB A -->
-	                <div id="pane-B" class="card tab-pane fade" role="tabpanel" aria-labelledby="tab-B">
-	                    <div class="card-header" role="tab" id="heading-B">
-	                        <h5 class="mb-0">
-	                            <a class="collapsed" data-bs-toggle="collapse" href="#collapse-B" aria-expanded="false" aria-controls="collapse-B">
-	                                Reviews
-	                            </a>
-	                        </h5>
-	                    </div>
-	                    <div id="collapse-B" class="collapse" role="tabpanel" aria-labelledby="heading-B">
-	                        <div class="card-body">
-	                            <div class="row justify-content-between">
-	                                <div class="col-lg-6">
-	                                    <div class="review_content">
-	                                        <div class="clearfix add_bottom_10">
-	                                            <span class="rating"><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><em>5.0/5.0</em></span>
-	                                            <em>Published 54 minutes ago</em>
-	                                        </div>
-	                                        <h4>"Commpletely satisfied"</h4>
-	                                        <p>Eos tollit ancillae ea, lorem consulatu qui ne, eu eros eirmod scaevola sea. Et nec tantas accusamus salutatus, sit commodo veritus te, erat legere fabulas has ut. Rebum laudem cum ea, ius essent fuisset ut. Viderer petentium cu his.</p>
-	                                    </div>
-	                                </div>
-	                                <div class="col-lg-6">
-	                                    <div class="review_content">
-	                                        <div class="clearfix add_bottom_10">
-	                                            <span class="rating"><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star empty"></i><i class="icon-star empty"></i><em>4.0/5.0</em></span>
-	                                            <em>Published 1 day ago</em>
-	                                        </div>
-	                                        <h4>"Always the best"</h4>
-	                                        <p>Et nec tantas accusamus salutatus, sit commodo veritus te, erat legere fabulas has ut. Rebum laudem cum ea, ius essent fuisset ut. Viderer petentium cu his.</p>
-	                                    </div>
-	                                </div>
-	                            </div>
-	                            <!-- /row -->
-	                            <div class="row justify-content-between">
-	                                <div class="col-lg-6">
-	                                    <div class="review_content">
-	                                        <div class="clearfix add_bottom_10">
-	                                            <span class="rating"><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star empty"></i><em>4.5/5.0</em></span>
-	                                            <em>Published 3 days ago</em>
-	                                        </div>
-	                                        <h4>"Outstanding"</h4>
-	                                        <p>Eos tollit ancillae ea, lorem consulatu qui ne, eu eros eirmod scaevola sea. Et nec tantas accusamus salutatus, sit commodo veritus te, erat legere fabulas has ut. Rebum laudem cum ea, ius essent fuisset ut. Viderer petentium cu his.</p>
-	                                    </div>
-	                                </div>
-	                                <div class="col-lg-6">
-	                                    <div class="review_content">
-	                                        <div class="clearfix add_bottom_10">
-	                                            <span class="rating"><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><em>5.0/5.0</em></span>
-	                                            <em>Published 4 days ago</em>
-	                                        </div>
-	                                        <h4>"Excellent"</h4>
-	                                        <p>Sit commodo veritus te, erat legere fabulas has ut. Rebum laudem cum ea, ius essent fuisset ut. Viderer petentium cu his.</p>
-	                                    </div>
-	                                </div>
-	                            </div>
-	                            <!-- /row -->
-	                            <p class="text-end"><a href="leave-review.html" class="btn_1">Leave a review</a></p>
-	                        </div>
-	                        <!-- /card-body -->
-	                    </div>
-	                </div>
-	                <!-- /tab B -->
-	            </div>
-	            <!-- /tab-content -->
-	        </div>
-	        <!-- /container -->
-	    </div>
-	    <!-- /tab_content_wrapper -->
+		<div class="container margin_30">
+			<!-- <div class="countdown_inner">-20% This offer ends in <div data-countdown="2019/05/15" class="countdown"></div>
+	        </div> -->
+			<div class="row">
+				<div class="col-md-6">
+					<div class="all">
+						<div class="slider">
+							<div class="owl-carousel owl-theme main">
+								<?php foreach ($list_img as $img) : ?>
+									<div style="background-image: url(upload/<?= $img ?>);" class="item-box"></div>
+								<?php endforeach; ?>
+							</div>
+							<div class="left nonl"><i class="ti-angle-left"></i></div>
+							<div class="right"><i class="ti-angle-right"></i></div>
+						</div>
+						<div class="slider-two">
+							<div class="owl-carousel owl-theme thumbs">
+								<?php foreach ($list_img as $img) : ?>
+									<div style="background-image: url(upload/<?= $img ?>);" class="item active"></div>
+								<?php endforeach; ?>
+							</div>
+							<div class="left-t nonl-t"></div>
+							<div class="right-t"></div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="breadcrumbs">
+						<ul>
+							<li><a href="index.php">Trang chủ</a></li>
+							<li><a href="index.php?act=sanpham&iddm=<?= $category_id ?>"><?= $category_name ?></a></li>
+							<li><?= $product_name ?></li>
+						</ul>
+					</div>
+					<!-- /page_header -->
+					<div class="prod_info">
+						<h1><?= $product_name ?></h1>
+						<span class="rating">
+							<?php
+							if (empty($total_review)) {
+								echo "<i class='icon-star voted'></i><i class='icon-star voted'></i><i class='icon-star voted'></i><i class='icon-star voted'></i><i class='icon-star voted'></i>";
+							} else {
+								for ($i = 1; $i <= 5; $i++) {
+									$class = ($i <= $total_review['average_rating']) ? 'icon-star voted' : 'icon-star';
+									echo '<i class="' . $class . '"></i>';
+								}
+							}
+							?> <em> <?= empty($total_review) ? "0" : $total_review['total_reviews'] ?> đánh giá</em>
+						</span>
+						<p><small id="sku">SKU: <?= $sizeAndQuantity[0]['sku'] ?></small><br></p>
+						<div class="prod_options">
+							<div class="row">
+								<label class="col-xl-5 col-lg-5  col-md-6 col-6 pt-0"><strong>Size</strong></label>
+								<div class="col-xl-4 col-lg-5 col-md-6 col-6 colors">
+									<ul>
+										<?php
+										$i = 0;
+										foreach ($sizeAndQuantity as $s) :
+											$i++ ?>
+											<li>
+												<input type="radio" value="<?= $s['size'] ?>" datasku="<?= $s['sku'] ?>" dataquantity="<?= $s['quantity'] ?>" class="btn-check" name="size" id="option<?= $i ?>" <?php if ($i == 1) echo "checked" ?> <?php if ($s['quantity'] == 0) echo "disabled" ?>>
+												<label class="btn" for="option<?= $i ?>"><?= $s['size'] ?></label>
+											</li>
+										<?php endforeach; ?>
+									</ul>
+								</div>
+							</div>
+							<div class="row mt-3">
+								<label class="col-xl-5 col-lg-5  col-md-6 col-6"><strong>Số lượng</strong></label>
+								<div class="col-xl-4 col-lg-5 col-md-6 col-6">
+									<div class="numbers-row">
+										<input type="number" min="1" max="<?= $sizeAndQuantity[0]['quantity'] ?>" value="1" id="quantity_1" class="qty2" name="quantity_1">
+									</div>
+									<p class="mt-2" id="inventory">Còn <?= $sizeAndQuantity[0]['quantity'] ?> sản phẩm</p>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-lg-5 col-md-6">
+								<div class="price_main"><span class="new_price"><?= number_format($product_price, 0, ',', '.') . ' đ' ?></span><span class="old_price"><?= number_format($discounted_price, 0, ',', '.') . ' đ' ?></span></div>
+							</div>
+							<div class="col-lg-4 col-md-6">
+								<div class="btn_add_to_cart"><a href="#0" class="btn_1">Thêm vào giỏ hàng</a></div>
+							</div>
+						</div>
+					</div>
+					<!-- /prod_info -->
+					<div class="product_actions">
+						<ul>
+							<li>
+								<a href="#"><i class="ti-heart"></i><span>Thêm vào sản phẩm yêu thích</span></a>
+							</li>
+							<li>
+								<a href="#"><i class="ti-control-shuffle"></i><span>Thêm vào so sánh</span></a>
+							</li>
+						</ul>
+					</div>
+					<!-- /product_actions -->
+				</div>
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
 
-	    <div class="container margin_60_35">
-	        <div class="main_title">
-	            <h2>Related</h2>
-	            <span>Products</span>
-	            <p>Cum doctus civibus efficiantur in imperdiet deterruisset.</p>
-	        </div>
-	        <div class="owl-carousel owl-theme products_carousel">
-	            <div class="item">
-	                <div class="grid_item">
-	                    <span class="ribbon new">New</span>
-	                    <figure>
-	                        <a href="product-detail-1.html">
-	                            <img class="owl-lazy" src="img/products/product_placeholder_square_medium.jpg" data-src="img/products/shoes/4.jpg" alt="">
-	                        </a>
-	                    </figure>
-	                    <div class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i></div>
-	                    <a href="product-detail-1.html">
-	                        <h3>ACG React Terra</h3>
-	                    </a>
-	                    <div class="price_box">
-	                        <span class="new_price">$110.00</span>
-	                    </div>
-	                    <ul>
-	                        <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to favorites"><i class="ti-heart"></i><span>Add to favorites</span></a></li>
-	                        <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to compare"><i class="ti-control-shuffle"></i><span>Add to compare</span></a></li>
-	                        <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to cart"><i class="ti-shopping-cart"></i><span>Add to cart</span></a></li>
-	                    </ul>
-	                </div>
-	                <!-- /grid_item -->
-	            </div>
-	            <!-- /item -->
-	            <div class="item">
-	                <div class="grid_item">
-	                    <span class="ribbon new">New</span>
-	                    <figure>
-	                        <a href="product-detail-1.html">
-	                            <img class="owl-lazy" src="img/products/product_placeholder_square_medium.jpg" data-src="img/products/shoes/5.jpg" alt="">
-	                        </a>
-	                    </figure>
-	                    <div class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i></div>
-	                    <a href="product-detail-1.html">
-	                        <h3>Air Zoom Alpha</h3>
-	                    </a>
-	                    <div class="price_box">
-	                        <span class="new_price">$140.00</span>
-	                    </div>
-	                    <ul>
-	                        <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to favorites"><i class="ti-heart"></i><span>Add to favorites</span></a></li>
-	                        <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to compare"><i class="ti-control-shuffle"></i><span>Add to compare</span></a></li>
-	                        <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to cart"><i class="ti-shopping-cart"></i><span>Add to cart</span></a></li>
-	                    </ul>
-	                </div>
-	                <!-- /grid_item -->
-	            </div>
-	            <!-- /item -->
-	            <div class="item">
-	                <div class="grid_item">
-	                    <span class="ribbon hot">Hot</span>
-	                    <figure>
-	                        <a href="product-detail-1.html">
-	                            <img class="owl-lazy" src="img/products/product_placeholder_square_medium.jpg" data-src="img/products/shoes/8.jpg" alt="">
-	                        </a>
-	                    </figure>
-	                    <div class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i></div>
-	                    <a href="product-detail-1.html">
-	                        <h3>Air Color 720</h3>
-	                    </a>
-	                    <div class="price_box">
-	                        <span class="new_price">$120.00</span>
-	                    </div>
-	                    <ul>
-	                        <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to favorites"><i class="ti-heart"></i><span>Add to favorites</span></a></li>
-	                        <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to compare"><i class="ti-control-shuffle"></i><span>Add to compare</span></a></li>
-	                        <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to cart"><i class="ti-shopping-cart"></i><span>Add to cart</span></a></li>
-	                    </ul>
-	                </div>
-	                <!-- /grid_item -->
-	            </div>
-	            <!-- /item -->
-	            <div class="item">
-	                <div class="grid_item">
-	                    <span class="ribbon off">-30%</span>
-	                    <figure>
-	                        <a href="product-detail-1.html">
-	                            <img class="owl-lazy" src="img/products/product_placeholder_square_medium.jpg" data-src="img/products/shoes/2.jpg" alt="">
-	                        </a>
-	                    </figure>
-	                    <div class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i></div>
-	                    <a href="product-detail-1.html">
-	                        <h3>Okwahn II</h3>
-	                    </a>
-	                    <div class="price_box">
-	                        <span class="new_price">$90.00</span>
-	                        <span class="old_price">$170.00</span>
-	                    </div>
-	                    <ul>
-	                        <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to favorites"><i class="ti-heart"></i><span>Add to favorites</span></a></li>
-	                        <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to compare"><i class="ti-control-shuffle"></i><span>Add to compare</span></a></li>
-	                        <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to cart"><i class="ti-shopping-cart"></i><span>Add to cart</span></a></li>
-	                    </ul>
-	                </div>
-	                <!-- /grid_item -->
-	            </div>
-	            <!-- /item -->
-	            <div class="item">
-	                <div class="grid_item">
-	                    <span class="ribbon off">-50%</span>
-	                    <figure>
-	                        <a href="product-detail-1.html">
-	                            <img class="owl-lazy" src="img/products/product_placeholder_square_medium.jpg" data-src="img/products/shoes/3.jpg" alt="">
-	                        </a>
-	                    </figure>
-	                    <div class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i></div>
-	                    <a href="product-detail-1.html">
-	                        <h3>Air Wildwood ACG</h3>
-	                    </a>
-	                    <div class="price_box">
-	                        <span class="new_price">$75.00</span>
-	                        <span class="old_price">$155.00</span>
-	                    </div>
-	                    <ul>
-	                        <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to favorites"><i class="ti-heart"></i><span>Add to favorites</span></a></li>
-	                        <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to compare"><i class="ti-control-shuffle"></i><span>Add to compare</span></a></li>
-	                        <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to cart"><i class="ti-shopping-cart"></i><span>Add to cart</span></a></li>
-	                    </ul>
-	                </div>
-	                <!-- /grid_item -->
-	            </div>
-	            <!-- /item -->
-	        </div>
-	        <!-- /products_carousel -->
-	    </div>
-	    <!-- /container -->
+		<div class="tabs_product">
+			<div class="container">
+				<ul class="nav nav-tabs" role="tablist">
+					<li class="nav-item">
+						<a id="tab-A" href="#pane-A" class="nav-link active" data-bs-toggle="tab" role="tab">Mô tả</a>
+					</li>
+					<li class="nav-item">
+						<a id="tab-B" href="#pane-B" class="nav-link" data-bs-toggle="tab" role="tab">Đánh giá</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<!-- /tabs_product -->
+		<div class="tab_content_wrapper">
+			<div class="container">
+				<div class="tab-content" role="tablist">
+					<div id="pane-A" class="card tab-pane fade active show" role="tabpanel" aria-labelledby="tab-A">
+						<div class="card-header" role="tab" id="heading-A">
+							<h5 class="mb-0">
+								<a class="collapsed" data-bs-toggle="collapse" href="#collapse-A" aria-expanded="false" aria-controls="collapse-A">
+									Mô tả
+								</a>
+							</h5>
+						</div>
+						<div id="collapse-A" class="collapse" role="tabpanel" aria-labelledby="heading-A">
+							<div class="card-body">
+								<div class="row justify-content-between">
+									<div class="col-lg-12">
+										<p><?= $product_describe ?></p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- /TAB A -->
+					<div id="pane-B" class="card tab-pane fade" role="tabpanel" aria-labelledby="tab-B">
+						<div class="card-header" role="tab" id="heading-B">
+							<h5 class="mb-0">
+								<a class="collapsed" data-bs-toggle="collapse" href="#collapse-B" aria-expanded="false" aria-controls="collapse-B">
+									Đánh giá
+								</a>
+							</h5>
+						</div>
+						<div id="collapse-B" class="collapse" role="tabpanel" aria-labelledby="heading-B">
+							<div class="card-body">
+								<div class="row justify-content-between">
+									<?php foreach ($reviews as $rv) : ?>
+										<div class="col-lg-6">
+											<div class="review_content">
+												<div class="clearfix add_bottom_10">
+													<span class="rating"><?= str_repeat("<i class='icon-star'></i>", $rv['number_stars']); ?></span>
+													<!-- <em>Published 54 minutes ago</em> -->
+												</div>
+												<h4><?= $rv['username'] ?></h4>
+												<p><?= $rv['content'] ?></p>
+											</div>
+										</div>
+									<?php endforeach; ?>
+								</div>
+								<!-- /row -->
+								<?php if(isset($_SESSION['user'])){ ?>
+									<p class="text-end"><a href="index.php?act=danhgia&id=<?= $product_id ?>" class="btn_1">Đánh giá</a></p>
+								<?php }else{ ?>
+									<p class="text-end">Bạn hãy đăng nhập để đánh giá sản phẩm này nhé</p>
+								<?php } ?>
+								
+							</div>
+							<!-- /card-body -->
+						</div>
+					</div>
+					<!-- /tab B -->
+				</div>
+				<!-- /tab-content -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /tab_content_wrapper -->
 
-	    <div class="feat">
+		<div class="container margin_60_35">
+			<div class="main_title">
+				<h2>Sản phẩm liên quan</h2>
+				<span>Products</span>
+				<p>Những sản phẩm bạn cũng có thể thích</p>
+			</div>
+			<div class="owl-carousel owl-theme products_carousel">
+				<?php foreach ($splienquan as $v) : ?>
+					<div class="item">
+						<div class="grid_item">
+							<!-- <span class="ribbon new">New</span> -->
+							<figure>
+								<a href="index.php?act=spchitiet&id=<?= $v['product_id'] ?>">
+									<img class="owl-lazy" src="upload/<?= $v['img_name'] ?>" data-src="upload/<?= $v['img_name'] ?>" alt="">
+								</a>
+							</figure>
+							<div class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i></div>
+							<a href="index.php?act=spchitiet&id=<?= $v['product_id'] ?>">
+								<h3><?= $v['product_name'] ?></h3>
+							</a>
+							<div class="price_box">
+								<span class="new_price"><?= number_format($v['product_price'], 0, ',', '.') . ' đ' ?></span>
+							</div>
+							<ul>
+								<li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to favorites"><i class="ti-heart"></i><span>Add to favorites</span></a></li>
+								<li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to compare"><i class="ti-control-shuffle"></i><span>Add to compare</span></a></li>
+								<li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Thêm vào giỏ hàng"><i class="ti-shopping-cart"></i><span>Thêm vào giỏ hàng</span></a></li>
+							</ul>
+						</div>
+						<!-- /grid_item -->
+					</div>
+				<?php endforeach; ?>
+			</div>
+			<!-- /products_carousel -->
+		</div>
+		<!-- /container -->
+
+		<div class="feat">
 			<div class="container">
 				<ul>
 					<li>
 						<div class="box">
 							<i class="ti-gift"></i>
 							<div class="justify-content-center">
-								<h3>Free Shipping</h3>
-								<p>For all oders over $99</p>
+								<h3>Miễn phí vận chuyển</h3>
+								<p>Cho đơn hàng trên 3 triệu</p>
 							</div>
 						</div>
 					</li>
@@ -389,8 +238,8 @@
 						<div class="box">
 							<i class="ti-wallet"></i>
 							<div class="justify-content-center">
-								<h3>Secure Payment</h3>
-								<p>100% secure payment</p>
+								<h3>Thanh toán bảo mật</h3>
+								<p>100% bảo mật thanh toán</p>
 							</div>
 						</div>
 					</li>
@@ -398,8 +247,8 @@
 						<div class="box">
 							<i class="ti-headphone-alt"></i>
 							<div class="justify-content-center">
-								<h3>24/7 Support</h3>
-								<p>Online top support</p>
+								<h3>Hỗ trợ 24/7</h3>
+								<p>Hỗ trợ nhiệt tình, nhanh chóng</p>
 							</div>
 						</div>
 					</li>
@@ -408,5 +257,42 @@
 		</div>
 		<!--/feat-->
 
+		<script>
+			// Lấy tất cả các ô input radio có cùng name
+			var radioInputs = document.querySelectorAll('input[name="size"]');
+		
+			// Lấy ô input
+			var quantityInput = document.getElementById("quantity_1");
+
+			// Thêm sự kiện onchange cho tất cả các ô input radio
+			radioInputs.forEach(function(radioInput) {
+				radioInput.addEventListener("change", function() {
+					// Lấy giá trị dataQuantity từ ô input radio
+					var dataquantity = this.getAttribute("dataquantity");
+
+					var inventory = document.getElementById("inventory");
+
+					var datasku = this.getAttribute("datasku");
+					sku.innerText = "SKU: " + datasku;
+
+
+					inventory.innerText = "Còn " + dataquantity + " sản phẩm";
+
+					// Giới hạn giá trị của ô input text dựa trên giá trị dataQuantity
+					quantityInput.max = dataquantity;
+
+					// Kiểm tra nếu giá trị hiện tại lớn hơn giá trị mới tối đa, đặt lại giá trị ô input text
+					if (parseInt(quantityInput.value, 10) > parseInt(dataquantity, 10)) {
+						quantityInput.value = dataquantity;
+					}
+				});
+			});
+
+			quantityInput.addEventListener("change", function() {
+				if (parseInt(quantityInput.value, 10) > parseInt(quantityInput.max, 10)) {
+					quantityInput.value = quantityInput.max;
+				}
+			})
+		</script>
 	</main>
 	<!-- /main -->

@@ -1,4 +1,7 @@
 <?php
+
+use Random\BrokenRandomEngineError;
+
 ob_start();
 session_start();
 include "model/pdo.php";
@@ -17,7 +20,7 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
     $act = $_GET['act'];
     switch ($act) {
 
-        // Sản phẩm
+            // Sản phẩm
         case "sanpham":
             // sản phẩm theo danh mục
             if (isset($_GET['search']) && ($_GET['search'] != "")) {
@@ -38,7 +41,7 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                 $iddm = "";
             }
 
-            $num_pro = get_num_pro($iddm,$search_info);
+            $num_pro = get_num_pro($iddm, $search_info);
             $total_row = $num_pro;
             $num_per_page = 3;
 
@@ -55,26 +58,174 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
             include "view/product/list-products.php";
             break;
 
-            case "filter":
-                if($_SERVER['REQUEST_METHOD'] == "POST"){
-                    $brand = $_POST['brandInput'];
-                    $price = $_POST['priceInput'];
+        case "filter":
+            if ($_SERVER['REQUEST_METHOD'] == "POST") {
+                $brand = $_POST['brandInput'];
+                $price = $_POST['priceInput'];
 
-                    if(!empty($price)){
-                        $arrPr = explode(",", $price);
-                    }else{
-                        $arrPr = [];
-                    }
-    
-                    $listsp = get_filter($brand,$arrPr);
-                }else{
-                    header("location: index.php?act=sanpham");
+                if (!empty($price)) {
+                    $arrPr = explode(",", $price);
+                } else {
+                    $arrPr = [];
                 }
-               
-                include "view/product/list-products.php";
-                break;
+
+                $listsp = get_filter($brand, $arrPr);
+            } else {
+                header("location: index.php?act=sanpham");
+            }
+
+            include "view/product/list-products.php";
+            break;
+
+        case "spchitiet":
+            if (isset($_GET['id'])) {
+                $idsp = $_GET['id'];
+                $sp = get_product_detail($idsp);
+
+                if ($sp) {
+                    $iddm = $sp['category_id'];
+                    $size = get_product_sizes($idsp);
+
+                    $reviews = get_review($idsp);
+                    $total_review = get_total_review($idsp);
+
+                    // Tách chuỗi thành mảng dựa trên dấu phẩy
+                    $pairs = explode(", ", $size['sizes_and_quantities']);
+
+                    // Tạo mảng để lưu trữ size và số lượng
+                    $sizeAndQuantity = [];
+
+                    // Duyệt qua từng cặp số và lưu vào mảng
+                    foreach ($pairs as $pair) {
+                        // Tách cặp số thành mảng dựa trên dấu hai chấm
+                        $numbers = explode(":", $pair);
+
+                        // Lưu size và số lượng vào mảng
+                        $sizeAndQuantity[] = [
+                            'sku' => $numbers[0],
+                            'size' => $numbers[1],
+                            'quantity' => $numbers[2]
+                        ];
+                    }
+
+                    $splienquan = get_related_product($iddm, $idsp);
+                    include "view/product/product-detail.php";
+                } else {
+                    header("location: index.php");
+                }
+            } else {
+                header("location: index.php");
+            }
+            break;
+
+        case "danhgia":
+            if ($_SERVER['REQUEST_METHOD'] == "POST") {
+                $idsp = $_POST['idsp'];
+                $rating = $_POST['rating-input'];
+                $review = $_POST['review'];
+                $user_id = $_SESSION['user'];
+
+                add_review($idsp, $rating, $review, $user_id);
+                header("location: index.php?act=spchitiet&id=$idsp");
+            } else {
+                if (isset($_GET['id'])) {
+                    $idsp = $_GET['id'];
+
+                    if (!isset($_SESSION['user'])) {
+                        header("location: index.php?act=spchitiet&id=$idsp");
+                    }
+
+                    $sp = get_product_detail($idsp);
+                } else {
+                    header("location: index.php");
+                }
+            }
+            include "view/product/leave-review.php";
+            break;
+
+        // giỏ hàng
+
+        case "cart":
+            include "view/cart/cart.php";
+            break;
+
 
         // Tài khoản
+
+        case "profile":
+            if (!isset($_SESSION['user'])) {
+                header("location: index.php?act=dangnhap");
+            }
+
+            // lấy thông tin user
+            $user = get_user($_SESSION['user_id']);
+
+            if ($_SERVER['REQUEST_METHOD'] == "POST") {
+                $email = $_POST['email'];
+                $fullname = $_POST['fullname'];
+                $tel = $_POST['tel'];
+                $address = $_POST['address'];
+                $id = $_SESSION['user_id'];
+
+                $errors = [];
+
+                if(!preg_match('/^\\S+@\\S+\\.\\S+$/',$email)){
+                    $errors['email'] = "Không đúng định dạng Email";
+                }
+                
+                $pattern = '/^(0|\+84|\+841|\+849|\+8498)([2-9]\d{8})$/';
+                if (!preg_match($pattern, $tel)) {
+                    $errors['tel'] = "Số điện thoại không hợp lệ";
+                }
+
+                $img = $_FILES['img']['name'];
+
+                if($img != ""){
+                    $target_dir = "upload/";
+                    $target_file = $target_dir. basename($_FILES['img']['name']);
+                    move_uploaded_file($_FILES['img']['tmp_name'],$target_file);
+                }
+
+                if(empty($errors)){
+                    $message = update_user($id, $email,$fullname ,$address, $tel,$img);
+                    $user = get_user($_SESSION['user_id']);
+                } 
+            }
+
+            include "view/account/profile.php";
+            break;
+
+        case "repass":
+            if (!isset($_SESSION['user'])) {
+                header("location: index.php?act=dangnhap");
+            }
+            if ($_SERVER['REQUEST_METHOD'] == "POST") {
+                $errors = [];
+
+                $old_pass = $_POST['old_pass'];
+                $new_pass = $_POST['new_pass'];
+                $repass = $_POST['repass'];
+
+                $taikhoan = check_pass($_SESSION['user'], $old_pass);
+
+                if (!$taikhoan) {
+                    $errors['old_pass'] = "Mật khẩu cũ không chính xác";
+                }
+
+                if ($repass != $new_pass) {
+                    $errors['repass'] = "Mật khẩu nhập lại không trùng khớp";
+                }
+
+                if (empty($errors)) {
+                    update_pass($_SESSION['user_id'], $new_pass);
+                    $thongbao = "Đổi mật khẩu thành công";
+                }
+            }
+            $user = get_user($_SESSION['user_id']);
+            include "view/account/repass.php";
+            break;
+
+
         case "dangnhap":
             if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 $user = $_POST['username'];
@@ -83,11 +234,12 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                 $taikhoan = dangnhap($user, $pass);
 
                 if (is_array($taikhoan)) {
-                    $_SESSION['user'] = $user;
+                    $_SESSION['user_id'] = $taikhoan['user_id'];
+                    $_SESSION['user'] = $taikhoan['username'];
                     $_SESSION['role'] = $taikhoan['role'];
                     header("location: index.php");
                 } else {
-                    $mess = "Thông tin tài khoản hoặc mật khẩu không chính xác";
+                    $mess = "<span class='error'>Tên đăng nhập hoặc mật khẩu không chính xác</span>";
                 }
             }
             include "view/account/login.php";
@@ -107,8 +259,16 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                 }
 
                 // check username đã có hay chưa
-                if (check_user($name)) {
-                    $errors['username'] = "Username đã tồn tại trên hệ thống";
+                if (strlen($name) < 6) {
+                    $errors['username'] = "Tên đăng nhập phải ít nhất 6 kí tự";
+                } else {
+                    if (check_user($name)) {
+                        $errors['username'] = "Tên đăng nhập đã tồn tại trên hệ thống";
+                    }
+                }
+
+                if (strlen($pass) < 6) {
+                    $errors['password'] = "Mật khẩu phải ít nhất 6 kí tự";
                 }
 
                 if (empty($errors)) {
@@ -121,10 +281,10 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
             include "view/account/register.php";
             break;
 
-            case "dangxuat":
-                dangxuat();
-                header("location: index.php");
-                break;
+        case "dangxuat":
+            dangxuat();
+            header("location: index.php");
+            break;
         case "quenmk":
             if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 $email = $_POST['email'];
@@ -134,9 +294,9 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                 if ($taikhoan != false) {
                     sendMail($email, $taikhoan['username'], $taikhoan['password']);
 
-                    $sendMailMess = "Gửi email thành công";
+                    $sendMailMess = "<span class='d-block text-success mt-2'>Gửi email thành công</span>";
                 } else {
-                    $sendMailMess = "Email bạn nhập không có trong hệ thống";
+                    $sendMailMess = "<span class='error'>Email bạn nhập không có trong hệ thống</span>";
                 }
             }
             include "view/account/forgotpass.php";

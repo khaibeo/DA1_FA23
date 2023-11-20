@@ -4,28 +4,27 @@
 		<div class="page_header">
 			<div class="breadcrumbs">
 				<ul>
-					<li><a href="#">Home</a></li>
-					<li><a href="#">Category</a></li>
-					<li>Page active</li>
+					<li><a href="index.php">Trang chủ</a></li>
+					<li><a href="index.php?act=cart">Giỏ hàng</a></li>
 				</ul>
 			</div>
-			<h1>Cart page</h1>
+			<h1>Giỏ hàng</h1>
 		</div>
 		<!-- /page_header -->
 		<table class="table table-striped cart-list">
 							<thead>
 								<tr>
 									<th>
-										Product
+										Sản phẩm
 									</th>
 									<th>
-										Price
+										Giá
 									</th>
 									<th>
-										Quantity
+										Số lượng
 									</th>
 									<th>
-										Subtotal
+										Tổng tiền
 									</th>
 									<th>
 										
@@ -107,16 +106,6 @@
 						<div class="col-sm-4 text-end">
 							<button type="button" class="btn_1 gray">Update Cart</button>
 						</div>
-							<div class="col-sm-8">
-							<div class="apply-coupon">
-								<div class="form-group">
-									<div class="row g-2">
-										<div class="col-md-6"><input type="text" name="coupon-code" value="" placeholder="Promo code" class="form-control"></div>
-										<div class="col-md-4"><button type="button" class="btn_1 outline">Apply Coupon</button></div>
-									</div>
-								</div>
-							</div>
-						</div>
 					</div>
 					<!-- /cart_actions -->
 	
@@ -129,16 +118,10 @@
 				<div class="col-xl-4 col-lg-4 col-md-6">
 			<ul>
 				<li>
-					<span>Subtotal</span> $240.00
-				</li>
-				<li>
-					<span>Shipping</span> $7.00
-				</li>
-				<li>
-					<span>Total</span> $247.00
+					<span>Tổng tiền</span> $247.00
 				</li>
 			</ul>
-			<a href="cart-2.html" class="btn_1 full-width cart">Proceed to Checkout</a>
+			<a href="cart-2.html" class="btn_1 full-width cart">Thanh toán</a>
 					</div>
 				</div>
 			</div>

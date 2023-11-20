@@ -67,4 +67,36 @@ function add_taikhoan($email,$user,$pass){
     $sql="INSERT INTO `user` ( `email`, `username`, `password`) VALUES ( '$email', '$user','$pass'); ";
     pdo_execute($sql);
 }
+
+function get_user($id){
+    $sql = "select * from user where user_id = $id";
+    $result = pdo_query_one($sql);
+    return $result;
+}
+
+function update_user($id,$email,$fullname,$address,$tel,$img){
+    if($img != ""){
+        $sql = "update user set email = '$email', fullname= '$fullname' ,address = '$address', tel = '$tel', avatar='$img' where user_id = '$id'";
+    }else{
+        $sql = "update user set email = '$email', fullname= '$fullname' ,address = '$address', tel = '$tel' where user_id = '$id'";
+    }
+    pdo_execute($sql);
+    return "Cập nhật thông tin thành công";
+}
+
+function check_pass($username,$pass){
+    $sql="SELECT * FROM user WHERE username='$username' AND password ='$pass' ";
+    $result = pdo_query_one($sql);
+
+    if($result){
+        return true;
+    }else{
+        return false;
+    }
+}
+
+function update_pass($id,$pass){
+    $sql = "UPDATE user SET password = '$pass' WHERE user_id = $id ";
+    pdo_execute($sql);
+}
 ?>

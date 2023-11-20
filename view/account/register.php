@@ -17,23 +17,27 @@
                 <div class="col-xl-6 col-lg-6 col-md-8">
                     <form action="index.php?act=dangky" method="post">
                     <div class="box_account">
-                        <h3 class="new_client">Đăng ký</h3> <small class="float-right pt-2">* Bắt buộc nhập</small>
+                        <h3 class="new_client">Đăng ký</h3>
                         <div class="form_container">
                             <div class="form-group">
-                                <input type="email" class="form-control" name="email" id="email_2" placeholder="Email*" required>
-                                <span><?php if(!empty($errors['email'])) echo $errors['email'] ?></span>
+                                <label for="email_2" class="form-label">Email</label>
+                                <input type="email" class="form-control" name="email" id="email_2" required>
+                                <span class="error"><?php if(!empty($errors['email'])) echo $errors['email'] ?></span>
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control" name="username"  placeholder="username*" required>
-                                <span><?php if(!empty($errors['username'])) echo $errors['username'] ?></span>
+                                <label for="username" class="form-label">Tên đăng nhập</label>
+                                <input type="text" class="form-control" name="username" id="username"  required>
+                                <span class="error"><?php if(!empty($errors['username'])) echo $errors['username'] ?></span>
                             </div>
                             <div class="form-group">
-                                <input type="password" class="form-control" name="password" id="password" value="" placeholder="Password*" required>
+                                <label for="password" class="form-label">Mật khẩu</label>
+                                <input type="password" class="form-control" name="password" id="password" value="" required>
+                                <span class="error"><?php if(!empty($errors['password'])) echo $errors['password'] ?></span>
                             </div>
                             <hr>
                             
                             </div>
-                            <div class="text-center"><input type="submit" value="Register" name="dangky" class="btn_1 full-width"></div>
+                            <div class="text-center"><input type="submit" value="Đăng ký" name="dangky" class="btn_1 full-width"></div>
                             <span><?php if(!empty($mess)) echo $mess ?></span>
                         </div>
                         <!-- /form_container -->

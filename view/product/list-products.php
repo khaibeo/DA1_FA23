@@ -123,11 +123,11 @@
 									</a>
 									
 								</figure>
-								<a href="product-detail-1.html">
+								<a href="index.php?act=spchitiet&id=<?= $product_id ?>">
 									<h3><?= $product_name ?></h3>
 								</a>
 								<div class="price_box">
-									<span class="new_price"><?= $product_price ?></span>
+									<span class="new_price"><?= number_format($product_price, 0, ',', '.') . ' đ' ?></span>
 									<span class="old_price"><?= $discounted_price ?></span>
 								</div>
 								<ul>

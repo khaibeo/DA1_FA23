@@ -64,28 +64,28 @@
 		<ul id="banners_grid" class="clearfix">
 			<li>
 				<a href="#0" class="img_container">
-					<img src="img/banners_cat_placeholder.jpg" data-src="img/banner_1.jpg" alt="" class="lazy">
+					<img src="upload/logonike.jpg" data-src="upload/logonike.jpg" alt="" class="lazy">
 					<div class="short_info opacity-mask" data-opacity-mask="rgba(0, 0, 0, 0.5)">
-						<h3>Men's Collection</h3>
-						<div><span class="btn_1">Shop Now</span></div>
+						<h3>Nike</h3>
+						<div><span class="btn_1">Xem ngay</span></div>
 					</div>
 				</a>
 			</li>
 			<li>
 				<a href="#0" class="img_container">
-					<img src="img/banners_cat_placeholder.jpg" data-src="img/banner_2.jpg" alt="" class="lazy">
+					<img src="upload/logoadidas.jpg" data-src="upload/logoadidas.jpg" alt="" class="lazy">
 					<div class="short_info opacity-mask" data-opacity-mask="rgba(0, 0, 0, 0.5)">
-						<h3>Womens's Collection</h3>
-						<div><span class="btn_1">Shop Now</span></div>
+						<h3>Adidas</h3>
+						<div><span class="btn_1">Xem ngay</span></div>
 					</div>
 				</a>
 			</li>
 			<li>
 				<a href="#0" class="img_container">
-					<img src="img/banners_cat_placeholder.jpg" data-src="img/banner_3.jpg" alt="" class="lazy">
+					<img src="upload/logojordan.jpg" data-src="upload/logojordan.jpg" alt="" class="lazy">
 					<div class="short_info opacity-mask" data-opacity-mask="rgba(0, 0, 0, 0.5)">
-						<h3>Kids's Collection</h3>
-						<div><span class="btn_1">Shop Now</span></div>
+						<h3>Jordan</h3>
+						<div><span class="btn_1">Xem ngay</span></div>
 					</div>
 				</a>
 			</li>
