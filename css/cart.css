@@ -16,18 +16,23 @@
 }
 
 .table.cart-list th:nth-child(1) {
-  width: 70%;
+  width: 40%;
 }
 .table.cart-list th:nth-child(2) {
-  width: 15%;
+  width: 20%;
 }
 .table.cart-list th:nth-child(3) {
   width: 20%;
 }
 .table.cart-list th:nth-child(4) {
-  width: 5%;
+  width: 10%;
 }
-
+.table.cart-list th:nth-child(5) {
+  width: 10%;
+}
+.table.cart-list strong.price{
+  color: red;
+}
 .table.cart-list td {
   vertical-align: middle;
   border: 0;

@@ -199,6 +199,11 @@
 												<li>
 													<a href="index.php?act=myorder"><i class="ti-package"></i>Đơn hàng</a>
 												</li>
+												<?php
+												if (isset($_SESSION['user']) && $_SESSION['role'] == "admin") {
+													echo "<li><a href='admin/index.php'><i class='ti-headphone-alt'></i>Trang admin</a></li>";
+												}
+												?>
 
 												<?php
 												if (isset($_SESSION['user'])) {

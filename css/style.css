@@ -5120,6 +5120,22 @@ input.qty2:focus {
   box-shadow: none;
 }
 
+input.quantity {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  left: 50%;
+  background: none;
+  padding: 5px;
+  border: none;
+  margin-left: -20px;
+}
+input.quantity:focus {
+  outline: none;
+  box-shadow: none;
+}
+
 .button_inc {
   cursor: pointer;
   position: absolute;

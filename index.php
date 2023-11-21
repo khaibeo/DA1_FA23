@@ -8,7 +8,7 @@ include "model/pdo.php";
 include "function.php";
 include "model/sanpham.php";
 include "model/danhmuc.php";
-// include "model/binhluan.php";
+include "model/cart.php";
 include "model/taikhoan.php";
 
 include "global.php";
@@ -123,7 +123,7 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                 $idsp = $_POST['idsp'];
                 $rating = $_POST['rating-input'];
                 $review = $_POST['review'];
-                $user_id = $_SESSION['user'];
+                $user_id = $_SESSION['user_id'];
 
                 add_review($idsp, $rating, $review, $user_id);
                 header("location: index.php?act=spchitiet&id=$idsp");
@@ -144,11 +144,69 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
             break;
 
         // giỏ hàng
+        case "themsp":
+            if(isset($_SESSION['user'])){
+                if($_SERVER['REQUEST_METHOD'] == "POST"){
+                    $user_id = $_SESSION['user_id'];
+                    $user_cart = get_user_cart($user_id);
+
+                    if($user_cart == ""){
+                        create_cart($user_id);
+                        $user_cart = get_user_cart($user_id);
+                    }
+
+                    $sku = $_POST['sku'];
+                    $size = $_POST['size'];
+                    $quantity = $_POST['quantity_1'];
+                    $price = $_POST['price'];
+
+                    // Kiểm tra sản phẩm đã có trong sản phẩm hay chưa
+                    $check = check_exist($user_cart,$sku);
+
+                    if($check == 1){
+                        // Nếu đã có thì tăng số lượng
+                        $total = $price * $quantity;
+                        update_quantity($user_cart,$sku,$quantity,$total);
+                    }else{
+                        // Nếu chưa có, thêm mới vào giỏ hàng
+                        $total = $price * $quantity;
+                        add_to_cart($user_cart,$sku,$quantity,$total,$size);
+                    }
+                    
+                    header("location: index.php?act=cart");
+                }
+            }else{
+                header("location: index.php?act=dangnhap");
+            }
 
         case "cart":
+            if(isset($_SESSION['user'])){
+                $user_id = $_SESSION['user_id'];
+                $user_cart = get_user_cart($user_id);
+
+                if($user_cart == ""){
+                    create_cart($user_id);
+                    $user_cart = get_user_cart($user_id);
+                }
+
+                $cart_info = get_cart($user_cart);
+                $total = get_total_cart($user_cart);
+            }else{
+                header("location: index.php?act=dangnhap");
+            }
             include "view/cart/cart.php";
             break;
 
+        case "xoasp":
+            if(isset($_GET['id'])){
+                $id = $_GET['id'];
+                delete_cart($id);
+                header("location: index.php?act=cart");
+            }else{
+                header("location: index.php?act=cart");
+            }
+
+            break;
 
         // Tài khoản
 

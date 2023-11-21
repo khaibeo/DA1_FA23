@@ -4,6 +4,33 @@
 	?>
 	<main>
 		<div class="container margin_30">
+			<!-- <div class="top_panel">
+				<div class="container header_panel">
+					<a href="#0" class="btn_close_top_panel"><i class="ti-close"></i></a>
+					<label>1 product added to cart</label>
+				</div>
+				
+				<div class="item">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-7">
+								<div class="item_panel">
+									<figure>
+										<img src="img/products/product_placeholder_square_small.jpg" data-src="img/products/shoes/1.jpg" class="lazy" alt="">
+									</figure>
+									<h4>1x Armor Air X Fear</h4>
+									<div class="price_panel"><span class="new_price">$148.00</span><span class="percentage">-20%</span> <span class="old_price">$160.00</span></div>
+								</div>
+							</div>
+							<div class="col-md-5 btn_panel">
+								<a href="cart.html" class="btn_1 outline">View cart</a> <a href="checkout.html" class="btn_1">Checkout</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+			</div> -->
+			<!-- /add_cart_panel -->
 			<!-- <div class="countdown_inner">-20% This offer ends in <div data-countdown="2019/05/15" class="countdown"></div>
 	        </div> -->
 			<div class="row">
@@ -39,6 +66,7 @@
 					</div>
 					<!-- /page_header -->
 					<div class="prod_info">
+						<form action="index.php?act=themsp" method="post">
 						<h1><?= $product_name ?></h1>
 						<span class="rating">
 							<?php
@@ -75,6 +103,8 @@
 								<div class="col-xl-4 col-lg-5 col-md-6 col-6">
 									<div class="numbers-row">
 										<input type="number" min="1" max="<?= $sizeAndQuantity[0]['quantity'] ?>" value="1" id="quantity_1" class="qty2" name="quantity_1">
+										<div class="inc button_inc">+</div>
+										<div class="dec button_inc">-</div>
 									</div>
 									<p class="mt-2" id="inventory">Còn <?= $sizeAndQuantity[0]['quantity'] ?> sản phẩm</p>
 								</div>
@@ -85,9 +115,12 @@
 								<div class="price_main"><span class="new_price"><?= number_format($product_price, 0, ',', '.') . ' đ' ?></span><span class="old_price"><?= number_format($discounted_price, 0, ',', '.') . ' đ' ?></span></div>
 							</div>
 							<div class="col-lg-4 col-md-6">
-								<div class="btn_add_to_cart"><a href="#0" class="btn_1">Thêm vào giỏ hàng</a></div>
+								<input type="hidden" name="price" value="<?= $product_price ?>">
+								<input type="hidden" value="<?= $sizeAndQuantity[0]['sku'] ?>" name="sku" id="sku_1">
+								<div class="btn_add_to_cart"><button class="btn_1">Thêm vào giỏ hàng</button></div>
 							</div>
 						</div>
+						</form>
 					</div>
 					<!-- /prod_info -->
 					<div class="product_actions">
@@ -167,12 +200,12 @@
 									<?php endforeach; ?>
 								</div>
 								<!-- /row -->
-								<?php if(isset($_SESSION['user'])){ ?>
+								<?php if (isset($_SESSION['user'])) { ?>
 									<p class="text-end"><a href="index.php?act=danhgia&id=<?= $product_id ?>" class="btn_1">Đánh giá</a></p>
-								<?php }else{ ?>
+								<?php } else { ?>
 									<p class="text-end">Bạn hãy đăng nhập để đánh giá sản phẩm này nhé</p>
 								<?php } ?>
-								
+
 							</div>
 							<!-- /card-body -->
 						</div>
@@ -260,7 +293,7 @@
 		<script>
 			// Lấy tất cả các ô input radio có cùng name
 			var radioInputs = document.querySelectorAll('input[name="size"]');
-		
+
 			// Lấy ô input
 			var quantityInput = document.getElementById("quantity_1");
 
@@ -271,9 +304,11 @@
 					var dataquantity = this.getAttribute("dataquantity");
 
 					var inventory = document.getElementById("inventory");
+					var sku_1 = document.getElementById("sku_1");
 
 					var datasku = this.getAttribute("datasku");
 					sku.innerText = "SKU: " + datasku;
+					sku_1.value = datasku;
 
 
 					inventory.innerText = "Còn " + dataquantity + " sản phẩm";
