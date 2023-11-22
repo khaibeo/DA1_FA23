@@ -28,12 +28,12 @@ function get_cart($cart_id){
 }
 
 function get_total_cart($cart_id){
-    $sql = "SELECT SUM(total) AS tongtien FROM cart_detail WHERE cart_id = $cart_id GROUP BY cart_detail.cart_id";
+    $sql = "SELECT SUM(total) AS tongtien, COUNT(total) as soluong FROM cart_detail WHERE cart_id = $cart_id GROUP BY cart_detail.cart_id";
 
     $result = pdo_query_one($sql);
 
     if($result){
-        return $result['tongtien'];
+        return $result;
     }else{
         return "";
     }

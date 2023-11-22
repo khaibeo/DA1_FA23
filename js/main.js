@@ -198,21 +198,44 @@
 
 	/* Input incrementer*/
 	$(".numbers-row").append('<div class="inc button_inc">+</div><div class="dec button_inc">-</div>');
+	// $(".button_inc").on("click", function () {
+	// 	var $button = $(this);
+	// 	var oldValue = $button.parent().find("input").val();
+	// 	if ($button.text() == "+") {
+	// 		var newVal = parseFloat(oldValue) + 1;
+	// 	} else {
+	// 		// Don't allow decrementing below zero
+	// 		if (oldValue > 1) {
+	// 			var newVal = parseFloat(oldValue) - 1;
+	// 		} else {
+	// 			newVal = 0;
+	// 		}
+	// 	}
+	// 	$button.parent().find("input").val(newVal);
+	// });
 	$(".button_inc").on("click", function () {
 		var $button = $(this);
-		var oldValue = $button.parent().find("input").val();
+		
+		var $input = $button.siblings(".quantity"); // Tìm ô input kề cận
+		
+		console.log($input);
+
+		var oldValue = parseFloat($input.val());
+	
 		if ($button.text() == "+") {
-			var newVal = parseFloat(oldValue) + 1;
+			var newVal = oldValue + 1;
 		} else {
-			// Don't allow decrementing below zero
+			// Không cho phép giảm dưới 0
 			if (oldValue > 1) {
-				var newVal = parseFloat(oldValue) - 1;
+				var newVal = oldValue - 1;
 			} else {
 				newVal = 0;
 			}
 		}
-		$button.parent().find("input").val(newVal);
+	
+		$input.val(newVal).trigger("change"); // Cập nhật giá trị và kích hoạt sự kiện onchange
 	});
+	
 	
 	/* Cart dropdown */
 	$('.dropdown-cart, .dropdown-access').hover(function () {

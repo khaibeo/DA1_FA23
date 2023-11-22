@@ -116,7 +116,7 @@
 						extract($sp) ?>
 						<div class="col-6 col-md-4">
 							<div class="grid_item">
-								<span class="ribbon off">Hot</span>
+								<span class="<?= $highlight == 1 ? 'ribbon off' : '' ?>"><?= $highlight == 1 ? 'Hot' : '' ?></span>
 								<figure>
 									<a href="index.php?act=spchitiet&id=<?= $product_id ?>">
 										<img class="img-fluid lazy" src="upload/<?= $img_name ?>" data-src="upload/<?= $img_name ?>" alt="">
@@ -131,9 +131,9 @@
 									<span class="old_price"><?= $discounted_price ?></span>
 								</div>
 								<ul>
-									<li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to favorites"><i class="ti-heart"></i><span>Add to favorites</span></a></li>
+									<!-- <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to favorites"><i class="ti-heart"></i><span>Add to favorites</span></a></li> -->
 									<!-- <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to compare"><i class="ti-control-shuffle"></i><span>Add to compare</span></a></li> -->
-									<li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to cart"><i class="ti-shopping-cart"></i><span>Add to cart</span></a></li>
+									<li><a href="index.php?act=spchitiet&id=<?= $product_id ?>" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to cart"><i class="ti-shopping-cart"></i><span>Add to cart</span></a></li>
 								</ul>
 							</div>
 							<!-- /grid_item -->

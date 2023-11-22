@@ -1,7 +1,4 @@
 <?php
-
-use Random\BrokenRandomEngineError;
-
 ob_start();
 session_start();
 include "model/pdo.php";
@@ -14,6 +11,21 @@ include "model/taikhoan.php";
 include "global.php";
 
 $danhmuc = loadall_danhmuc();
+$selling_products = get_selling_products();
+$feature_products = get_feature_products();
+$new_products = get_new_product();
+
+if(isset($_SESSION['user'])){
+    $user_id = $_SESSION['user_id'];
+    $user_cart = get_user_cart($user_id);
+
+    if($user_cart == ""){
+        create_cart($user_id);
+        $user_cart = get_user_cart($user_id);
+    }
+    $cart_info = get_cart($user_cart);
+    $total = get_total_cart($user_cart);
+}
 
 include "view/header.php";
 if (isset($_GET['act']) && ($_GET['act'] != "")) {
@@ -75,7 +87,7 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
             }
 
             include "view/product/list-products.php";
-            break;
+            break;  
 
         case "spchitiet":
             if (isset($_GET['id'])) {
@@ -147,14 +159,6 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
         case "themsp":
             if(isset($_SESSION['user'])){
                 if($_SERVER['REQUEST_METHOD'] == "POST"){
-                    $user_id = $_SESSION['user_id'];
-                    $user_cart = get_user_cart($user_id);
-
-                    if($user_cart == ""){
-                        create_cart($user_id);
-                        $user_cart = get_user_cart($user_id);
-                    }
-
                     $sku = $_POST['sku'];
                     $size = $_POST['size'];
                     $quantity = $_POST['quantity_1'];
@@ -180,20 +184,10 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
             }
 
         case "cart":
-            if(isset($_SESSION['user'])){
-                $user_id = $_SESSION['user_id'];
-                $user_cart = get_user_cart($user_id);
-
-                if($user_cart == ""){
-                    create_cart($user_id);
-                    $user_cart = get_user_cart($user_id);
-                }
-
-                $cart_info = get_cart($user_cart);
-                $total = get_total_cart($user_cart);
-            }else{
+            if(!isset($_SESSION['user'])){
                 header("location: index.php?act=dangnhap");
             }
+
             include "view/cart/cart.php";
             break;
 

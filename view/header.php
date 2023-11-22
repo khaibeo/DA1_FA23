@@ -153,32 +153,29 @@
 							<ul class="top_tools">
 								<li>
 									<div class="dropdown dropdown-cart">
-										<a href="index.php?act=cart" class="cart_bt"><strong>2</strong></a>
+										<a href="index.php?act=cart" class="cart_bt"><strong><?= isset($total) ? $total['soluong'] : "" ?></strong></a>
+										<?php if(isset($_SESSION['user'])){ ?>
 										<div class="dropdown-menu">
 											<ul>
-												<li>
-													<a href="product-detail-1.html">
-														<figure><img src="img/products/product_placeholder_square_small.jpg" data-src="img/products/shoes/thumb/1.jpg" alt="" width="50" height="50" class="lazy"></figure>
-														<strong><span>1x Armor Air x Fear</span>$90.00</strong>
-													</a>
-													<a href="#0" class="action"><i class="ti-trash"></i></a>
-												</li>
-												<li>
-													<a href="product-detail-1.html">
-														<figure><img src="img/products/product_placeholder_square_small.jpg" data-src="img/products/shoes/thumb/2.jpg" alt="" width="50" height="50" class="lazy"></figure>
-														<strong><span>1x Armor Okwahn II</span>$110.00</strong>
-													</a>
-													<a href="0" class="action"><i class="ti-trash"></i></a>
-												</li>
+												<?php foreach ($cart_info as $ci) : ?>
+													<li>
+														<a href="index.php?act=spchitiet&id=<?= $ci['product_id'] ?>">
+															<figure><img src="upload/<?= $ci['img_name'] ?>" data-src="upload/<?= $ci['img_name'] ?>" alt="" width="50" height="50" class="lazy"></figure>
+															<strong><span><?= $ci['product_name'] ?></span><?= number_format($ci['product_price'], 0, ',', '.') . ' đ' ?></strong>
+														</a>
+													</li>
+												<?php endforeach; ?>
 											</ul>
 											<div class="total_drop">
-												<div class="clearfix"><strong>Total</strong><span>$200.00</span></div>
-												<a href="index.php?act=cart" class="btn_1 outline">View Cart</a><a href="index.php?act=checkout" class="btn_1">Checkout</a>
+												<div class="clearfix"><strong>Tổng tiền</strong><span><?= number_format($total['tongtien'], 0, ',', '.') . ' đ' ?></span></div>
+												<a href="index.php?act=cart" class="btn_1 outline">Xem giỏ hàng</a><a href="index.php?act=checkout" class="btn_1">Thanh toán</a>
 											</div>
 										</div>
+										<?php } ?>
 									</div>
 									<!-- /dropdown-cart-->
 								</li>
+								
 								<li>
 									<a href="#0" class="wishlist"><span>Wishlist</span></a>
 								</li>
@@ -215,19 +212,19 @@
 									</div>
 									<!-- /dropdown-access-->
 								</li>
-								<li>
-									<a href="javascript:void(0);" class="btn_search_mob"><span>Search</span></a>
-								</li>
-								<li>
+								<!-- <li>
+									<a href="javascript:void(0);" class="btn_search_mob"><span>Tìm kiếm</span></a>
+								</li> -->
+								<!-- <li>
 									<a href="#menu" class="btn_cat_mob">
 										<div class="hamburger hamburger--spin" id="hamburger">
 											<div class="hamburger-box">
 												<div class="hamburger-inner"></div>
 											</div>
 										</div>
-										Categories
+										Danh mục
 									</a>
-								</li>
+								</li> -->
 							</ul>
 						</div>
 					</div>

@@ -38,18 +38,18 @@ function sendMail($email, $username, $pass) {
 
     try {
             //Server settings
-         $mail->SMTPDebug = PHPMailer\PHPMailer\SMTP::DEBUG_OFF;                      //Enable verbose debug output
+        $mail->SMTPDebug = PHPMailer\PHPMailer\SMTP::DEBUG_OFF;                      //Enable verbose debug output
         $mail->isSMTP();                                            //Send using SMTP
-        $mail->Host       = 'sandbox.smtp.mailtrap.io';                     //Set the SMTP server to send through
+        $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
         $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-        $mail->Username   = '98924bdf0c97aa';                     //SMTP username
-        $mail->Password   = '441236ce976431';                               //SMTP password
-        $mail->SMTPSecure = PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_STARTTLS;            //Enable implicit TLS encryption
-        $mail->Port       = 587;                                   //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+        $mail->Username   = 'khaitestmail.unitop@gmail.com';                     //SMTP username
+        $mail->Password   = 'cwazstpxfuhqwsdb';                               //SMTP password
+        $mail->SMTPSecure = PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
+        $mail->Port       = 465;                                   //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
         $mail->CharSet = 'UTF-8';
 
         //Recipients
-        $mail->setFrom('testduanmau@example.com', 'DuAnMau');
+        $mail->setFrom('khaitestmail.unitop@gmail.com', 'khaimvph33123');
         $mail->addAddress($email, $username);     //Add a recipient
 
         //Content
@@ -59,7 +59,7 @@ function sendMail($email, $username, $pass) {
 
         $mail->send();
         } catch (Exception $e) {
-            echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+            echo "Email gửi không thành công. Lỗi: {$mail->ErrorInfo}";
     }
 }
 

@@ -84,7 +84,7 @@
 					<div class="col-xl-4 col-lg-4 col-md-6">
 						<ul>
 							<li>
-								<span>Tổng tiền</span> <?= number_format($total, 0, ',', '.') . ' đ' ?>
+								<span>Tổng tiền</span> <?= number_format($total['tongtien'], 0, ',', '.') . ' đ' ?>
 							</li>
 						</ul>
 						<a href="cart-2.html" class="btn_1 full-width cart">Thanh toán</a>

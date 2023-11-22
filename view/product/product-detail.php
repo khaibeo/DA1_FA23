@@ -67,59 +67,57 @@
 					<!-- /page_header -->
 					<div class="prod_info">
 						<form action="index.php?act=themsp" method="post">
-						<h1><?= $product_name ?></h1>
-						<span class="rating">
-							<?php
-							if (empty($total_review)) {
-								echo "<i class='icon-star voted'></i><i class='icon-star voted'></i><i class='icon-star voted'></i><i class='icon-star voted'></i><i class='icon-star voted'></i>";
-							} else {
-								for ($i = 1; $i <= 5; $i++) {
-									$class = ($i <= $total_review['average_rating']) ? 'icon-star voted' : 'icon-star';
-									echo '<i class="' . $class . '"></i>';
+							<h1><?= $product_name ?></h1>
+							<span class="rating">
+								<?php
+								if (empty($total_review)) {
+									echo "<i class='icon-star'></i><i class='icon-star'></i><i class='icon-star'></i><i class='icon-star'></i><i class='icon-star'></i>";
+								} else {
+									for ($i = 1; $i <= 5; $i++) {
+										$class = ($i <= $total_review['average_rating']) ? 'icon-star voted' : 'icon-star';
+										echo '<i class="' . $class . '"></i>';
+									}
 								}
-							}
-							?> <em> <?= empty($total_review) ? "0" : $total_review['total_reviews'] ?> đánh giá</em>
-						</span>
-						<p><small id="sku">SKU: <?= $sizeAndQuantity[0]['sku'] ?></small><br></p>
-						<div class="prod_options">
-							<div class="row">
-								<label class="col-xl-5 col-lg-5  col-md-6 col-6 pt-0"><strong>Size</strong></label>
-								<div class="col-xl-4 col-lg-5 col-md-6 col-6 colors">
-									<ul>
-										<?php
-										$i = 0;
-										foreach ($sizeAndQuantity as $s) :
-											$i++ ?>
-											<li>
-												<input type="radio" value="<?= $s['size'] ?>" datasku="<?= $s['sku'] ?>" dataquantity="<?= $s['quantity'] ?>" class="btn-check" name="size" id="option<?= $i ?>" <?php if ($i == 1) echo "checked" ?> <?php if ($s['quantity'] == 0) echo "disabled" ?>>
-												<label class="btn" for="option<?= $i ?>"><?= $s['size'] ?></label>
-											</li>
-										<?php endforeach; ?>
-									</ul>
-								</div>
-							</div>
-							<div class="row mt-3">
-								<label class="col-xl-5 col-lg-5  col-md-6 col-6"><strong>Số lượng</strong></label>
-								<div class="col-xl-4 col-lg-5 col-md-6 col-6">
-									<div class="numbers-row">
-										<input type="number" min="1" max="<?= $sizeAndQuantity[0]['quantity'] ?>" value="1" id="quantity_1" class="qty2" name="quantity_1">
-										<div class="inc button_inc">+</div>
-										<div class="dec button_inc">-</div>
+								?> <em> <?= empty($total_review) ? "0" : $total_review['total_reviews'] ?> đánh giá</em>
+							</span>
+							<p><small id="sku">SKU: <?= $sizeAndQuantity[0]['sku'] ?></small><br></p>
+							<div class="prod_options">
+								<div class="row">
+									<label class="col-xl-5 col-lg-5  col-md-6 col-6 pt-0"><strong>Size</strong></label>
+									<div class="col-xl-4 col-lg-5 col-md-6 col-6 colors">
+										<ul>
+											<?php
+											$i = 0;
+											foreach ($sizeAndQuantity as $s) :
+												$i++ ?>
+												<li>
+													<input type="radio" value="<?= $s['size'] ?>" datasku="<?= $s['sku'] ?>" dataquantity="<?= $s['quantity'] ?>" class="btn-check" name="size" id="option<?= $i ?>" <?php if ($i == 1) echo "checked" ?> <?php if ($s['quantity'] == 0) echo "disabled" ?>>
+													<label class="btn" for="option<?= $i ?>"><?= $s['size'] ?></label>
+												</li>
+											<?php endforeach; ?>
+										</ul>
 									</div>
-									<p class="mt-2" id="inventory">Còn <?= $sizeAndQuantity[0]['quantity'] ?> sản phẩm</p>
+								</div>
+								<div class="row mt-3">
+									<label class="col-xl-5 col-lg-5  col-md-6 col-6"><strong>Số lượng</strong></label>
+									<div class="col-xl-4 col-lg-5 col-md-6 col-6">
+										<div class="numbers-row">
+											<input type="number" min="1" max="<?= $sizeAndQuantity[0]['quantity'] ?>" value="1" id="quantity_1" class="qty2" name="quantity_1" readonly>
+										</div>
+										<p class="mt-2" id="inventory">Còn <?= $sizeAndQuantity[0]['quantity'] ?> sản phẩm</p>
+									</div>
 								</div>
 							</div>
-						</div>
-						<div class="row">
-							<div class="col-lg-5 col-md-6">
-								<div class="price_main"><span class="new_price"><?= number_format($product_price, 0, ',', '.') . ' đ' ?></span><span class="old_price"><?= number_format($discounted_price, 0, ',', '.') . ' đ' ?></span></div>
+							<div class="row">
+								<div class="col-lg-5 col-md-6">
+									<div class="price_main"><span class="new_price"><?= number_format($product_price, 0, ',', '.') . ' đ' ?></span><span class="old_price"><?= number_format($discounted_price, 0, ',', '.') . ' đ' ?></span></div>
+								</div>
+								<div class="col-lg-4 col-md-6">
+									<input type="hidden" name="price" value="<?= $product_price ?>">
+									<input type="hidden" value="<?= $sizeAndQuantity[0]['sku'] ?>" name="sku" id="sku_1">
+									<div class="btn_add_to_cart"><button class="btn_1">Thêm vào giỏ hàng</button></div>
+								</div>
 							</div>
-							<div class="col-lg-4 col-md-6">
-								<input type="hidden" name="price" value="<?= $product_price ?>">
-								<input type="hidden" value="<?= $sizeAndQuantity[0]['sku'] ?>" name="sku" id="sku_1">
-								<div class="btn_add_to_cart"><button class="btn_1">Thêm vào giỏ hàng</button></div>
-							</div>
-						</div>
 						</form>
 					</div>
 					<!-- /prod_info -->
@@ -234,7 +232,18 @@
 									<img class="owl-lazy" src="upload/<?= $v['img_name'] ?>" data-src="upload/<?= $v['img_name'] ?>" alt="">
 								</a>
 							</figure>
-							<div class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i></div>
+							<div class="rating">
+								<?php
+								if (empty($v['rating'])) {
+									echo "<i class='icon-star'></i><i class='icon-star'></i><i class='icon-star'></i><i class='icon-star'></i><i class='icon-star'></i>";
+								} else {
+									for ($i = 1; $i <= 5; $i++) {
+										$class = ($i <= $v['rating']) ? 'icon-star voted' : 'icon-star';
+										echo '<i class="' . $class . '"></i>';
+									}
+								}
+								?>
+							</div>
 							<a href="index.php?act=spchitiet&id=<?= $v['product_id'] ?>">
 								<h3><?= $v['product_name'] ?></h3>
 							</a>
@@ -242,9 +251,7 @@
 								<span class="new_price"><?= number_format($v['product_price'], 0, ',', '.') . ' đ' ?></span>
 							</div>
 							<ul>
-								<li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to favorites"><i class="ti-heart"></i><span>Add to favorites</span></a></li>
-								<li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to compare"><i class="ti-control-shuffle"></i><span>Add to compare</span></a></li>
-								<li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Thêm vào giỏ hàng"><i class="ti-shopping-cart"></i><span>Thêm vào giỏ hàng</span></a></li>
+								<li><a href="index.php?act=spchitiet&id=<?= $v['product_id'] ?>" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Thêm vào giỏ hàng"><i class="ti-shopping-cart"></i><span>Thêm vào giỏ hàng</span></a></li>
 							</ul>
 						</div>
 						<!-- /grid_item -->

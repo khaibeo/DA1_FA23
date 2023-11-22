@@ -68,14 +68,15 @@ function get_filter($brand = "", $price = [])
 
     $sql .= " GROUP BY sp.product_id ";
 
-    if(!empty($brand) || !empty($price)){
+    if (!empty($brand) || !empty($price)) {
         $sql .= " ORDER BY sp.product_price";
     }
-    
+
     return pdo_query($sql);
 }
 
-function get_product_detail($id){
+function get_product_detail($id)
+{
     $sql = "SELECT products.*, categories.category_name ,GROUP_CONCAT(products_image.image_name) AS anh FROM `products` 
     JOIN products_image on products.product_id = products_image.product_id 
     JOIN categories on products.category_id = categories.category_id
@@ -85,16 +86,19 @@ function get_product_detail($id){
     return pdo_query_one($sql);
 }
 
-function get_related_product($iddm,$idsp){
-    $sql = "SELECT sp.*, MIN(img.image_name) AS img_name 
-    FROM products sp JOIN products_image img ON img.product_id = sp.product_id 
+function get_related_product($iddm, $idsp)
+{
+    $sql = "SELECT sp.*, MIN(img.image_name) AS img_name, ROUND(AVG(evaluation.number_stars), 0) AS rating
+    FROM products sp JOIN products_image img ON img.product_id = sp.product_id
+    LEFT JOIN evaluation ON sp.product_id = evaluation.product_id
     WHERE sp.category_id = $iddm and sp.product_id <> $idsp 
     GROUP BY sp.product_id";
 
     return pdo_query($sql);
 }
 
-function get_product_sizes($id){
+function get_product_sizes($id)
+{
     $sql = "SELECT products_detail.product_id,GROUP_CONCAT(CONCAT(products_detail.product_detail_id, ':',products_detail.product_size, ':', products_detail.product_quantity) SEPARATOR ', ') AS sizes_and_quantities
     FROM products 
     JOIN products_detail ON products.product_id = products_detail.product_id 
@@ -104,13 +108,15 @@ function get_product_sizes($id){
     return pdo_query_one($sql);
 }
 
-function add_review($idsp,$rating,$review,$user){
+function add_review($idsp, $rating, $review, $user)
+{
     $sql = "INSERT INTO evaluation(content,number_stars,product_id,user_id) values ('$review',$rating,$idsp,$user)";
 
     pdo_execute($sql);
 }
 
-function get_review($id){
+function get_review($id)
+{
     $sql = "SELECT evaluation.*,user.username 
     FROM `evaluation` JOIN user on user.user_id = evaluation.user_id
     WHERE product_id = $id";
@@ -118,9 +124,61 @@ function get_review($id){
     return pdo_query($sql);
 }
 
-function get_total_review($id){
-    $sql = "SELECT evaluation.product_id ,COUNT(DISTINCT evaluation.evaluation_id) AS total_reviews,ROUND((SELECT AVG(number_stars) FROM `evaluation` WHERE product_id = 1), 0) AS average_rating 
+function get_total_review($id)
+{
+    $sql = "SELECT evaluation.product_id ,COUNT(DISTINCT evaluation.evaluation_id) AS total_reviews,ROUND((SELECT AVG(number_stars) FROM `evaluation` WHERE product_id = $id), 0) AS average_rating 
     FROM `evaluation` WHERE product_id = $id GROUP BY evaluation.product_id";
 
     return pdo_query_one($sql);
+}
+
+function get_selling_products()
+{
+    $sql = "SELECT 
+    sp.*,
+    MIN(img.image_name) AS img_name,
+    ROUND(AVG(evaluation.number_stars), 0) AS rating
+FROM 
+    (
+       SELECT 
+    sp.product_id,
+    COALESCE(SUM(od.quantity), 0) AS total_sold
+FROM 
+    products sp JOIN 
+    products_detail pd ON pd.product_id = sp.product_id JOIN 
+    order_detail od ON od.product_detail_id = pd.product_detail_id JOIN 
+    `order` o ON od.order_id = o.order_id AND (o.status = 'delivered' OR o.status IS NULL)
+GROUP BY 
+    sp.product_id order BY total_sold DESC LIMIT 0,8 
+    ) sold_products
+JOIN 
+    products sp ON sold_products.product_id = sp.product_id
+JOIN 
+    products_image img ON img.product_id = sp.product_id
+LEFT JOIN 
+    evaluation ON sp.product_id = evaluation.product_id 
+GROUP BY 
+    sp.product_id order BY total_sold desc;";
+
+    return pdo_query($sql);
+}
+
+function get_feature_products()
+{
+    $sql = "SELECT sp.*, MIN(img.image_name) AS img_name, ROUND(AVG(evaluation.number_stars), 0) AS rating
+    FROM products sp JOIN products_image img ON img.product_id = sp.product_id
+    LEFT JOIN evaluation ON sp.product_id = evaluation.product_id 
+    WHERE sp.highlight = 1 
+    GROUP BY sp.product_id";
+    return pdo_query($sql);
+}
+
+function get_new_product()
+{
+    $sql = "SELECT sp.*, MIN(img.image_name) AS img_name, ROUND(AVG(evaluation.number_stars), 0) AS rating
+    FROM products sp JOIN products_image img ON img.product_id = sp.product_id
+    LEFT JOIN evaluation ON sp.product_id = evaluation.product_id
+    GROUP BY sp.product_id
+    ORDER BY sp.date_add DESC LIMIT 0,8";
+    return pdo_query($sql);
 }
