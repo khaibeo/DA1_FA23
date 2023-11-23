@@ -52,13 +52,13 @@
 								</td>
 								<td>
 									<div class="numbers-row">
-										<input type="number" onchange="return confirm('ahihi')" value="<?= $cart['product_quantity'] ?>" id="quantity_1" class="quantity" name="quantity_1">
+										<input type="number" data-id="<?= $cart['product_detail_id'] ?>" value="<?= $cart['product_quantity'] ?>" id="quantity_1" class="quantity" name="quantity_1" readonly>
 										<div class="inc button_inc">+</div>
 										<div class="dec button_inc">-</div>
 									</div>
 								</td>
 								<td>
-									<strong class="price"><?= number_format($cart['total'], 0, ',', '.') . ' đ' ?></strong>
+									<strong id="total-<?= $cart['product_detail_id'] ?>" class="price"><?= number_format($cart['total'], 0, ',', '.') . ' đ' ?></strong>
 								</td>
 								<td class="options">
 									<a href="index.php?act=xoasp&id=<?= $cart['cart_detail_id'] ?>"><i class="ti-trash"></i></a>
@@ -84,7 +84,7 @@
 					<div class="col-xl-4 col-lg-4 col-md-6">
 						<ul>
 							<li>
-								<span>Tổng tiền</span> <?= number_format($total['tongtien'], 0, ',', '.') . ' đ' ?>
+								<span>Tổng tiền</span> <p id="total-price"><?= number_format($total['tongtien'], 0, ',', '.') . ' đ' ?></p>
 							</li>
 						</ul>
 						<a href="cart-2.html" class="btn_1 full-width cart">Thanh toán</a>

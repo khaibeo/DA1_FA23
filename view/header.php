@@ -176,12 +176,12 @@
 									<!-- /dropdown-cart-->
 								</li>
 								
-								<li>
+								<!-- <li>
 									<a href="#0" class="wishlist"><span>Wishlist</span></a>
-								</li>
+								</li> -->
 								<li>
 									<div class="dropdown dropdown-access">
-										<a href="#" class="access_link"><span>Account</span></a>
+										<a href="#" class="access_link"><span>Tài khoản</span></a>
 										<div class="dropdown-menu">
 											<?php
 											if (!isset($_SESSION['user'])) {

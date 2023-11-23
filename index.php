@@ -15,11 +15,11 @@ $selling_products = get_selling_products();
 $feature_products = get_feature_products();
 $new_products = get_new_product();
 
-if(isset($_SESSION['user'])){
+if (isset($_SESSION['user'])) {
     $user_id = $_SESSION['user_id'];
     $user_cart = get_user_cart($user_id);
 
-    if($user_cart == ""){
+    if ($user_cart == "") {
         create_cart($user_id);
         $user_cart = get_user_cart($user_id);
     }
@@ -87,7 +87,7 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
             }
 
             include "view/product/list-products.php";
-            break;  
+            break;
 
         case "spchitiet":
             if (isset($_GET['id'])) {
@@ -155,36 +155,36 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
             include "view/product/leave-review.php";
             break;
 
-        // giỏ hàng
+            // giỏ hàng
         case "themsp":
-            if(isset($_SESSION['user'])){
-                if($_SERVER['REQUEST_METHOD'] == "POST"){
+            if (isset($_SESSION['user'])) {
+                if ($_SERVER['REQUEST_METHOD'] == "POST") {
                     $sku = $_POST['sku'];
                     $size = $_POST['size'];
                     $quantity = $_POST['quantity_1'];
                     $price = $_POST['price'];
 
                     // Kiểm tra sản phẩm đã có trong sản phẩm hay chưa
-                    $check = check_exist($user_cart,$sku);
+                    $check = check_exist($user_cart, $sku);
 
-                    if($check == 1){
+                    if ($check == 1) {
                         // Nếu đã có thì tăng số lượng
                         $total = $price * $quantity;
-                        update_quantity($user_cart,$sku,$quantity,$total);
-                    }else{
+                        update_quantity($user_cart, $sku, $quantity, $total);
+                    } else {
                         // Nếu chưa có, thêm mới vào giỏ hàng
                         $total = $price * $quantity;
-                        add_to_cart($user_cart,$sku,$quantity,$total,$size);
+                        add_to_cart($user_cart, $sku, $quantity, $total, $size);
                     }
-                    
+
                     header("location: index.php?act=cart");
                 }
-            }else{
+            } else {
                 header("location: index.php?act=dangnhap");
             }
 
         case "cart":
-            if(!isset($_SESSION['user'])){
+            if (!isset($_SESSION['user'])) {
                 header("location: index.php?act=dangnhap");
             }
 
@@ -192,17 +192,17 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
             break;
 
         case "xoasp":
-            if(isset($_GET['id'])){
+            if (isset($_GET['id'])) {
                 $id = $_GET['id'];
                 delete_cart($id);
                 header("location: index.php?act=cart");
-            }else{
+            } else {
                 header("location: index.php?act=cart");
             }
 
             break;
 
-        // Tài khoản
+            // Tài khoản
 
         case "profile":
             if (!isset($_SESSION['user'])) {
@@ -221,10 +221,10 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
 
                 $errors = [];
 
-                if(!preg_match('/^\\S+@\\S+\\.\\S+$/',$email)){
+                if (!preg_match('/^\\S+@\\S+\\.\\S+$/', $email)) {
                     $errors['email'] = "Không đúng định dạng Email";
                 }
-                
+
                 $pattern = '/^(0|\+84|\+841|\+849|\+8498)([2-9]\d{8})$/';
                 if (!preg_match($pattern, $tel)) {
                     $errors['tel'] = "Số điện thoại không hợp lệ";
@@ -232,16 +232,27 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
 
                 $img = $_FILES['img']['name'];
 
-                if($img != ""){
-                    $target_dir = "upload/";
-                    $target_file = $target_dir. basename($_FILES['img']['name']);
-                    move_uploaded_file($_FILES['img']['tmp_name'],$target_file);
+                $file_type = array('png', 'jpg', 'gif', 'jpeg', 'webp');
+                
+                $type = pathinfo($_FILES['img']['name'], PATHINFO_EXTENSION);
+
+                $check = true;
+                
+                if (!in_array(strtolower($type), $file_type)) {
+                    $errors['type'] = 'Ảnh không đúng định dạng';
+                    $check = false;
                 }
 
-                if(empty($errors)){
-                    $message = update_user($id, $email,$fullname ,$address, $tel,$img);
+                if ($img != "" && $check == true) {
+                    $target_dir = "upload/";
+                    $target_file = $target_dir . basename($_FILES['img']['name']);
+                    move_uploaded_file($_FILES['img']['tmp_name'], $target_file);
+                }
+
+                if (empty($errors)) {
+                    $message = update_user($id, $email, $fullname, $address, $tel, $img);
                     $user = get_user($_SESSION['user_id']);
-                } 
+                }
             }
 
             include "view/account/profile.php";

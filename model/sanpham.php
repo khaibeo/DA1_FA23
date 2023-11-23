@@ -86,6 +86,12 @@ function get_product_detail($id)
     return pdo_query_one($sql);
 }
 
+function get_product_price($id){
+    $sql = "SELECT p.product_price FROM `products_detail` pd JOIN products p ON pd.product_id = p.product_id WHERE pd.product_detail_id = $id";
+    $result = pdo_query_one($sql);
+    return $result['product_price'];
+}
+
 function get_related_product($iddm, $idsp)
 {
     $sql = "SELECT sp.*, MIN(img.image_name) AS img_name, ROUND(AVG(evaluation.number_stars), 0) AS rating

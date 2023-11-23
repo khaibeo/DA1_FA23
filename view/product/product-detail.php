@@ -103,6 +103,8 @@
 									<div class="col-xl-4 col-lg-5 col-md-6 col-6">
 										<div class="numbers-row">
 											<input type="number" min="1" max="<?= $sizeAndQuantity[0]['quantity'] ?>" value="1" id="quantity_1" class="qty2" name="quantity_1" readonly>
+											<div class="inc inc_btn">+</div>
+											<div class="dec inc_btn">-</div>
 										</div>
 										<p class="mt-2" id="inventory">Còn <?= $sizeAndQuantity[0]['quantity'] ?> sản phẩm</p>
 									</div>
@@ -296,45 +298,5 @@
 			</div>
 		</div>
 		<!--/feat-->
-
-		<script>
-			// Lấy tất cả các ô input radio có cùng name
-			var radioInputs = document.querySelectorAll('input[name="size"]');
-
-			// Lấy ô input
-			var quantityInput = document.getElementById("quantity_1");
-
-			// Thêm sự kiện onchange cho tất cả các ô input radio
-			radioInputs.forEach(function(radioInput) {
-				radioInput.addEventListener("change", function() {
-					// Lấy giá trị dataQuantity từ ô input radio
-					var dataquantity = this.getAttribute("dataquantity");
-
-					var inventory = document.getElementById("inventory");
-					var sku_1 = document.getElementById("sku_1");
-
-					var datasku = this.getAttribute("datasku");
-					sku.innerText = "SKU: " + datasku;
-					sku_1.value = datasku;
-
-
-					inventory.innerText = "Còn " + dataquantity + " sản phẩm";
-
-					// Giới hạn giá trị của ô input text dựa trên giá trị dataQuantity
-					quantityInput.max = dataquantity;
-
-					// Kiểm tra nếu giá trị hiện tại lớn hơn giá trị mới tối đa, đặt lại giá trị ô input text
-					if (parseInt(quantityInput.value, 10) > parseInt(dataquantity, 10)) {
-						quantityInput.value = dataquantity;
-					}
-				});
-			});
-
-			quantityInput.addEventListener("change", function() {
-				if (parseInt(quantityInput.value, 10) > parseInt(quantityInput.max, 10)) {
-					quantityInput.value = quantityInput.max;
-				}
-			})
-		</script>
 	</main>
 	<!-- /main -->

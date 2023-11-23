@@ -64,4 +64,10 @@ function delete_cart($id){
     $sql = "DELETE FROM cart_detail WHERE cart_detail_id = $id";
     pdo_execute($sql);
 }
+
+function update_total($user_cart,$id,$sub_total,$qty){
+    $sql = "UPDATE cart_detail SET product_quantity = $qty, total = $sub_total where cart_id = $user_cart and product_detail_id = $id";
+
+    pdo_execute($sql);
+}
 ?>

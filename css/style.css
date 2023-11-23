@@ -5153,6 +5153,23 @@ input.quantity:focus {
   color: #004dda;
 }
 
+.inc_btn {
+  cursor: pointer;
+  position: absolute;
+  width: 33px;
+  height: 40px;
+  line-height: 38px;
+  text-align: center;
+  z-index: 2;
+  font-size: 26px;
+  font-size: 1.625rem;
+  font-weight: 300 !important;
+  color: #999;
+}
+.inc_btn:hover {
+  color: #004dda;
+}
+
 .dec {
   left: 0;
   top: 0;

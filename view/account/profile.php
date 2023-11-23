@@ -31,6 +31,7 @@ if ($user['avatar'] != '') {
                                                             <img width="100" height="100" class="rounded-pill" src="<?= $img_path ?>" alt="...">
                                                         </figure>
                                                         <input type="file" name="img" placeholder="Chọn ảnh">
+                                                        <span class="error"><?php if (!empty($errors['type'])) echo $errors['type'] ?></span>
                                                     </div>
                                                 </div>
                                                 <div class="row">
