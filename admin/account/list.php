@@ -131,11 +131,25 @@
                         <div class="bi bi-chevron-down"></div>
                     </div>
                     <div class="collapse show mt-4" id="keywordsCollapseExample">
+                        
+                        <style>
+                                   .keyword{
+                                    background-color:#ff6e40 ;
+                                    color: #fff;
+                                    border: 1px solid #ff6e40;
+                                    width: 70px;
+                                    height: 50px;
+                                    border-radius: 5px;
+                                }
+                        </style>
+                        <form action="index.php?act=list_account" method="post">
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Phone, Headphone, Shoe ...">
-                            <button class="btn btn-outline-light" type="button">
+                            <input type="text" class="form-control" placeholder="username" name="search_account">
+                            <input type="submit" name="keyword" value="search" class="keyword">
+                            <!-- <button class="btn btn-outline-light" type="sumbit" name="keyword">
                                 <i class="bi bi-search"></i>
-                            </button>
+                            </button> -->
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -149,36 +163,25 @@
                     </div>
                     <div class="collapse show mt-4" id="categoriesCollapseExample">
                         <div class="d-flex flex-column gap-3">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="categoryCheck1">
-                                <label class="form-check-label" for="categoryCheck1">
-                                    All
-                                </label>
+                        <form action="index.php?act=list_account" method="post">
+                                         <input class="forminput" type="radio" name="account" value="Admin">
+                                         <label class="formlabel" for="accountCheck1">Admin</label> <br>
+                                         <input class="forminput" type="radio" name="account" value="Customer">
+                                         <label class="formlabel" for="accountCheck1">Customer</label> <br>
+                                        <input type="submit" name="filter_account" class="search" value="Lọc">
+                                </form>
                             </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="categoryCheck2">
-                                <label class="form-check-label" for="categoryCheck2">
-                                    Accessories
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="categoryCheck3">
-                                <label class="form-check-label" for="categoryCheck3">
-                                    Phone
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="categoryCheck4">
-                                <label class="form-check-label" for="categoryCheck4">
-                                    Headphone
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="categoryCheck5">
-                                <label class="form-check-label" for="categoryCheck5">
-                                    Camera
-                                </label>
-                            </div>
+                            <style>
+                                .search{
+                                    margin-top:20px ;
+                                    background-color:#ff6e40 ;
+                                    color: #fff;
+                                    border: 1px solid #ff6e40;
+                                    border-radius: 20px;
+                                    width: 100px;
+                                    height: 40px;
+                                }
+                            </style>
                         </div>
                     </div>
                 </div>

@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title> Vetra | E-Commerce HTML Admin Dashboard Template  </title>
-
+    
     <!-- Favicon -->
     <link rel="shortcut icon" href="./assets/images/favicon.png"/>
 
@@ -30,14 +30,15 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+
 </head>
 <body>
 
 <!-- preloader -->
-<div class="preloader">
+<!-- <div class="preloader">
     <img src="https://vetra.laborasyon.com/assets/images/logo.svg" alt="logo">
     <div class="preloader-icon"></div>
-</div>
+</div> -->
 <!-- ./ preloader -->
 
 <!-- sidebars -->
@@ -152,7 +153,222 @@
 <!-- ./ sidebars -->
 
 <!-- menu -->
-<?php include "sidebar.php" ?>
+<div class="menu">
+    <div class="menu-header">
+        <a href="home.html" class="menu-header-logo">
+            <img src="https://vetra.laborasyon.com/assets/images/logo.svg" alt="logo">
+        </a>
+        <a href="home.html" class="btn btn-sm menu-close-btn">
+            <i class="bi bi-x"></i>
+        </a>
+    </div>
+    <div class="menu-body">
+        <div class="dropdown">
+            <a href="#" class="d-flex align-items-center" data-bs-toggle="dropdown">
+                <div class="avatar me-3">
+                    <img src="./assets/images/user/man_avatar3.jpg"
+                         class="rounded-circle" alt="image">
+                </div>
+                <div>
+                    <div class="fw-bold">Tên người dùng</div>
+                    <small class="text-muted">Chức vụ</small>
+                </div>
+            </a>
+            <div class="dropdown-menu dropdown-menu-end">
+                <a href="#" class="dropdown-item d-flex align-items-center">
+                    <i class="bi bi-person dropdown-item-icon"></i> Thông tin tài khoản
+                </a>
+                <a href="#" class="dropdown-item d-flex align-items-center">
+                    <i class="bi bi-envelope dropdown-item-icon"></i> Inbox
+                </a>
+                <a href="login.html" class="dropdown-item d-flex align-items-center text-danger"
+                   target="_blank">
+                    <i class="bi bi-box-arrow-right dropdown-item-icon"></i> Đăng xuất
+                </a>
+            </div>
+        </div>
+        <ul>
+            <!-- <li class="menu-divider">E-Commerce</li> -->
+            <!-- <li>
+                <a  class="active"
+                    href="home.html">
+                    <span class="nav-link-icon">
+                        <i class="bi bi-bar-chart"></i>
+                    </span>
+                    <span>Dashboard</span>
+                </a>
+            </li> -->
+            <li>
+                <a href="#">
+                    <span class="nav-link-icon">
+                        <i class="bi bi-receipt"></i>
+                    </span>
+                    <span>Danh Mục</span>
+                </a>
+                <ul>
+                    <li>
+                        <a  href="index.php?act=add_category">Thêm Danh Mục</a>
+                    </li>
+                    <li>
+                        <a  href="index.php?act=list_category">Danh Sách Danh Mục</a>
+                    </li>
+                </ul>
+            </li>
+            <!-- <li>
+                <a href="#">
+                    <span class="nav-link-icon">
+                        <i class="bi bi-receipt"></i>
+                    </span>
+                    <span>Orders</span>
+                </a>
+                <ul>
+                    <li>
+                        <a  href="orders.html">List</a>
+                    </li>
+                    <li>
+                        <a  href="order-detail.html">Detail</a>
+                    </li>
+                </ul>
+            </li> -->
+            <li>
+                <a href="#">
+                    <span class="nav-link-icon">
+                        <i class="bi bi-truck"></i>
+                    </span>
+                    <span>Sản Phẩm</span>
+                </a>
+                <ul>
+                    <li>
+                        <a  href="index.php?act=add_product">Thêm Sản Phẩm</a>
+                    </li>
+                    <li>
+                        <a  href="index.php?act=list_product">Danh Sách Sản Phẩm</a>
+                    </li>
+                </ul>
+            </li>
+            <!-- <li>
+                <a  href="customers.html">
+                    <span class="nav-link-icon">
+                        <i class="bi bi-person-badge"></i>
+                    </span>
+                    <span>Customers</span>
+                </a>
+            </li> -->
+            
+            <!-- <li class="menu-divider">Apps</li>
+            <li>
+                <a  href="chats.html">
+                    <span class="nav-link-icon">
+                        <i class="bi bi-chat-square"></i>
+                    </span>
+                    <span>Chats</span>
+                    <span class="badge bg-success rounded-circle ms-auto">2</span>
+                </a>
+            </li>
+            <li>
+                <a href="email.html">
+                    <span class="nav-link-icon">
+                        <i class="bi bi-envelope"></i>
+                    </span>
+                    <span>Email</span>
+                </a>
+                <ul>
+                    <li>
+                        <a  href="email.html">
+                            <span>Inbox</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a  href="email-detail.html">
+                            <span>Detail</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a target="_blank" href="email-template.html">
+                            <span>Email Template</span>
+                        </a>
+                    </li>
+                </ul>
+            </li> -->
+            <!-- <li>
+                <a href="todo-list.html">
+                    <span class="nav-link-icon">
+                        <i class="bi bi-check-circle"></i>
+                    </span>
+                    <span>Todo App</span>
+                </a>
+                <ul>
+                    <li>
+                        <a  href="todo-list.html">
+                            <span>List</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a  href="todo-detail.html">
+                            <span>Details</span>
+                        </a>
+                    </li>
+                </ul>
+            </li> -->
+            <!-- <li class="menu-divider">Trang</li> -->
+            <!-- <li>
+                <a href="#">
+                    <span class="nav-link-icon">
+                        <i class="bi bi-person"></i>
+                    </span>
+                    <span>Profile</span>
+                </a>
+                <ul>
+                    <li>
+                        <a  href="profile-posts.html">Post</a>
+                    </li>
+                    <li>
+                        <a  href="profile-connections.html">Connections</a>
+                    </li>
+                </ul>
+            </li> -->
+            <li>
+                <a href="#">
+                    <span class="nav-link-icon">
+                        <i class="bi bi-person-circle"></i>
+                    </span>
+                    <span>Tài Khoản</span>
+                </a>
+                <ul>
+                    <li><a  href="index.php?act=list_account">Danh Sách Tài Khoản</a></li>
+                    <li><a href="index.php?act=add_account">Thêm Tài Khoản</a></li>
+                </ul>
+            </li>
+            <!-- <li>
+                <a href="#">
+                    <span class="nav-link-icon">
+                        <i class="bi bi-lock"></i>
+                    </span>
+                    <span>Authentication</span>
+                </a>
+                <ul>
+                    <li>
+                        <a href="login.html" target="_blank">Login</a>
+                    </li>
+                    <li>
+                        <a href="register.html" target="_blank">Register</a>
+                    </li>
+                    <li>
+                        <a href="reset-password.html" target="_blank">Reset Password</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a  href="settings.html">
+                    <span class="nav-link-icon">
+                        <i class="bi bi-gear"></i>
+                    </span>
+                    <span>Settings</span>
+                </a>
+            </li>         -->
+        </ul>
+    </div>
+</div>
 <!-- ./  menu -->
 
 <!-- layout-wrapper -->
@@ -170,7 +386,7 @@
         <img width="100" src="https://vetra.laborasyon.com/assets/images/logo.svg" alt="logo">
     </a>
     <!-- ./ Logo -->
-    <div class="page-title">Overview</div>
+    <!-- <div class="page-title">Overview</div> -->
     <!-- <form class="search-form">
         <div class="input-group">
             <button class="btn btn-outline-light" type="button" id="button-addon1">

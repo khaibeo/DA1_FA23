@@ -67,10 +67,12 @@
                         <?php
                         foreach($list_pro as $pd){
                             extract($pd);
+                            $product_image=load_image($product_id);
+                            extract($product_image);
                             $edit_product="index.php?act=edit_product&product_id=".$product_id;
                             $delete_product="index.php?act=delete_product&product_id=".$product_id;
                             $show_detail="index.php?act=product_detail&product_id=".$product_id;
-                            $image="../admin/image/upload/".$product_image;    
+                            $image="../upload/".$image_name;    
                             ?>
                                     <tr>
                                         <td>

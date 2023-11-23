@@ -1,43 +1,23 @@
-<!doctype html>
-<html lang="en">
-
-<!-- Mirrored from vetra.laborasyon.com/demos/default/404.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 02 Nov 2023 15:04:49 GMT -->
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>404 - Vetra | HTML Admin Dashboard Template</title>
-
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="./assets/images/favicon.png"/>
-
-    <!-- Main style file -->
-    <link rel="stylesheet" href="./dist/css/app.min.css" type="text/css">
-</head>
-<body class="d-md-flex align-items-center justify-content-center">
-
-<div class="container text-center p-5 p-md-0">
-    <div class="row mb-4">
-        <div class="col-md-4 m-auto">
-            <figure>
-                <img class="img-fluid" src="https://vetra.laborasyon.com/assets/svg/404.svg" alt="image">
-            </figure>
-        </div>
-    </div>
-    <h2 class="display-6">Page not found</h2>
-    <p class="text-muted my-4">The page you want to go is not currently available</p>
-    <div class="d-flex gap-3 justify-content-center">
-        <a href="#" class="btn btn-primary">Home Page</a>
-        <a href="#" class="btn bg-white">Back</a>
-    </div>
-</div>
-
-<!-- Bundle scripts -->
-<script src="./libs/bundle.js"></script>
-
-<!-- Main Javascript file -->
-<script src="./dist/js/app.min.js"></script>
-</body>
-
-<!-- Mirrored from vetra.laborasyon.com/demos/default/404.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 02 Nov 2023 15:04:49 GMT -->
-</html>
+	
+	<main class="bg_gray">
+		<div id="error_page">
+			<div class="container">
+				<div class="row justify-content-center text-center">
+					<div class="col-xl-7 col-lg-9">
+						<img src="img/404.svg" alt="" class="img-fluid" width="400" height="212">
+						<p>The page you're looking is not founded!</p>
+						<form>
+							<div class="search_bar">
+								<input type="text" class="form-control" placeholder="What are you looking for?">
+								<input type="submit" value="Search">
+							</div>
+						</form>
+					</div>
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /error_page -->
+	</main>
+	<!--/main-->

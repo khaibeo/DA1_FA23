@@ -1,7 +1,7 @@
 <?php
 if(is_array( $detail_id)){
     extract( $detail_id);}
-var_dump($product_detail_id);
+// var_dump($product_detail_id);
 ?> 
 <form action="index.php?act=update_detail" method="post">
     <table>

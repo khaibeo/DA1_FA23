@@ -31,8 +31,3 @@
        
     </form>
 </div>
-<?php 
-if (isset($warring)) {
-    echo "".$warring."";
-}
-?>
