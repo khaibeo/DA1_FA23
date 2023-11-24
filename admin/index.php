@@ -1,13 +1,13 @@
 <?php
 session_start();
 include("../model/pdo.php");
-include("../model/category.php");
-include("../model/product.php");
-include("../admin/header.php");
-include("../model/account.php");
+include("../admin/model_admin/category.php");
+include("../admin/model_admin/product.php");
+include("../admin/view/header.php");
+include("../admin/model_admin/account.php");
 // include("home.php");
 
-
+$warring=[];
 if(isset($_GET['act'])){
     $act=$_GET['act'];
     switch($act){
@@ -15,12 +15,19 @@ if(isset($_GET['act'])){
     case'add_category':
         if(isset($_POST['add_category'])){
             $category_name=$_POST['category_name'];
-            if(empty($_POST['category_name'])){
-                $warring= 'You need to enter complete information';
+            if(!empty($category_name)){
+            if(is_numeric($category_name)){
+                $warring['category']="Trường này chỉ nhận chuỗi";
+            }
+            if(!empty($warring)){
             }
             else{
-            insert_category($category_name);
-            $warring="More Successfully";
+                insert_category($category_name);
+                $warring="Thêm Thành công";
+            }
+            }
+            else{
+                $warring['category']= 'Bạn cần nhập đầy đủ thông';
             }
         };
         include('../admin/category/add.php');
@@ -31,7 +38,7 @@ if(isset($_GET['act'])){
         }else{
             $keyword= '';
         }
-        $limit=2;  
+        $limit=10;  
         if(isset($_POST['number'])){
             $number=$_POST['number'];   
             $start=($number-1)*$limit;
@@ -56,7 +63,7 @@ if(isset($_GET['act'])){
             update_category($category_id,$category_name);
             $warring="Update successful";
         }
-        $limit=2;  
+        $limit=10;  
         if(isset($_POST['number'])){
             $number=$_POST['number'];   
             $start=($number-1)*$limit;
@@ -71,6 +78,15 @@ if(isset($_GET['act'])){
         if(isset($_GET['category_id'])&&($_GET['category_id']>0)){
             delete_category($_GET['category_id']);
         }
+        $limit=10;  
+        if(isset($_POST['number'])){
+            $number=$_POST['number'];   
+            $start=($number-1)*$limit;
+        }else{
+            $start= 0;
+        }
+        $count=count_category();
+        $list_pro=load_page_category($keyword='',$start,$limit);
         $list_category=loadall_category();
         include ('../admin/category/list.php');
         break;
@@ -86,13 +102,34 @@ if(isset($_GET['act'])){
             $product_describe=$_POST['product_describe'];
             $product_status=$_POST['product_status'];
             $file_name=$_FILES['product_image']['name'];
-            $folder="./image/upload/";
-            move_uploaded_file($_FILES["product_image"]["tmp_name"], $folder . $file_name);
-            if(empty($_POST['category'] && $_POST['product_name'] && $_POST['product_price'] && $_POST['discounted_price'] && $_POST['product_describe'] && $_POST['product_status'] && $_FILES['product_image']['name'] )){
-                $warring="You need to enter complete information";
-            }else{
-            insert_product($category_id,$product_name, $product_price, $discounted_price, $product_describe,  $file_name, $product_status);
-            $warring="More Successfully";
+            $target_dir="../upload/";
+            $target_file=$target_dir . basename($_FILES["product_image"]["name"]);
+            move_uploaded_file($_FILES['product_image']['tmp_name'],$target_file);
+            if(!empty( $product_name && $product_price && $discounted_price && $product_describe && $product_status && $file_name )){
+                if(is_numeric($product_name)){
+                    $warring['product_name']="Trường này chỉ nhận  dữ liệu chuỗi";
+                }
+                if(is_numeric($product_describe)){
+                    $warring['product_describe']="Trường này chỉ nhận  dữ liệu chuỗi";
+                }
+                if(is_numeric($file_name)){
+                    $warring['file_name']="Trường này chỉ nhận  dữ liệu chuỗi";
+                }
+                if(!is_numeric($product_price)){
+                    $warring['product_price']="Trường này chỉ nhận  dữ liệu Số";
+                }
+                if(!is_numeric($discounted_price)){
+                    $warring['discounted_price']="Trường này chỉ nhận  dữ liệu Số";
+                }
+            if(!empty($warring)){
+            }
+            else{
+            insert_product($category_id,$product_name, $product_price, $discounted_price, $product_describe, $product_status);
+            $warring['all']="Thêm Thành công";
+            }
+        }
+            else{
+                $warring['all']="Bạn cần nhập đầy đủ thông tin";
             }
         }
         $list_category=loadall_category();
@@ -118,7 +155,7 @@ if(isset($_GET['act'])){
             $price= "";
         }
 
-        $limit=2;  
+        $limit=10;  
         if(isset($_POST['number'])){
             $number=$_POST['number'];   
             $start=($number-1)*$limit;
@@ -141,6 +178,7 @@ if(isset($_GET['act'])){
     case'update_product':
         if(isset($_POST['btn_update'])&&($_POST['btn_update'])){
             $product_id=$_POST['product_id'];
+            // $image_id=$_POST['image_id'];
             $category_id=$_POST['category'];
             $product_name=$_POST['product_name'];
             $product_price=$_POST['product_price'];
@@ -148,13 +186,15 @@ if(isset($_GET['act'])){
             $product_describe=$_POST['product_describe'];
             $product_status=$_POST['product_status'];
             $file_name=$_FILES['product_image']['name'];
-            $folder="./image/upload/";
-            move_uploaded_file($_FILES["product_image"]["tmp_name"], $folder . $file_name);
-            update_product($product_id,$category_id,$product_name,$product_price,$discounted_price,$product_describe,$file_name,$product_status);
-            $warring= 'Update successful';
+            $target_dir="../upload/";
+            $target_file=$target_dir . basename($_FILES["product_image"]["name"]);
+            move_uploaded_file($_FILES['product_image']['tmp_name'],$target_file);
+            update_product($product_id,$category_id,$product_name,$product_price,$discounted_price,$product_describe,$product_status);
+            // update_image($image_id,$product_id,$file_name);
+            $warring= 'Sửa Thành Công';
         }
         $list_category=loadall_category();
-        $limit=2;  
+        $limit=10;  
         if(isset($_POST['number'])){
             $number=$_POST['number'];   
             $start=($number-1)*$limit;
@@ -196,16 +236,64 @@ if(isset($_GET['act'])){
             delete_product($_GET['product_id']);
         }
         $list_product=loadall_product();
+        $limit=10;  
+        if(isset($_POST['number'])){
+            $number=$_POST['number'];   
+            $start=($number-1)*$limit;
+        }else{
+            $start= 0;
+        }
+        $count=count_product();
+        $list_pro= load_page_product($keyword="",$category_id="",$price="",$start,$limit);
         include ('../admin/product/list.php');
         break;
-    case 'list_account':
-        if(isset($_POST['keyword'])&&($_POST['keyword'])){
-            $keyword=$_POST['search_accunt'];
+    case 'add_account':
+        if(isset($_POST['btn_add'])){
+        $username=$_POST['username'];
+        $password=$_POST['password'];
+        $fullname=$_POST['fullname'];
+        $email=$_POST['email'];
+        $tel=$_POST['tel'];
+        $address=$_POST['address'];
+        $file_name=$_FILES['avatar']['name'];
+        $target_dir="../upload/";
+        $target_file=$target_dir . basename($_FILES["avatar"]["name"]);
+        move_uploaded_file($_FILES['avatar']['tmp_name'],$target_file);
+        $role=$_POST['role'];
+        $pattern = '/^(0|\+84|\+841|\+849|\+8498)([2-9]\d{8})$/';
+        if(!empty($username&&$password&&$fullname&&$email&&$tel&&$role&&$file_name)){
+            if(strlen($username)<6){
+                $warring['username']="Tên đăng nhập phải lớn hơn 6 kí tự";
+            }
+            if(strlen($password)<6){
+                $warring['password']="Mật khẩu phải lớn hơn 6 kí tự";
+            }
+            if(is_numeric($fullname)){
+                $warring['fullname']="Trường này chỉ nhận dữ liệu chuỗi";
+            }
+            if(is_numeric($address)){
+                $warring['address']="Trường này chỉ nhận dữ liệu chuỗi";
+            }
+            if(!preg_match($pattern,$tel)){
+                $warring['tel']="Số điện thoại không đúng định dạng";
+            }
+            if(!preg_match('/^\\S+@\\S+\\.\\S+$/',$email)){
+                $errors['email'] = "Không đúng định dạng Email";
+            }
+            if(is_numeric($role)){
+                $warring['role']="Trường này chỉ nhận dữ liệu chuỗi";
+            }
+            if(!empty($warring)){
+            }else{
+                insert_account($username,$password,$fullname,$email,$tel,$address,$file_name,$role);
+                $warring['all']="Thêm Thành công";
+            }
         }
         else{
-            $keyword= '';
-        };
-        $limit=2;  
+            $warring['all']="Bạn cần nhập đầy đủ dữ liệu";
+        }
+    }
+        $limit=10;  
         if(isset($_POST['number'])){
             $number=$_POST['number'];   
             $start=($number-1)*$limit;
@@ -213,7 +301,32 @@ if(isset($_GET['act'])){
             $start= 0;
         }
         $count=count_account();
-        $list_account=load_page_account($keyword,$start,$limit);
+        $list_account=load_page_account($keyword="",$role="",$start,$limit);
+        include ('../admin/account/add.php');
+        break;
+    case 'list_account':
+        if(isset($_POST['keyword'])&&($_POST['keyword'])){
+            $keyword=$_POST['search_account'];
+        }
+        else{
+            $keyword= '';
+        }
+        if(isset($_POST['filter_account'])&&($_POST['filter_account'])){
+            $role=$_POST['account'];
+        }
+        else{
+            $role= '';
+        }
+
+        $limit=10;  
+        if(isset($_POST['number'])){
+            $number=$_POST['number'];   
+            $start=($number-1)*$limit;
+        }else{
+            $start= 0;
+        }
+        $count=count_account();
+        $list_account=load_page_account($keyword,$role,$start,$limit);
         $account=count_account();
         include ('../admin/account/list.php');
         break;
@@ -239,7 +352,7 @@ if(isset($_GET['act'])){
             update_account( $username, $fullname, $email,$tel, $address,$role, $file_name,$user_id);
             $warring='Update successful';
         }
-        $limit=2;  
+        $limit=10;  
         if(isset($_POST['number'])){
             $number=$_POST['number'];   
             $start=($number-1)*$limit;
@@ -247,14 +360,15 @@ if(isset($_GET['act'])){
             $start= 0;
         }
         $count=count_account();
-        $list_account=load_page_account($keyword="",$start,$limit);
+        $list_account=load_page_account($keyword="",$role="",$start,$limit);
         include ('../admin/account/list.php');
         break;
     case'delete_account':
         if(isset($_GET['user_id'])&&($_GET['user_id']>0)){
             delete_account($_GET['user_id']);
         }
-        $limit=2;  
+        $list_account=loadall_account();
+        $limit=10;  
         if(isset($_POST['number'])){
             $number=$_POST['number'];   
             $start=($number-1)*$limit;
@@ -262,13 +376,13 @@ if(isset($_GET['act'])){
             $start= 0;
         }
         $count=count_account();
-        $list_account=load_page_account($keyword="",$start,$limit);
-        // $list_account=loadall_account();
+        $list_account=load_page_account($keyword="",$role="",$start,$limit);
+        include ('../admin/account/list.php');
         break;
     default:
-    include('home.php');
+    include('../admin/view/home.php');
     break;
     }
 }
-include("footer.php");
+include("..//admin/view/footer.php");
 ?>

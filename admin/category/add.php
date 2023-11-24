@@ -5,11 +5,12 @@
         <label for="">Name Category</label>
         <input type="text" name="category_name" >
         <input type="submit" name="add_category" value="ADD">
+        <a href="index.php?act=list_category">Danh Sách Danh Mục</a>
     </form>
     <div class="warring" style="color:red;">
     <?php 
-    if(isset($warring) && $warring!= ""){
-        echo"".$warring."";
+    if(isset($warring['category'])){
+        echo"".$warring['category']."";
     }
     ?>
     </div>

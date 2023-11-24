@@ -2,6 +2,8 @@
 if(is_array($product)){
     extract($product);
     }
+    $product_image=load_image($product_id);
+    extract($product_image);
 ?>
 <div class="content">
     <style>
@@ -40,11 +42,11 @@ if(is_array($product)){
             </tr>
             <tr>
                 <td><label for="">Product_image</label></td>
-                <td><img src="../admin/image/upload/<?php echo $product_image?>" alt=""></td>
+                <td><img src="../upload/<?php echo $image_name?>" alt=""></td>
             </tr>
             <tr>
                 <td></td>
-                <td><input type="file" name="product_image" id="product_image" value="<?php echo $product_image?>"></td>
+                <td><input type="file" name="product_image" id="product_image" value="<?php echo $image_name?>"></td>
             </tr>
             <tr>
                 <td><label for="">Product_describe</label></td>
@@ -57,8 +59,9 @@ if(is_array($product)){
                         
             <tr>
                 <input type="hidden" name="product_id" value="<?php echo $product_id?>">
+                <input type="hidden" name="imgae_id" value="<?php echo $image_id?>">
                 <td><input type="submit" name="btn_update" value="Update"></td>
-                <td><input type="submit" name="discounted_price" value="Reset"></td>
+                <td><a href="index.php?act=list_product">Danh Sách Sản Phẩm</a></td>
             </tr>
         </table>    
    

@@ -1,3 +1,11 @@
+
+    <!-- content-footer -->
+    
+    <!-- ./ content-footer -->
+
+	</div>
+<!-- ./ layout-wrapper -->
+
 <!-- Bundle scripts -->
 <script src="./libs/bundle.js"></script>
 

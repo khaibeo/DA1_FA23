@@ -2,7 +2,9 @@
 if(is_array($load_detail)){
     extract($load_detail);
 }
-$image="../admin/image/upload/".$product_image;
+$product_image=load_image($product_id);
+extract($product_image);
+$image="../upload/".$image_name;
 // $edit_detail="index.php?act=edit_detail&product_id=".$product_id;
 ?>
 <style>
