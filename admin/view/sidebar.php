@@ -15,8 +15,8 @@
                          class="rounded-circle" alt="image">
                 </div>
                 <div>
-                    <div class="fw-bold">Tên người dùng</div>
-                    <small class="text-muted">Chức vụ</small>
+                    <div class="fw-bold"><?= $user['username'] ?></div>
+                    <small class="text-muted"><?= $user['role'] ?></small>
                 </div>
             </a>
             <div class="dropdown-menu dropdown-menu-end">

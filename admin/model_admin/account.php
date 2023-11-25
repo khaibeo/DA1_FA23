@@ -68,4 +68,10 @@ function insert_account($username,$password,$fullname,$email,$tel,$address,$file
     VALUES ('$username', '$fullname', '$email', '$password', '$tel', '$address', '$file_name', '$role')";
     pdo_execute($sql);
 }
+
+function get_user($id){
+    $sql = "select * from user where user_id = $id";
+    $result = pdo_query_one($sql);
+    return $result;
+}
 ?>

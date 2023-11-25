@@ -15,12 +15,8 @@ function insert_product($category_id,$product_name, $product_price, $discounted_
 {
     $sql= "INSERT INTO `products` (`product_id`, `product_name`, `product_price`, `discounted_price`, `product_describe`, `category_id`, `status`) VALUES (NULL, '{$product_name}', '{$product_price}', '{$discounted_price}', '{$product_describe}', '{$category_id}', '{$product_status}')";
     return pdo_execute($sql);
+}
 
-}
-function insert_image($product_id,$image_name){
-    $sql="INSERT INTO `products_image` ( `product_id`, `image_name`) VALUES ( '$product_id', '$image_name')";
-    pdo_execute($sql);
-}
 function update_image($imgae_id,$product_id,$file_name){
     if($file_name!=""){
 
@@ -102,5 +98,15 @@ function load_image($product_id){
     $sql="SELECT * FROM products_image WHERE product_id=$product_id ";
     $list_image=pdo_query_one($sql);
     return $list_image;
+}
+
+function add_variant($id,$size,$quantity){
+    $sql = "INSERT INTO products_detail (product_id, product_size, product_quantity) VALUES ($id,$size,$quantity)";
+    pdo_execute($sql);
+}
+
+function insert_image($product_id,$image_name){
+    $sql="INSERT INTO `products_image` ( `product_id`, `image_name`) VALUES ( '$product_id', '$image_name')";
+    pdo_execute($sql);
 }
 ?>

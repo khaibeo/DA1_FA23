@@ -1,12 +1,19 @@
 <?php
+ob_start();
 session_start();
+
+if(!isset($_SESSION['user']) || $_SESSION['role'] != "admin"){
+    header("location: ../index.php");
+}
 include("../model/pdo.php");
 include("../admin/model_admin/category.php");
 include("../admin/model_admin/product.php");
-include("../admin/view/header.php");
+
 include("../admin/model_admin/account.php");
 // include("home.php");
 
+$user = get_user($_SESSION['user_id']);
+include("../admin/view/header.php");
 $warring=[];
 if(isset($_GET['act'])){
     $act=$_GET['act'];
@@ -76,6 +83,8 @@ if(isset($_GET['act'])){
         break;
     case'delete_category':
         if(isset($_GET['category_id'])&&($_GET['category_id']>0)){
+
+            change_category($_GET['category_id']);
             delete_category($_GET['category_id']);
         }
         $limit=10;  
@@ -101,20 +110,22 @@ if(isset($_GET['act'])){
             $discounted_price=$_POST['discounted_price'];
             $product_describe=$_POST['product_describe'];
             $product_status=$_POST['product_status'];
-            $file_name=$_FILES['product_image']['name'];
-            $target_dir="../upload/";
-            $target_file=$target_dir . basename($_FILES["product_image"]["name"]);
-            move_uploaded_file($_FILES['product_image']['tmp_name'],$target_file);
-            if(!empty( $product_name && $product_price && $discounted_price && $product_describe && $product_status && $file_name )){
+            
+            // ảnh
+            $images = $_FILES['product_image'];
+
+            // Biến thể
+            $sizes = $_POST['size'];
+            $variantQuantities = $_POST['variantQuantity'];
+
+            if(!empty( $product_name && $product_price && $discounted_price && $product_describe && $product_status)){
                 if(is_numeric($product_name)){
                     $warring['product_name']="Trường này chỉ nhận  dữ liệu chuỗi";
                 }
                 if(is_numeric($product_describe)){
                     $warring['product_describe']="Trường này chỉ nhận  dữ liệu chuỗi";
                 }
-                if(is_numeric($file_name)){
-                    $warring['file_name']="Trường này chỉ nhận  dữ liệu chuỗi";
-                }
+                
                 if(!is_numeric($product_price)){
                     $warring['product_price']="Trường này chỉ nhận  dữ liệu Số";
                 }
@@ -124,8 +135,32 @@ if(isset($_GET['act'])){
             if(!empty($warring)){
             }
             else{
-            insert_product($category_id,$product_name, $product_price, $discounted_price, $product_describe, $product_status);
-            $warring['all']="Thêm Thành công";
+                $idsp = insert_product($category_id,$product_name, $product_price, $discounted_price, $product_describe, $product_status);
+
+                if (!empty($images['name'][0])) {
+                    // $images = $_FILES['product_image'];
+                    // $uploadedImages = [];
+            
+                    for ($i = 0; $i < count($images['name']); $i++) {
+                        $imageName = $images['name'][$i];
+                        $tmpName = $images['tmp_name'][$i];
+            
+                        $uploadPath = '../upload/' . $imageName;
+            
+                        move_uploaded_file($tmpName, $uploadPath);
+
+                        insert_image($idsp,$imageName);
+                        // $uploadedImages[] = $uploadPath;
+                    }
+                }   
+                if (!empty($sizes) && !empty($variantQuantities)) {
+                    foreach ($sizes as $key => $size) {
+                        $variantQuantity = $variantQuantities[$key];
+                        add_variant($idsp,$size,$variantQuantity);
+                    }
+                }
+                
+                $warring['all']="Thêm Thành công";
             }
         }
             else{
@@ -134,6 +169,27 @@ if(isset($_GET['act'])){
         }
         $list_category=loadall_category();
         include('../admin/product/add.php');
+        break;
+
+    case "add_detail":
+        if($_SERVER['REQUEST_METHOD'] == "POST"){
+            $idsp = $_POST['idsp'];
+
+            $sizes = $_POST['size'];
+            $variantQuantities = $_POST['variantQuantity'];
+
+            if (!empty($sizes) && !empty($variantQuantities)) {
+                foreach ($sizes as $key => $size) {
+                    $variantQuantity = $variantQuantities[$key];
+                    add_variant($idsp,$size,$variantQuantity);
+                }
+
+                header("location: index.php?act=product_detail&product_id=$idsp");
+            }
+        }
+        
+        $id = $_GET['id'];
+        include('../admin/product/add_detail.php');
         break;
     case 'list_product':
         if(isset($_POST['keyword'])&&($_POST['keyword'])){
@@ -235,6 +291,8 @@ if(isset($_GET['act'])){
         if(isset($_GET['product_id'])&&($_GET['product_id'])){
             delete_product($_GET['product_id']);
         }
+
+        header("location: index.php?act=list_product");
         $list_product=loadall_product();
         $limit=10;  
         if(isset($_POST['number'])){
@@ -347,7 +405,7 @@ if(isset($_GET['act'])){
             $address=$_POST['address'];
             $role=$_POST['role'];
             $file_name=$_FILES['avatar']['name'];
-            $folder='./image/upload/';
+            $folder='../upload/';
             move_uploaded_file($_FILES['avatar']['tmp_name'], $folder . $file_name);
             update_account( $username, $fullname, $email,$tel, $address,$role, $file_name,$user_id);
             $warring='Update successful';
@@ -384,5 +442,5 @@ if(isset($_GET['act'])){
     break;
     }
 }
-include("..//admin/view/footer.php");
+include("../admin/view/footer.php");
 ?>

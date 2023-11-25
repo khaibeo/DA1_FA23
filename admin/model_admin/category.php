@@ -45,4 +45,9 @@ function count_category(){
     $number=ceil($i/10);
     return $number;
 }
+
+function change_category($id){
+    $sql = "UPDATE products SET category_id = 1 WHERE category_id = $id";
+    pdo_execute($sql);
+}
 ?>

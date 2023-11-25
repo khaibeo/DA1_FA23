@@ -15,7 +15,7 @@
              <tr>
             <tr>
                 <td><label for="">User_name</label></td>
-                <td><input type="text" name="user_name" placeholder="User_name" value="<?=$username?>"></td>
+                <td><input type="text" name="user_name" placeholder="User_name" value="<?=$username?>" readonly></td>
             </tr>
             <tr>
                 <td><label for="">Fullname</label></td>
@@ -35,7 +35,7 @@
             </tr>
             <tr>
                 <td><label for="">Avatar</label></td>
-                <td><img src="../admin/image/upload/<?=$avatar?>" alt=""></td>
+                <td><img src="../upload/<?=$avatar?>" alt=""></td>
             </tr>
             <tr>
                 <td></td>
@@ -43,7 +43,12 @@
             </tr>
             <tr>
                 <td><label for="">Role</label></td>
-                <td><input type="text" name="role" id="" value="<?=$role?>"></td>
+                <td>
+                    <select name="role" id="">
+                        <option value="admin" <?php if($role == "admin") echo "selected"?> >Admin</option>
+                        <option value="customer" <?php if($role == "customer") echo "selected"?> >Customer</option>
+                    </select>
+                </td>
                 
                 <td>
                </td>

@@ -45,12 +45,12 @@
                     </form>
                     <!-- /box_account -->
                 </div>
+
+                <div class="row text-center mt-4 mb-5">
+                    <p>Bạn đã có tài khoản <a href="index.php?act=dangnhap">Đăng nhập</a></p>
+                </div>
             </div>
             <!-- /row -->
-            <div class="row text-center mt-4 mb-5">
-                        <p>Bạn đã có tài khoản <a href="index.php?act=dangnhap">Đăng nhập</a></p>
-                    </div>
-            </div>
             <!-- /container -->
         </main>
         <!--/main-->

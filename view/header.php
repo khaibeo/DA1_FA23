@@ -153,7 +153,7 @@
 							<ul class="top_tools">
 								<li>
 									<div class="dropdown dropdown-cart">
-										<a href="index.php?act=cart" class="cart_bt"><strong><?= isset($total) ? $total['soluong'] : "" ?></strong></a>
+										<a href="index.php?act=cart" class="cart_bt"><strong><?php if(isset($total) && $total != ""){ echo $total['soluong']; }else{echo "";} ?></strong></a>
 										<?php if(isset($_SESSION['user'])){ ?>
 										<div class="dropdown-menu">
 											<ul>
@@ -167,7 +167,17 @@
 												<?php endforeach; ?>
 											</ul>
 											<div class="total_drop">
-												<div class="clearfix"><strong>Tổng tiền</strong><span><?= number_format($total['tongtien'], 0, ',', '.') . ' đ' ?></span></div>
+												<div class="clearfix"><strong>Tổng tiền</strong><span>
+													<?php
+													if(isset($total) && $total != ""){
+														$tt = number_format($total['tongtien'], 0, ',', '.') . ' đ';
+														echo "$tt";
+													}else{
+														echo "";
+													}
+												 	?>
+												 </span>
+												</div>
 												<a href="index.php?act=cart" class="btn_1 outline">Xem giỏ hàng</a><a href="index.php?act=checkout" class="btn_1">Thanh toán</a>
 											</div>
 										</div>

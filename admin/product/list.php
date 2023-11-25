@@ -54,12 +54,12 @@
                                    data-select-all-target="#products" id="defaultCheck1">
                         </th> -->
                         <th>ID</th>
-                        <th>Photo</th>
-                        <th>Name</th>
-                        <th>Stock</th>
-                        <th>Price</th>
-                        <th>Created At</th>
-                        <th class="text-end">Actions</th>
+                        <th>Ảnh</th>
+                        <th>Tên sản phẩm</th>
+                        <th>Trạng thái</th>
+                        <th>Giá</th>
+                        <th>Thời gian đăng</th>
+                        <th class="text-end">Hành động</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -86,17 +86,17 @@
                                         <td><?=$product_name;?></td>
                                         <?php if($status==1){?>
                                            <td>
-                                           <span class="text-success">In Stock</span>
+                                           <span class="text-success">Hoạt động</span>
                                            </td>
                                            <?php } ?>
                                         <?php if($status== 0){?>
-                                            <td style="color:red;"><span>Out Stock</span></td>
+                                            <td style="color:red;"><span>Ẩn</span></td>
                                         <?php } ?>
                                             <td><?=$product_price?></td>
                                             <td><?=$date_add?></td>
-                                            <td class="text-end"><a href="<?=$edit_product?>"><button>EDIT</button></a> | 
-                                            <a href="<?=$delete_product?>"><button>DELETE</button></a> | 
-                                            <a href="<?= $show_detail?>"><button>DETAIL</button></a>
+                                            <td class="text-end"><a href="<?=$edit_product?>"><button>Sửa</button></a> | 
+                                            <a href="<?=$delete_product?>"><button>Xóa</button></a> | 
+                                            <a href="<?= $show_detail?>"><button>Biến thể</button></a>
                                             </td>
                                             </tr>
                         <?php

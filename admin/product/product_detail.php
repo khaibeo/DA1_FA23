@@ -19,11 +19,11 @@ $image="../upload/".$image_name;
 <div class="content">
     <table>
         <tr>
-            <td><label for="">ID Product</label></td>
-            <td><input type="text" name="product_id" value="<?=$product_id?>"></td>
+            <td><label for="">ID sản phẩm</label></td>
+            <td><input type="text" name="product_id" value="<?=$product_id?>" readonly></td>
         </tr>
         <tr>
-            <td><label for="">ID Product</label></td>
+            <td><label for="">Ảnh</label></td>
             <td><img src="<?=$image?>" class="rounded" width="40" alt=""></td>
         </tr>
          <?php 
@@ -32,17 +32,20 @@ $image="../upload/".$image_name;
                 $edit_detail="index.php?act=edit_detail&product_detail_id=".$product_detail_id;
         ?> 
         <tr>
-            <td><label for=""> Product_size :</label></td>
+            <td><label for=""> Size :</label></td>
             <td><?=$product_size?></td>
-            <td><label for=""> Product_quantity :   </label></td>
+            <td><label for=""> Số lượng :   </label></td>
             <td><?=$product_quantity?></td>
             <input type="hidden" name="product_id" value="<?=$product_detail_id?>">
-            <td><a href="<?=$edit_detail?>"><button>EDIT DETAIL</button></a></td>
+            <td><a href="<?=$edit_detail?>"><button>Sửa</button></a></td>
         <?php }
         ?>  
         <tr>
             <td>
-            <a href="index.php?act=list_product"><button>LIST PRODUCT</button></a>
+                <a class="btn btn-success" href="index.php?act=list_product">Danh sách sản phẩm</a>
+            </td>
+            <td>
+                <a class="btn btn-danger" href="index.php?act=add_detail&id=<?= $product_id ?>">Thêm biến thể</a>
             </td>
         </tr>
     </form>

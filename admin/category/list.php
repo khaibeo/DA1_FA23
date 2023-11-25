@@ -102,7 +102,7 @@
                                     <a href="#">#<?=$category_id?></a>
                                 </td>
                                 <td><?=$category_name?></td>
-                                <td> <a href="<?=$edit_category?>"><button>EDIT</button></a> | <a href="<?=$delete_category?>"><button>DELETE</button></a>
+                                <td> <a href="<?=$edit_category?>"><button>EDIT</button></a> | <a onclick="return confirm('Bạn có chắc là muốn xóa ?')" href="<?=$delete_category?>"><button>DELETE</button></a>
                             </tr>
                         <?php
                         }

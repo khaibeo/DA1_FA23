@@ -32,7 +32,12 @@
             </tr>
             <tr>
                 <td><label for="">Role</label></td>
-                <td><input type="text" placeholder="Admin/Customer" name="role" value="<?php if(isset($role)){echo $role ;}?>"><p><?php if(isset($warring['role'])){echo $warring['role'];}?></td>
+                <td>
+                    <select name="role" id="">
+                        <option value="admin" selected>Admin</option>
+                        <option value="customer">Customer</option>
+                    </select>
+                </td>
             </tr>
             <tr>
                 <td><input type="submit" value="Thêm" name="btn_add"></td>

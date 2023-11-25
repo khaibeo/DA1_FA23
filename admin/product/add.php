@@ -27,7 +27,7 @@
             </tr>
             <tr>
                 <td><label for="">Ảnh</label></td>
-                <td><input type="file" name="product_image"  value="<?php if(isset($file_name)){echo $file_name ;}?>"><p><?php if(isset($warring['file_name'])){echo $warring['file_name'];}?></p></td>
+                <td><input type="file" name="product_image[]" multiple accept="image/*" value="<?php if(isset($file_name)){echo $file_name ;}?>"><p><?php if(isset($warring['file_name'])){echo $warring['file_name'];}?></p></td>
             </tr>
             <tr>
                 <td><label for="">Mô Tả</label></td>
@@ -35,13 +35,32 @@
             </tr>
             <tr>
                 <td><label for="">Trạng Thái</label></td>
-                <td><input type="number" name="product_status"  max="1" min="0"value="<?php if(isset($product_status)){echo $product_status ;}?>"><p><?php if(isset($warring['product_status'])){echo $warring['product_status'];}?></p></td>
+                <td>
+                    <select name="product_status" id="">
+                        <option value="0">Ẩn</option>
+                        <option value="1" selected>Hoạt động</option>
+                    </select>
+                </td>
             </tr>
-            <tr>
-                <td><input type="submit" name="add_product" value="Thêm"></td>
-                <td><a href="index.php?act=list_product">Danh Sách Sản Phẩm</a></td>
-            </tr>
-        </table>    
+        </table>
+        <div id="variants-container">
+            <h4>Biến thể sản phẩm</h4>
+            <div class="variant">
+                <hr>
+                <label for="size">Kích thước</label>
+                <input type="text" name="size[]" required><br><br>
+
+                <label for="variantQuantity">Số lượng</label>
+                <input type="number" name="variantQuantity[]" required><br><br>
+            </div>
+        </div>
+
+        <button type="button" id="add-variant">Thêm biến thể</button><br><br>
+
+        <div>
+            <input class="btn btn-success" type="submit" name="add_product" value="Thêm">
+            <a class="btn btn-secondary" href="index.php?act=list_product">Danh Sách Sản Phẩm</a>
+        </div>   
    
     </form>
     <div class="warring" style="color:red;">
@@ -52,3 +71,11 @@
         ?>
     </div>
 </div>
+
+<script>
+    document.getElementById("add-variant").addEventListener("click", function() {
+        var variantsContainer = document.getElementById("variants-container");
+        var newVariant = document.querySelector(".variant").cloneNode(true);
+        variantsContainer.appendChild(newVariant);
+    });
+</script>

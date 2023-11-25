@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title> Vetra | E-Commerce HTML Admin Dashboard Template  </title>
+    <title> Admin  </title>
     
     <!-- Favicon -->
     <link rel="shortcut icon" href="./assets/images/favicon.png"/>
@@ -155,26 +155,32 @@
 <!-- menu -->
 <div class="menu">
     <div class="menu-header">
-        <a href="home.html" class="menu-header-logo">
+        <a href="index.php" class="menu-header-logo">
             <img src="https://vetra.laborasyon.com/assets/images/logo.svg" alt="logo">
         </a>
-        <a href="home.html" class="btn btn-sm menu-close-btn">
+        <a href="index.php" class="btn btn-sm menu-close-btn">
             <i class="bi bi-x"></i>
         </a>
     </div>
     <div class="menu-body">
         <div class="dropdown">
             <a href="#" class="d-flex align-items-center" data-bs-toggle="dropdown">
+                <?php 
+                if ($user['avatar'] != '') {
+                    $img_path = "../upload/{$user['avatar']}";
+                } else {
+                    $img_path = "../img/avatar.jpg";
+                } ?>
                 <div class="avatar me-3">
-                    <img src="./assets/images/user/man_avatar3.jpg"
+                    <img src="<?= $img_path ?>"
                          class="rounded-circle" alt="image">
                 </div>
                 <div>
-                    <div class="fw-bold">Tên người dùng</div>
-                    <small class="text-muted">Chức vụ</small>
+                    <div class="fw-bold"><?= $user['username'] ?></div>
+                    <small class="text-muted"><?= $user['role'] ?></small>
                 </div>
             </a>
-            <div class="dropdown-menu dropdown-menu-end">
+            <!-- <div class="dropdown-menu dropdown-menu-end">
                 <a href="#" class="dropdown-item d-flex align-items-center">
                     <i class="bi bi-person dropdown-item-icon"></i> Thông tin tài khoản
                 </a>
@@ -185,7 +191,7 @@
                    target="_blank">
                     <i class="bi bi-box-arrow-right dropdown-item-icon"></i> Đăng xuất
                 </a>
-            </div>
+            </div> -->
         </div>
         <ul>
             <!-- <li class="menu-divider">E-Commerce</li> -->

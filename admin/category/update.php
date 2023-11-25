@@ -10,7 +10,7 @@
         <table >
             <tr>
                 <td><label for="">ID Category</label></td>
-                <td><input type="text" name="category_id" placeholder="ID Category" value="<?php if(isset($category_id) && ($category_id!="")) echo $category_id?>" ></td>
+                <td><input type="text" name="category_id" placeholder="ID Category" value="<?php if(isset($category_id) && ($category_id!="")) echo $category_id?>" readonly></td>
             </tr>
             <tr>
                 <td><label for="">Name Category</label></td>

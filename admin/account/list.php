@@ -72,7 +72,7 @@
                         </td>
                         <td>
                             <a href="#">
-                                <img src="<?=$avatar?>" class="rounded" width="40" alt="">
+                                <img src="<?= "../upload/" . $avatar?>" class="rounded" width="40" alt="">
                             </a>
                         </td>
                         <td><?=$username?></td>
@@ -83,7 +83,11 @@
                         <td><?=$role?></td>
                         <td><?=$tel?></td>
                         <td><?=$address?></td>
-                        <td class="text-end"><a href="<?=$edit_user?>"><button>EDIT</button></a> | <a href="<?=$delete_user?>"><button>DELETE</button></a></td>
+                        <td class="text-end"><a href="<?=$edit_user?>"><button>EDIT</button></a> | 
+                        <?php if($_SESSION['user_id'] != $user_id){ ?>
+                            <a href="<?=$delete_user?>"><button>DELETE</button></a>
+                        <?php  } ?>
+                       </td>
                         </tr>
                         <?php
                         }

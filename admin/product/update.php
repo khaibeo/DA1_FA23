@@ -15,13 +15,12 @@ if(is_array($product)){
     <form action="index.php?act=update_product" method="post" enctype="multipart/form-data">
         <table>
         <tr>
-                <td><label for="">Category</label></td>
+                <td><label for="">Danh mục</label></td>
                 <td><select name="category" id="">
                         <?php
                         foreach($list_category as $ct){
-                            extract($ct);
                         ?>
-                            <option value="<?php echo $category_id?>"<?php echo "selected"?>><?php echo $category_name?></option>
+                            <option <?php if($ct['category_id'] == $category_id) echo "selected"; ?> value="<?php echo $ct['category_id']?>"><?php echo $ct['category_name']?></option>
                         <?php
                         }
                         ?>
@@ -29,19 +28,19 @@ if(is_array($product)){
                 </td>
             </tr>
             <tr>
-                <td><label for="">Product_name</label></td>
+                <td><label for="">Tên sản phẩm</label></td>
                 <td><input type="text" name="product_name" placeholder="Product_name" value="<?php echo $product_name?>"></td>
             </tr>
             <tr>
-                <td><label for="">Product_price</label></td>
+                <td><label for="">Giá gốc</label></td>
                 <td><input type="text" name="product_price" placeholder="Product_price" value="<?php echo $product_price?>"></td>
             </tr>
             <tr>
-                <td><label for="">discounted_price</label></td>
+                <td><label for="">Giá khuyến mãi</label></td>
                 <td><input type="text" name="discounted_price" placeholder="discounted_price" value="<?php echo $discounted_price?>"></td>
             </tr>
             <tr>
-                <td><label for="">Product_image</label></td>
+                <td><label for="">Ảnh</label></td>
                 <td><img src="../upload/<?php echo $image_name?>" alt=""></td>
             </tr>
             <tr>
@@ -49,12 +48,17 @@ if(is_array($product)){
                 <td><input type="file" name="product_image" id="product_image" value="<?php echo $image_name?>"></td>
             </tr>
             <tr>
-                <td><label for="">Product_describe</label></td>
+                <td><label for="">Mô tả</label></td>
                 <td><textarea name="product_describe" id="product_describe" cols="50" rows="10" ><?php echo $product_describe?></textarea></td>
             </tr>
             <tr>
-                <td><label for="">Product_status</label></td>
-                <td><input type="number" name="product_status" id="product_status" max="1" min="0" value="<?php echo $status?>"></td>
+                <td><label for="">Trạng thái</label></td>
+                <td>
+                    <select name="product_status" id="">
+                        <option value="0" <?php if($status == 0) echo "selected" ?>>Ẩn</option>
+                        <option value="1" <?php if($status == 1) echo "selected" ?>>Hoạt động</option>
+                    </select>
+                </td>
             </tr>
                         
             <tr>
