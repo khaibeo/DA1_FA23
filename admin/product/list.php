@@ -127,13 +127,6 @@
                             <input class="form-check-input select-all" type="checkbox"
                                    data-select-all-target="#products" id="defaultCheck1">
                         </th> -->
-                        <th>ID</th>
-                        <th>Photo</th>
-                        <th>Name</th>
-                        <!-- <th>Stock</th> -->
-                        <th>Price</th>
-                        <th>Created At</th>
-                        <th class="text-end">Actions</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -154,7 +147,6 @@
                                         </td>
                                         <td>
                                             <a href="#">
-                                                <img src="<?=$image?>" class="rounded" width="40" alt="">
                                             </a>
                                         </td>
                                         <td><?=$product_name;?></td>
