@@ -11,6 +11,37 @@ function loadone_product($product_id)
     $list_product=pdo_query_one($sql);
     return $list_product;
 }
+function count_product_delete()
+{
+    $sql= "SELECT * FROM products  ";
+    $pro=pdo_query($sql);
+    $i=0;
+    foreach($pro as $row){
+        $i++;
+    }
+    $number=ceil($i/10);
+    return $number;
+}
+function load_delete_product($keyword,$category_id,$price,$start,$limit)
+{
+    $sql= "SELECT * FROM  products  WHERE status=0 ";
+    if($keyword!=""){
+        $sql.= " AND product_name LIKE '%$keyword%'";
+    }
+    if($category_id>0){
+        $sql.=" AND category_id ='".$category_id."'";
+    }
+    if($price!=""){
+        $sql.= " AND product_price LIKE'%$price%'";
+    }
+    $sql.= " order by products.product_id asc limit $start,$limit ";
+    $pro=pdo_query($sql);
+    return $pro;
+}
+function khoiphuc($product_id){
+    $sql= "UPDATE `products` SET `status` = '1' WHERE `products`.`product_id` = $product_id ";
+    pdo_execute($sql);
+}
 function insert_product($category_id,$product_name, $product_price, $discounted_price, $product_describe, $product_status)
 {
     $sql= "INSERT INTO `products` (`product_id`, `product_name`, `product_price`, `discounted_price`, `product_describe`, `category_id`, `status`) VALUES (NULL, '{$product_name}', '{$product_price}', '{$discounted_price}', '{$product_describe}', '{$category_id}', '{$product_status}')";
@@ -36,12 +67,12 @@ function update_product($product_id,$category_id,$product_name,$product_price,$d
 }
 function delete_product($product_id)
 {
-    $sql= "DELETE FROM products WHERE `products`.`product_id` = $product_id";
+    $sql= "UPDATE `products` SET `status` = '0' WHERE `products`.`product_id` = $product_id ";
     pdo_execute($sql);
 }
 function count_product()
 {
-    $sql= "SELECT * FROM products";
+    $sql= "SELECT * FROM products  ";
     $pro=pdo_query($sql);
     $i=0;
     foreach($pro as $row){
@@ -52,7 +83,7 @@ function count_product()
 }
 function load_page_product($keyword,$category_id,$price,$start,$limit)
 {
-    $sql= "SELECT * FROM  products  WHERE 1  ";
+    $sql= "SELECT * FROM  products  WHERE status=1 ";
     if($keyword!=""){
         $sql.= " AND product_name LIKE '%$keyword%'";
     }
@@ -108,5 +139,11 @@ function add_variant($id,$size,$quantity){
 function insert_image($product_id,$image_name){
     $sql="INSERT INTO `products_image` ( `product_id`, `image_name`) VALUES ( '$product_id', '$image_name')";
     pdo_execute($sql);
+}
+function product_day($date){
+    $sql="SELECT * FROM products 
+    WHERE `products`.`date_add` LIKE '%$date%'";
+    $product_day=pdo_query($sql);
+    return $product_day;
 }
 ?>

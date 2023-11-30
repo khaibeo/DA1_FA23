@@ -3,62 +3,64 @@
         extract($account);
     }
 ?>
+<h1>THÔNG TIN TÀI KHOẢN</h1>
 <div class="content">
-    <style>
-        img{
-            width: 100px;
-            height: 70px;
-        }
-    </style>
     <form action="index.php?act=update_account" method="post" enctype="multipart/form-data">
-        <table>
-             <tr>
-            <tr>
-                <td><label for="">User_name</label></td>
-                <td><input type="text" name="user_name" placeholder="User_name" value="<?=$username?>" readonly></td>
-            </tr>
-            <tr>
-                <td><label for="">Fullname</label></td>
-                <td><input type="text" name="fullname" placeholder="Full_name" value="<?=$fullname?>"></td>
-            </tr>
-            <tr>
-                <td><label for="">Tel</label></td>
-                <td><input type="text" name="tel" placeholder="Tel" value="<?=$tel?>"></td>
-            </tr>
-            <tr>
-                <td><label for="">Address</label></td>
-                <td><input type="text" name="address" placeholder="Address" value="<?=$address?>"></td>
-            </tr>
-            <tr>
-                <td><label for="">Email</label></td>
-                <td><input type="email" name="email" placeholder="Email" value="<?=$email?>"></td>
-            </tr>
-            <tr>
-                <td><label for="">Avatar</label></td>
-                <td><img src="../upload/<?=$avatar?>" alt=""></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td><input type="file" name="avatar" id="avatar" value="<?=$avatar?>"></td>
-            </tr>
-            <tr>
-                <td><label for="">Role</label></td>
-                <td>
-                    <select name="role" id="">
-                        <option value="admin" <?php if($role == "admin") echo "selected"?> >Admin</option>
-                        <option value="customer" <?php if($role == "customer") echo "selected"?> >Customer</option>
-                    </select>
-                </td>
+        <div class="information">
+            <div class="information_item">
+                <img src="../upload/<?=$avatar?>" alt=""> <br>
+                <input class="form-control" type="file"  name="avatar" value="<?=$avatar?>">
                 
-                <td>
-               </td>
-            </tr>     
-            <tr>
+
+               
+                
+            </div>
+
+            <div class="information_item">
+                <h5>Tên đăng nhập</h5> 
+                <input class="form-control" type="text"  aria-label="default input example"  name="user_name"  value="<?=$username?>" readonly>
+
+                <h5>Họ và tên</h5> 
+                <input class="form-control" type="text"  aria-label="default input example"  name="fullname"  value="<?=$fullname?>">
+
+                <h5>Số điện thoại</h5> 
+                <input class="form-control" type="text"  aria-label="default input example"  name="tel"  value="<?=$tel?>">
+
+                <h5>Địa Chỉ</h5> 
+                <input class="form-control" type="text"  aria-label="default input example"  name="address"  value="<?=$address?>">
+
+                <h5>Email</h5> 
+                <input class="form-control" type="text"  aria-label="default input example"  name="email"  value="<?=$email?>">
+
+                <h5>Trạng Thái</h5> 
+                <select class="form-select" aria-label="Default select example" name="role">
+                    <option value="admin" <?php if($role == "admin") echo "selected"?> >Admin</option>
+                    <option value="customer" <?php if($role == "customer") echo "selected"?> >Customer</option>
+                </select>  <br>
                 <input type="hidden" name="user_id" value="<?php echo $user_id?>">
-                <td><input type="submit" name="btn_update" value="Update"></td>
-                <td><input type="submit" name="reset" value="Reset"></td>
-            </tr>
-        </table>    
-   
+                <button type="submit" class="btn btn-primary" name="btn_update">Lưu thay đổi</button>
+               
+                
+            </div>
+        </div>
+
+                
     </form>
 </div>
+<style>
+.content{
+        width: 100%;
+}
+.information{
+    display:flex;
+}
+.information_item{
+    width: 45%;
+    margin: 10px;
+}
+.information_item img{
+    border-radius:10px ;
+    width: 390px;
+    height: 490px;
+}
+</style>

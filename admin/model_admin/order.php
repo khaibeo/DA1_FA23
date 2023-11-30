@@ -1,0 +1,79 @@
+<?php
+function loadall_order()
+{
+    $sql="SELECT * FROM `order`";
+    $list_order=pdo_query($sql);
+    return $list_order;
+}
+function count_order()
+{
+    $sql= "SELECT * FROM `order` ";
+    $pro=pdo_query($sql);
+    $i=0;
+    foreach($pro as $row){
+        $i++;
+    }
+    $number=ceil($i/10);
+    return $number;
+}
+function load_page_order($keyword,$start,$limit)
+{
+    $sql= "SELECT * FROM  `order`  WHERE 1 ";
+    if($keyword!=""){
+        $sql.= " AND tel LIKE '%$keyword%'";
+    }
+    $sql.= " order by `order`.`order_id` asc limit $start,$limit ";
+    $pro=pdo_query($sql);
+    return $pro;
+}
+function load_page_order_today($keyword,$start,$limit,$date)
+{
+    $sql= "SELECT * FROM  `order`  WHERE 1 ";
+    if($keyword!=""){
+        $sql.= " AND tel LIKE '%$keyword%'";
+    }
+    $sql.= " AND `created_at` LIKE '%$date%' order by `order`.`order_id` asc limit $start,$limit ";
+    $pro=pdo_query($sql);
+    return $pro;
+}
+function loadone_order($order_id)
+{
+    $sql="SELECT * FROM `order` 
+    WHERE `order`.`order_id`='$order_id'";
+    $list_order=pdo_query_one($sql);
+    return $list_order;
+}
+function load_product($order_id){
+    $sql="SELECT * FROM `order_detail`
+    INNER JOIN `products_detail` ON `order_detail`.`product_detail_id`=`products_detail`.`product_detail_id`
+    INNER JOIN `products` ON `products_detail`.`product_id` = `products`.`product_id` WHERE `order_detail`.`order_id`='$order_id'
+    order by `products`.`product_id` asc";
+    $list_product=pdo_query($sql);
+    return $list_product;
+}
+function order_update($order_id,$status)
+{
+    if($status=="pending")
+    {
+    $status="processing";
+    $sql="UPDATE `order` SET `status`='$status' WHERE `order`.`order_id`='$order_id'";
+    }
+    else if($status=="processing")
+    {
+        $status="shiped";
+        $sql="UPDATE `order` SET `status`='$status' WHERE `order`.`order_id`='$order_id'";
+    }
+    else if($status=="shiped")
+    {
+        $status="delivered";
+        $sql="UPDATE `order` SET `status`='$status' WHERE `order`.`order_id`='$order_id'";
+    }
+    pdo_execute($sql);
+}
+function canceled_order($order_id,$status)
+{   
+    $status='canceled';
+    $sql="UPDATE `order` SET `status`='$status' WHERE `order`.`order_id`='$order_id' ";
+    pdo_execute($sql);
+}
+?>

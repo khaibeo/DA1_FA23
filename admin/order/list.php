@@ -1,8 +1,4 @@
-<?php
-    if(is_array($list_category)){
-        extract($list_category);
-    }
-?>
+
 <div class="col-1">
             <div class="card mb-4">
                 <div class="card-body">
@@ -12,9 +8,9 @@
                         <div class="bi bi-chevron-down"></div>
                     </div>
                     <div class="collapse show mt-4" id="keywordsCollapseExample">
-                        <form action="index.php?act=list_product" method="post">
+                        <form action="index.php?act=list_order" method="post">
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="......" name="search_product">
+                            <input type="text" class="form-control" placeholder="số điện thoại" name="search_order">
                             <!-- <button class="btn btn-outline-light" name="keyword" type="submit">
                                 <i class="bi bi-search"></i>
                             </button> -->
@@ -24,7 +20,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        <!-- </div>
         <div class="filter">
             <div class="price">
             <div class="card mb-4">
@@ -75,36 +71,14 @@
                     </div>
                     </div>
         </div>
-            
-                  
-<div class="content ">
-            <!-- <div class="card mb-4">
-                <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-center" data-bs-toggle="collapse"
-                         aria-expanded="true" data-bs-target="#colorsCollapseExample" role="button">
-                        <div>Colors</div>
-                        <div class="bi bi-chevron-down"></div>
-                    </div>
-                    <div class="collapse show mt-4" id="colorsCollapseExample">
-                        <div class="color-filter-group d-flex gap-3">
-                            <input class="form-check-input" type="checkbox" value="#1fa0c6" aria-label="...">
-                            <input class="form-check-input" type="checkbox" checked value="green" aria-label="...">
-                            <input class="form-check-input" type="checkbox" checked value="#c61faa" aria-label="...">
-                            <input class="form-check-input" type="checkbox" value="#1fc662" aria-label="...">
-                            <input class="form-check-input" type="checkbox" value="#9dc61f" aria-label="...">
-                            <input class="form-check-input" type="checkbox" checked value="#c67b1f" aria-label="...">
-                        </div>
-                    </div>
-                </div>
-            </div> -->
-        </div>
+             -->
+</div>          
     <div class="row">
         <div class="col">
             <div class="card">
                 <div class="card-body">
                     <div class="d-md-flex gap-4 align-items-center">
-                        <div class="d-none d-md-flex">All Products</div>
-                        <a href="index.php?act=product_delete">thùng rác</a>
+                        <div class="d-none d-md-flex">Danh sách đơn hàng</div>
                     </div>
                 </div>
             </div>
@@ -117,51 +91,48 @@
                                    data-select-all-target="#products" id="defaultCheck1">
                         </th> -->
                         <th>ID</th>
-                        <th>Ảnh</th>
-                        <th>Tên sản phẩm</th>
+                        <th>Người mua</th>
+                        <th>Số điện thoại</th>
+                        <th>Tổng tiền</th>
+                        <th>Ngày</th>
                         <th>Trạng thái</th>
-                        <th>Giá</th>
-                        <th>Thời gian đăng</th>
                         <th class="text-end">Hành động</th>
                     </tr>
                     </thead>
                     <tbody>
                         
                         <?php
-                        foreach($list_pro as $pd){
-                            extract($pd);
-                            $product_image=load_image($product_id);
-                            extract($product_image);
-                            $edit_product="index.php?act=edit_product&product_id=".$product_id;
-                            $delete_product="index.php?act=delete_product&product_id=".$product_id;
-                            $show_detail="index.php?act=product_detail&product_id=".$product_id;
-                            $image="../upload/".$image_name;    
+                            foreach($list_order as $order){
+                                extract($order);
+                            
+                            $edit_order="index.php?act=order_detail&order_id=".$order_id;
                             ?>
                                     <tr>
                                         <td>
-                                            <a href="#">#<?=$product_id?></a>
+                                            <a href="#">#<?=$order_id?></a>
                                         </td>
-                                        <td>
-                                            <a href="#">
-                                                <img src="<?=$image?>" class="rounded" width="40" alt="">
-                                            </a>
-                                        </td>
-                                        <td><?=$product_name;?></td>
-                                        <?php if($status==1){?>
-                                           <td>
-                                           <span class="text-success">Hoạt động</span>
-                                           </td>
+                                        <td><?=$fullname?></td>
+                                        <td><?=$tel?></td>
+                                        <td><?=$total?></td>
+                                        <td><?=$date_add?></td>
+                                        <?php if($status=="pending"){?>
+                                           <td><button type="button" class="btn-primary">Chờ xác nhận</button></td>
                                            <?php } ?>
-                                        <?php if($status== 0){?>
-                                            <td style="color:red;"><span>Ẩn</span></td>
+                                        <?php if($status== "processing"){?>
+                                            <td ><button type="button" class=" btn-success ">Chờ xác nhận thành công</button></td>
                                         <?php } ?>
-                                            <td><?=$product_price?></td>
-                                            <td><?=$date_add?></td>
-                                            <td class="text-end"><a href="<?=$edit_product?>"><button>Sửa</button></a>
-                                            <a href="<?=$delete_product?>"><button>Xóa</button></a>
-                                            <a href="<?= $show_detail?>"><button>Biến thể</button></a>
-                                            </td>
-                                            </tr>
+                                        <?php if($status== "canceled"){?>
+                                            <td ><button type="button" class=" btn-danger ">Đã hủy</button></td>
+                                        <?php } ?>
+                                        <?php if($status== "shiped"){?>
+                                            <td ><button type="button" class=" btn-info">Đang giao hàng</button></td>
+                                        <?php } ?>
+                                        <?php if($status== "delivered"){?>
+                                            <td ><button type="button" class=" btn-success">Giao thành công</button></td>
+                                        <?php } ?>
+                                        <td><a href="<?=$edit_order?>" style="text-align:center ; display:block;"  >Chi tiết</a></td>
+                                            <!-- <a style="text-align:center ; display:block;" href="<?=$edit_order?>">Chi tiết  -->
+                                    </tr>             
                         <?php
                         }
                         ?>
@@ -173,26 +144,13 @@
                    
                 
             </div>
-            <form action="index.php?act=list_product" method="post">
+            <form action="index.php?act=list_order" method="post">
             <nav class="mt-4" aria-label="Page navigation example">
                 <ul class="pagination justify-content-center">
-                    <!-- <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
-                    </li> -->
-                    <!-- <li class="page-item"><input type="submit" name="number"  class="page" value="1"></a></li>
-                    <li class="page-item"><input type="submit" name="number"  class="page" value="2"></a></li>
-                    <li class="page-item"><input type="submit" name="number" class="page" value="3"></a></li> -->
-                    <!-- <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
-                    </li> -->
                     <?php
                         for ($i=0; $i < $count; $i++) { 
                     ?>
-                        <input type="submit" name="number" class="page"value="<?=$i+1?>">
+                        <input type="submit" name="number" class="page" value="<?=$i+1?>">
                     <?php
                         }
                     ?>
@@ -206,10 +164,10 @@
 </div>
 <style>
     .col{
-        margin-top: -50px;
+        margin-top: -20px;
     }
     .col-1{
-        width: 100%;
+        width: 99%;
         
     }
     .keyword{

@@ -1,5 +1,5 @@
 <div class="content ">
-            <div class="card mb-4">
+            <div class="card mb-4" style="width: 100%;">
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center" data-bs-toggle="collapse"
                          aria-expanded="true" data-bs-target="#keywordsCollapseExample" role="button">
@@ -26,7 +26,7 @@
                     width: 800px;
                 }
                 .btn {
-                    margin-left: -50px;
+                    margin-left: -58px;
                 }
                 .card,.table-responsive{
                     width: 850px;
@@ -35,48 +35,16 @@
                     align-items: center;
                 }
             </style>
-    <div class="row">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-body">
+    <div class="row" style="width: 100%;">
+        <div class="col-md-8" style="width: 100%;">
+            <div class="card" style="width: 100%;">
+                <div class="card-body" style="width: 100%;">
                     <div class="d-md-flex">
                         <div class="d-none d-md-flex">All Category</div>
-                        <!-- <div class="d-md-flex gap-4 align-items-center">
-                            <form class="mb-3 mb-md-0">
-                                <div class="row g-3">
-                                    <div class="col-md-6">
-                                        <select class="form-select">
-                                            <option>Sort by</option>
-                                            <option value="desc">Desc</option>
-                                            <option value="asc">Asc</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <select class="form-select">
-                                            <option value="10">10</option>
-                                            <option value="20">20</option>
-                                            <option value="30">30</option>
-                                            <option value="40">40</option> 
-                                            <option value="50">50</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </form>
-                        </div> -->
-                        <!-- <div class="dropdown ms-auto">
-                            <a href="#" data-bs-toggle="dropdown"
-                               class="btn btn-primary dropdown-toggle"
-                               aria-haspopup="true" aria-expanded="false">Actions</a>
-                            <div class="dropdown-menu dropdown-menu-end">
-                                <a href="#" class="dropdown-item">Action</a>
-                                <a href="#" class="dropdown-item">Another action</a>
-                                <a href="#" class="dropdown-item">Something else here</a>
-                            </div>
-                        </div> -->
                     </div>
                 </div>
             </div>
-            <div class="table-responsive">
+            <div class="table-responsive" style="width: 100%;">
                 <table class="table table-custom table-lg mb-0" id="products">
                     <thead>
                     <tr>
@@ -102,22 +70,11 @@
                                     <a href="#">#<?=$category_id?></a>
                                 </td>
                                 <td><?=$category_name?></td>
-                                <td> <a href="<?=$edit_category?>"><button>EDIT</button></a> | <a onclick="return confirm('Bạn có chắc là muốn xóa ?')" href="<?=$delete_category?>"><button>DELETE</button></a>
+                                <td> <a href="<?=$edit_category?>"><button>EDIT</button></a>  <a onclick="return confirm('Bạn có chắc là muốn xóa ?')" href="<?=$delete_category?>"><button>DELETE</button></a>
                             </tr>
                         <?php
                         }
                         ?>
-                    <!-- <tr>
-                        <td>
-                            <input class="form-check-input" type="checkbox">
-                        </td>
-                        <td>
-                            <a href="#">#1</a>
-                        </td>
-                        <td>Headphone</td>
-                        <td>02/03/2021</td>
-                        <td><button>EDIT</button> | <button>DELETE</button></td>
-                    </tr> -->
                     </tbody>
                 </table>
             </div>
@@ -144,21 +101,7 @@
                     <?php
                         }
                     ?>
-                    <style>
-                        .page{
-                            width: 30px;
-                            height: 30px;
-                            margin: 5px;
-                            color:#ff6e40 ;
-                            border:solid 1px #ff6e40 ;
-                            background-color: #fff;
-                            border-radius: 10px;
-                        }
-                        .page:hover{
-                            background-color:#ff6e40;
-                            color: #fff;
-                        }
-                    </style>
+                    
                 </ul>
             </nav>
             </form>
@@ -166,3 +109,24 @@
     </div>
 
     </div>
+    <style>
+    .page{
+        width: 30px;
+        height: 30px;
+        margin: 5px;
+        color:#ff6e40 ;
+        border:solid 1px #ff6e40 ;
+        background-color: #fff;
+        border-radius: 10px;
+    }
+    .page:hover{
+        background-color:#ff6e40;
+        color: #fff;
+    }
+    button{
+        background-color: #ff6e40;
+        color:#fff;
+        border: solid 1px #ff6e40;
+        border-radius: 5px;
+    }
+</style>

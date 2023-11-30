@@ -1,17 +1,18 @@
-
 <div class="content">
-    <h1>ADD CATEGORY</h1>
+    <h1>THÊM DANH MỤC</h1>
     <form action="index.php?act=add_category" method="post" >
-        <label for="">Name Category</label>
-        <input type="text" name="category_name" >
-        <input type="submit" name="add_category" value="ADD">
-        <a href="index.php?act=list_category">Danh Sách Danh Mục</a>
+        <h5>Tên Danh Mục</h5> 
+        <input class="form-control" type="text" placeholder="Tên sản phẩm" aria-label="default input example"  name="category_name"  value="<?php if(isset($category_name)){echo $category_name;}?>">
+        <div class="warring"> <p><?php if(isset($warring['category'])){ echo $warring['category'] ;}?></p></div>
+        <button type="submit" class="btn btn-primary" name="add_category">THÊM</button>
+        <button type="button" class="btn btn-primary" ><a href="index.php?act=list_category">Danh Sách Danh Mục</a></button>
     </form>
-    <div class="warring" style="color:red;">
-    <?php 
-    if(isset($warring['category'])){
-        echo"".$warring['category']."";
-    }
-    ?>
-    </div>
 </div>
+<style>
+    .warring{
+        color:red;
+    }
+    button a {
+        color:#fff;
+    }
+</style>

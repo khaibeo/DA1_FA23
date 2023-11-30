@@ -31,7 +31,7 @@ function load_page_account($keyword,$role,$start,$limit)
 {
     $sql= "SELECT * FROM  user WHERE 1 ";
     if($keyword!=""){
-        $sql.= " AND username LIKE '%$keyword%'";
+        $sql.= " AND tel LIKE '%$keyword%'";
     }
     if($role!=""){
         $sql.="AND role LIKE '%$role%'";

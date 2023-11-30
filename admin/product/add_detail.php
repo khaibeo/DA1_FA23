@@ -1,19 +1,19 @@
 <div class="content">
     <form action="index.php?act=add_detail" method="post">
         <div id="variants-container">
-            <h4>Biến thể sản phẩm</h4>
+            <h4>THÊM BIẾN THỂ SẢN PHẨM</h4>
             <div class="variant">
                 <hr>
-                <label for="size">Kích thước</label>
-                <input type="text" name="size[]" required><br><br>
+                <label for="size"><h5>Kích thước</h5> </label>
+                <input class="form-control" type="text"  aria-label="default input example"  name="size[]" required>
 
-                <label for="variantQuantity">Số lượng</label>
-                <input type="number" name="variantQuantity[]" required><br><br>
+                <label for="variantQuantity"><h5>Số Lượng</h5></label>
+                <input class="form-control" type="number"  aria-label="default input example"  name="variantQuantity[]" required> <br> <br>
             </div>
         </div>
 
         <input type="hidden" name="idsp" value="<?= $id ?>">
-        <button type="button" id="add-variant">Thêm biến thể</button><br><br>
+        <button type="button" class="btn btn-primary" id="add-variant">Thêm biến thể</button>
 
         <button class="btn btn-success">Thêm</button>
     </form>
