@@ -16,7 +16,7 @@ if ($user['avatar'] != '') {
 
                 <div class="row flex-column-reverse flex-md-row">
                     <?php require "view/account/sidebar.php" ?>
-                    <div class="col-md-8">
+                    <div class="col-md-9">
                         <div class="tab-content" id="myTabContent">
                             <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                                 <form action="" method="post" enctype="multipart/form-data">

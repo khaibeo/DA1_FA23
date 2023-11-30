@@ -4,7 +4,8 @@
 	?>
 	<main>
 		<div class="container margin_30">
-			<!-- <div class="top_panel">
+			<!-- <div class="layer"></div>
+			<div class="top_panel">
 				<div class="container header_panel">
 					<a href="#0" class="btn_close_top_panel"><i class="ti-close"></i></a>
 					<label>1 product added to cart</label>
@@ -28,11 +29,9 @@
 						</div>
 					</div>
 				</div>
-				
 			</div> -->
 			<!-- /add_cart_panel -->
-			<!-- <div class="countdown_inner">-20% This offer ends in <div data-countdown="2019/05/15" class="countdown"></div>
-	        </div> -->
+			
 			<div class="row">
 				<div class="col-md-6">
 					<div class="all">
@@ -117,7 +116,7 @@
 								<div class="col-lg-4 col-md-6">
 									<input type="hidden" name="price" value="<?= $product_price ?>">
 									<input type="hidden" value="<?= $sizeAndQuantity[0]['sku'] ?>" name="sku" id="sku_1">
-									<div class="btn_add_to_cart"><button class="btn_1">Thêm vào giỏ hàng</button></div>
+									<div class="btn_add_to_cart"><a class="btn_1">Thêm vào giỏ hàng</a></div>
 								</div>
 							</div>
 						</form>
@@ -193,7 +192,8 @@
 													<span class="rating"><?= str_repeat("<i class='icon-star'></i>", $rv['number_stars']); ?></span>
 													<!-- <em>Published 54 minutes ago</em> -->
 												</div>
-												<h4><?= $rv['username'] ?></h4>
+												
+												<h4><?= $rv['username'] ?> <?= $rv['label'] != NULL ? "<span class='badge bg-success'>Đã mua hàng</span>" : "" ?></h4>
 												<p><?= $rv['content'] ?></p>
 											</div>
 										</div>
@@ -297,6 +297,9 @@
 				</ul>
 			</div>
 		</div>
+		<script>
+        	var isLoggedIn = <?php echo isset($_SESSION['user']) ? 'true' : 'false'; ?>;
+    	</script>
 		<!--/feat-->
 	</main>
 	<!-- /main -->

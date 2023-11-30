@@ -16,7 +16,7 @@ function create_cart($id){
 }
 
 function get_cart($cart_id){
-    $sql = "SELECT cd.cart_detail_id,sp.product_id,sp.product_name,sp.product_price,sp.discounted_price, MIN(img.image_name) AS img_name, cd.product_quantity, cd.product_detail_id, cd.cart_id, cd.product_size, cd.total
+    $sql = "SELECT cd.cart_detail_id,sp.product_id,sp.product_name,sp.product_price,sp.discounted_price, MIN(img.image_name) AS img_name, cd.product_quantity, cd.product_detail_id, cd.cart_id, cd.product_size, cd.total, prod.product_quantity as stock 
     FROM cart c 
     JOIN cart_detail cd ON cd.cart_id = c.cart_id
     JOIN products_detail prod ON cd.product_detail_id = prod.product_detail_id

@@ -283,60 +283,60 @@
 			<div class="col-lg-6">
 				<a class="box_news" href="blog.html">
 					<figure>
-						<img src="img/blog-thumb-placeholder.jpg" data-src="img/blog-thumb-1.jpg" alt="" width="400" height="266" class="lazy">
-						<figcaption><strong>28</strong>Dec</figcaption>
+						<img src="upload/post4.jpg" data-src="upload/post4.jpg" alt="" width="400" height="266" class="lazy">
+						<!-- <figcaption><strong>28</strong>Dec</figcaption> -->
 					</figure>
 					<ul>
-						<li>by Mark Twain</li>
-						<li>20.11.2017</li>
+						<li>By Văn Khải</li>
+						<li>01.12.2023</li>
 					</ul>
-					<h4>Pri oportere scribentur eu</h4>
-					<p>Cu eum alia elit, usu in eius appareat, deleniti sapientem honestatis eos ex. In ius esse ullum vidisse....</p>
+					<h4>Phối đồ mọi phong cách với mẫu giày Nike Air Force 1 White Trắng</h4>
+					<p> Nike Air Force 1 Trắng Full White là “đôi giày quốc dân” đối với giới trẻ.Sở hữu kiểu dáng thông dụng, đi kèm sắc trắng tinh khôi có thể kết hợp với mọi kiểu quần áo . </p>
 				</a>
 			</div>
 			<!-- /box_news -->
 			<div class="col-lg-6">
 				<a class="box_news" href="blog.html">
 					<figure>
-						<img src="img/blog-thumb-placeholder.jpg" data-src="img/blog-thumb-2.jpg" alt="" width="400" height="266" class="lazy">
-						<figcaption><strong>28</strong>Dec</figcaption>
+						<img src="upload/post2.jpg" data-src="upload/post2.jpg" alt="" width="400" height="266" class="lazy">
+						<!-- <figcaption><strong>28</strong>Dec</figcaption> -->
 					</figure>
 					<ul>
-						<li>By Jhon Doe</li>
-						<li>20.11.2017</li>
+						<li>By Thành Luân</li>
+						<li>30.12.2023</li>
 					</ul>
-					<h4>Duo eius postea suscipit ad</h4>
-					<p>Cu eum alia elit, usu in eius appareat, deleniti sapientem honestatis eos ex. In ius esse ullum vidisse....</p>
+					<h4>Giày Replica là gì? Cách phân biệt các loại giày Fake</h4>
+					<p>Thuật ngữ replica được sử dụng rất thường xuyên, vậy giày replica là gì? Cùng mình định nghĩa và phân loại các chât lượng giày fake khác nhau nhé</p>
 				</a>
 			</div>
 			<!-- /box_news -->
 			<div class="col-lg-6">
 				<a class="box_news" href="blog.html">
 					<figure>
-						<img src="img/blog-thumb-placeholder.jpg" data-src="img/blog-thumb-3.jpg" alt="" width="400" height="266" class="lazy">
-						<figcaption><strong>28</strong>Dec</figcaption>
+						<img src="upload/post3.jpg" data-src="upload/post3.jpg" alt="" width="400" height="266" class="lazy">
+						<!-- <figcaption><strong>28</strong>Dec</figcaption> -->
 					</figure>
 					<ul>
-						<li>By Luca Robinson</li>
-						<li>20.11.2017</li>
+						<li>By Xuân Đạt</li>
+						<li>29.12.2023</li>
 					</ul>
-					<h4>Elitr mandamus cu has</h4>
-					<p>Cu eum alia elit, usu in eius appareat, deleniti sapientem honestatis eos ex. In ius esse ullum vidisse....</p>
+					<h4>TOP 10++ MẪU GIÀY SNEAKER HOT NHẤT 2023 ĐÁNG SỞ HỮU</h4>
+					<p>Trong bài viết này hãy cùng mình ngắm trọn bộ top những đôi giày sneaker hot trend nhất năm 2023 mà nhất định bạn không được bỏ qua nhé!</p>
 				</a>
 			</div>
 			<!-- /box_news -->
 			<div class="col-lg-6">
 				<a class="box_news" href="blog.html">
 					<figure>
-						<img src="img/blog-thumb-placeholder.jpg" data-src="img/blog-thumb-4.jpg" alt="" width="400" height="266" class="lazy">
-						<figcaption><strong>28</strong>Dec</figcaption>
+						<img src="upload/post1.jpg" data-src="upload/post1.jpg" alt="" width="400" height="266" class="lazy">
+						<!-- <figcaption><strong>28</strong>Dec</figcaption> -->
 					</figure>
 					<ul>
-						<li>By Paula Rodrigez</li>
-						<li>20.11.2017</li>
+						<li>By Văn Khải</li>
+						<li>28.12.2023</li>
 					</ul>
-					<h4>Id est adhuc ignota delenit</h4>
-					<p>Cu eum alia elit, usu in eius appareat, deleniti sapientem honestatis eos ex. In ius esse ullum vidisse....</p>
+					<h4>Các mẫu giày sáng tạo nhà Nike Air Force 1</h4>
+					<p>Với thiết kế đột phá và sáng tạo, Nike Air Force 1 đã trở thành cái tên huyền thoại của làng thời trang thể thao thế giới. Air Force 1 vẫn đang chứng minh sức hấp dẫn của mình bằng những mẫu giày cực chất, cực lạ.</p>
 				</a>
 			</div>
 			<!-- /box_news -->

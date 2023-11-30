@@ -238,7 +238,7 @@
 		var id = $(this).attr("data-id");
 		var qty = $(this).val();
 
-		var data = { id: id, qty: qty };
+		var data = { id: id, qty: qty,act: "change" };
 
 		// ajax xử lí
 		$.ajax({
@@ -268,13 +268,19 @@
 		var oldValue = parseFloat($input.val());
 
 		if ($button.text() == "+") {
-			var newVal = oldValue + 1;
+			var newVal;
+			if(oldValue == $input.attr("max")){
+				newVal = $input.attr("max");
+			}else{
+				newVal = oldValue + 1;
+			}
+			
 		} else {
 			// Không cho phép giảm dưới 0
 			if (oldValue > 1) {
 				var newVal = oldValue - 1;
 			} else {
-				newVal = 0;
+				newVal = 1;
 			}
 		}
 
@@ -358,9 +364,42 @@
 	var $pnlMsk = $(".layer");
 
 	$(".btn_add_to_cart a").on("click", function () {
-		$topPnl.addClass("show");
-		$pnlMsk.addClass("layer-is-visible");
+		// $topPnl.addClass("show");
+		// $pnlMsk.addClass("layer-is-visible");
+		if (!isLoggedIn) {
+            // Nếu chưa đăng nhập, chuyển hướng đến trang đăng nhập
+            window.location.href = 'index.php?act=dangnhap';
+        }
+
+		var size = $('input[name="size"]:checked').val();
+    	var quantity = $('#quantity_1').val();
+    	var price = $('input[name="price"]').val();
+    	var sku = $('#sku_1').val();
+
+    	// Sử dụng Ajax để gửi dữ liệu lên server
+    	$.ajax({
+        	url: 'process.php',
+        	type: 'POST',
+        	data: {
+            	size: size,
+            	quantity: quantity,
+            	price: price,
+            	sku: sku,
+				add_to_cart: true
+        	},
+			dataType: "text",
+        	success: function (response) {
+				var result = response.split(",");
+				$(".cart_bt strong").text(result['0']);
+				$(".total_c span").text(result['1']);
+            	swal("Sản phẩm đã được thêm vào giỏ hàng","","success");
+        	},
+       		error: function (error) {
+            	console.log(error);
+        	}
+    	});
 	});
+
 	$("a.search_panel").on("click", function () {
 		$topPnl.addClass("show");
 		$pnlMsk.addClass("layer-is-visible");
@@ -431,6 +470,82 @@
 			'<button title="%title%" type="button" class="mfp-close"></button>',
 		mainClass: "my-mfp-zoom-in",
 	});
+
+	$('#other_addr input').on("change", function (){
+		if(this.checked)
+			$('#other_addr_c').fadeIn('fast');
+		else
+			$('#other_addr_c').fadeOut('fast');
+	});
+
+	$('#orderButton').click(function() {
+		var selectedProductIds = [];
+  
+		$('.table input[type="checkbox"]').each(function() {
+		  if ($(this).prop('checked')) {
+			// Lấy id của sản phẩm từ id của checkbox
+			var productId = $(this).val();
+			selectedProductIds.push(productId);
+		  }
+		});
+
+		if (selectedProductIds.length === 0) {
+			$('.table input[type="checkbox"]').each(function() {
+			  var productId = $(this).val();
+			  selectedProductIds.push(productId);
+			});
+		  }
+  
+		// Gán giá trị danh sách id sản phẩm vào trường ẩn
+		$('#selectedProductIds').val(selectedProductIds.join(','));
+  
+		// Submit form
+		$('#orderForm').submit();
+	  });
+
+	// hủy đơn
+	$(".cancelOrder").on("click", function() {
+		// Sử dụng hàm confirm để hiển thị hộp thoại xác nhận
+		return confirm("Bạn có chắc là muốn hủy?");
+	  });
+
+	// vouvher
+
+	$("#applyVoucher").click(function() {
+        // Lấy mã voucher từ ô input
+        var voucherCode = $("#voucherCode").val();
+        var subtotal = $("#totalbill").val();
+
+		var discounted = $("#voucher").val();
+
+		if(discounted != 0){
+			swal("Bạn đã áp dụng mã giảm giá rồi!","","warning");
+			return false;
+		}
+
+        // Gửi yêu cầu Ajax để kiểm tra và áp dụng voucher
+        $.ajax({
+            type: "POST",
+            url: "process.php",
+            data: { voucherCode: voucherCode,subtotal: subtotal},
+            success: function(response) {
+				if(response == 'null'){
+					swal("Mã giảm giá không hợp lệ","","warning");
+					$("#voucherCode").val("");
+				}else{
+					var result = JSON.parse(response);
+					
+					$("li #discounted").text(result.discounted.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + " đ");
+					$("#subtotal").text(result.result.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + " đ");
+					$("#voucher").val(result.discounted);
+					$("#totalbill").val(result.result);
+				}   
+            },
+            error: function(error) {
+                console.log("Error:", error);
+            }
+        });
+    });
 
 	// Image popups
 	$(".magnific-gallery").each(function () {

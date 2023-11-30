@@ -12,8 +12,10 @@
 								</g>
 							</svg>
 						</div>
-					<h2>Order completed!</h2>
-					<p>You will receive a confirmation email soon!</p>
+					<h2>Đặt hàng thành công!</h2>
+					<p>Cuộc sống có rất nhiều lựa chọn, cảm ơn bạn đã chọn chúng tôi!</p>
+					<a href="index.php?act=cart" class="btn btn-outline-danger m-2">Quay lại giỏ hàng</a>
+					<a href="index.php?act=order_detail&id=<?= $id ?>" class="btn btn-outline-info">Xem đơn hàng</a>
 					</div>
 				</div>
 			</div>
