@@ -384,6 +384,18 @@
                     <span>Đánh giá</span>
                 </a>
             </li>
+            <li>
+                <a href="#">
+                    <span class="nav-link-icon">
+                    <img src="../upload/ticket-solid.svg" alt="">
+                    </span>
+                    <span>Voucher</span>
+                </a>
+                <ul>
+                    <li><a  href="index.php?act=list_voucher">Danh Sách Voucher</a></li>
+                    <li><a href="index.php?act=add_voucher">Thêm Voucher</a></li>
+                </ul>
+            </li>
             <!-- <li>
                 <a href="#">
                     <span class="nav-link-icon">

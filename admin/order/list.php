@@ -116,10 +116,10 @@
                                         <td><?=$total?></td>
                                         <td><?=$date_add?></td>
                                         <?php if($status=="pending"){?>
-                                           <td><button type="button" class="btn-primary">Đặt hàng</button></td>
+                                           <td><button type="button" class="btn-primary">Chờ xác nhận</button></td>
                                            <?php } ?>
                                         <?php if($status== "processing"){?>
-                                            <td ><button type="button" class=" btn-success ">Chờ xác nhận</button></td>
+                                            <td ><button type="button" class=" btn-success ">Chờ xác nhận thành công</button></td>
                                         <?php } ?>
                                         <?php if($status== "canceled"){?>
                                             <td ><button type="button" class=" btn-danger ">Đã hủy</button></td>
