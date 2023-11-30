@@ -1,3 +1,4 @@
+<div class="content">
 <?php
     if(is_array($list_category)){
         extract($list_category);
@@ -132,9 +133,7 @@
                             extract($pd);
                             $product_image=load_image($product_id);
                             extract($product_image);
-                            $edit_product="index.php?act=edit_product&product_id=".$product_id;
-                            $delete_product="index.php?act=delete_product&product_id=".$product_id;
-                            $show_detail="index.php?act=product_detail&product_id=".$product_id;
+                            $delete_product="index.php?act=khoiphuc&product_id=".$product_id;
                             $image="../upload/".$image_name;    
                             ?>
                                     <tr>
@@ -157,9 +156,7 @@
                                         <?php } ?>
                                             <td><?=$product_price?></td>
                                             <td><?=$date_add?></td>
-                                            <td class="text-end"><a href="<?=$edit_product?>"><button>Sửa</button></a>
-                                            <a href="<?=$delete_product?>"><button>Xóa</button></a>
-                                            <a href="<?= $show_detail?>"><button>Biến thể</button></a>
+                                            <td><a href="<?=$delete_product?>"><button>Khôi phục</button></a>
                                             </td>
                                             </tr>
                         <?php
@@ -264,3 +261,4 @@
         border-radius: 5px;
     }
 </style>
+</div>

@@ -2,7 +2,9 @@
 function get_record($start, $num_per_page, $where = "")
 {
     if (!empty($where)) {
-        $where = "WHERE $where";
+        $where = "WHERE sp.status = 1 AND $where";
+    }else{
+        $where = "WHERE sp.status = 1 ";
     }
     $sql = "SELECT sp.*, MIN(img.image_name) AS img_name 
     FROM products sp JOIN products_image img ON img.product_id = sp.product_id $where 
@@ -29,7 +31,7 @@ function get_num_pro($iddm = "", $search_info = "")
 function get_filter($brand = "", $price = [])
 {
     $sql = "SELECT sp.*, MIN(img.image_name) AS img_name 
-    FROM products sp JOIN products_image img ON img.product_id = sp.product_id WHERE ";
+    FROM products sp JOIN products_image img ON img.product_id = sp.product_id WHERE sp.status = 1 AND ";
 
     // Thêm điều kiện về danh mục ( nếu có )
     if (!empty($brand)) {
@@ -162,7 +164,7 @@ JOIN
 JOIN 
     products_image img ON img.product_id = sp.product_id
 LEFT JOIN 
-    evaluation ON sp.product_id = evaluation.product_id 
+    evaluation ON sp.product_id = evaluation.product_id WHERE sp.status = 1  
 GROUP BY 
     sp.product_id order BY total_sold desc;";
 
@@ -174,7 +176,7 @@ function get_feature_products()
     $sql = "SELECT sp.*, MIN(img.image_name) AS img_name, ROUND(AVG(evaluation.number_stars), 0) AS rating
     FROM products sp JOIN products_image img ON img.product_id = sp.product_id
     LEFT JOIN evaluation ON sp.product_id = evaluation.product_id 
-    WHERE sp.highlight = 1 
+    WHERE sp.highlight = 1 AND sp.status = 1 
     GROUP BY sp.product_id";
     return pdo_query($sql);
 }
@@ -183,8 +185,9 @@ function get_new_product()
 {
     $sql = "SELECT sp.*, MIN(img.image_name) AS img_name, ROUND(AVG(evaluation.number_stars), 0) AS rating
     FROM products sp JOIN products_image img ON img.product_id = sp.product_id
-    LEFT JOIN evaluation ON sp.product_id = evaluation.product_id
-    GROUP BY sp.product_id
+    LEFT JOIN evaluation ON sp.product_id = evaluation.product_id 
+    WHERE sp.status = 1
+    GROUP BY sp.product_id  
     ORDER BY sp.date_add DESC LIMIT 0,8";
     return pdo_query($sql);
 }

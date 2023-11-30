@@ -1,12 +1,20 @@
 <?php
+ob_start();
 session_start();
+
+if(!isset($_SESSION['user']) || $_SESSION['role'] != "admin"){
+    header("location: ../index.php");
+}
 include("../model/pdo.php");
 include("../admin/model_admin/category.php");
 include("../admin/model_admin/product.php");
-include("../admin/view/header.php");
+include("../admin/model_admin/order.php");
 include("../admin/model_admin/account.php");
+include("../admin/model_admin/thongke.php");
+include("../admin/model_admin/danhgia.php");
 // include("home.php");
-
+$user = get_user($_SESSION['user_id']);
+include("../admin/view/header.php");
 $warring=[];
 if(isset($_GET['act'])){
     $act=$_GET['act'];
@@ -76,6 +84,8 @@ if(isset($_GET['act'])){
         break;
     case'delete_category':
         if(isset($_GET['category_id'])&&($_GET['category_id']>0)){
+
+            change_category($_GET['category_id']);
             delete_category($_GET['category_id']);
         }
         $limit=10;  
@@ -101,20 +111,22 @@ if(isset($_GET['act'])){
             $discounted_price=$_POST['discounted_price'];
             $product_describe=$_POST['product_describe'];
             $product_status=$_POST['product_status'];
-            $file_name=$_FILES['product_image']['name'];
-            $target_dir="../upload/";
-            $target_file=$target_dir . basename($_FILES["product_image"]["name"]);
-            move_uploaded_file($_FILES['product_image']['tmp_name'],$target_file);
-            if(!empty( $product_name && $product_price && $discounted_price && $product_describe && $product_status && $file_name )){
+            
+            // ảnh
+            $images = $_FILES['product_image'];
+
+            // Biến thể
+            $sizes = $_POST['size'];
+            $variantQuantities = $_POST['variantQuantity'];
+
+            if(!empty( $product_name && $product_price && $discounted_price && $product_describe && $product_status)){
                 if(is_numeric($product_name)){
                     $warring['product_name']="Trường này chỉ nhận  dữ liệu chuỗi";
                 }
                 if(is_numeric($product_describe)){
                     $warring['product_describe']="Trường này chỉ nhận  dữ liệu chuỗi";
                 }
-                if(is_numeric($file_name)){
-                    $warring['file_name']="Trường này chỉ nhận  dữ liệu chuỗi";
-                }
+                
                 if(!is_numeric($product_price)){
                     $warring['product_price']="Trường này chỉ nhận  dữ liệu Số";
                 }
@@ -124,8 +136,32 @@ if(isset($_GET['act'])){
             if(!empty($warring)){
             }
             else{
-            insert_product($category_id,$product_name, $product_price, $discounted_price, $product_describe, $product_status);
-            $warring['all']="Thêm Thành công";
+                $idsp = insert_product($category_id,$product_name, $product_price, $discounted_price, $product_describe, $product_status);
+
+                if (!empty($images['name'][0])) {
+                    // $images = $_FILES['product_image'];
+                    // $uploadedImages = [];
+            
+                    for ($i = 0; $i < count($images['name']); $i++) {
+                        $imageName = $images['name'][$i];
+                        $tmpName = $images['tmp_name'][$i];
+            
+                        $uploadPath = '../upload/' . $imageName;
+            
+                        move_uploaded_file($tmpName, $uploadPath);
+
+                        insert_image($idsp,$imageName);
+                        // $uploadedImages[] = $uploadPath;
+                    }
+                }   
+                if (!empty($sizes) && !empty($variantQuantities)) {
+                    foreach ($sizes as $key => $size) {
+                        $variantQuantity = $variantQuantities[$key];
+                        add_variant($idsp,$size,$variantQuantity);
+                    }
+                }
+                
+                $warring['all']="Thêm Thành công";
             }
         }
             else{
@@ -135,7 +171,98 @@ if(isset($_GET['act'])){
         $list_category=loadall_category();
         include('../admin/product/add.php');
         break;
+
+    case "add_detail":
+        if($_SERVER['REQUEST_METHOD'] == "POST"){
+            $idsp = $_POST['idsp'];
+
+            $sizes = $_POST['size'];
+            $variantQuantities = $_POST['variantQuantity'];
+
+            if (!empty($sizes) && !empty($variantQuantities)) {
+                foreach ($sizes as $key => $size) {
+                    $variantQuantity = $variantQuantities[$key];
+                    add_variant($idsp,$size,$variantQuantity);
+                }
+
+                header("location: index.php?act=product_detail&product_id=$idsp");
+            }
+        }
+        
+        $id = $_GET['id'];
+        include('../admin/product/add_detail.php');
+        break;
     case 'list_product':
+        if(isset($_POST['keyword'])&&($_POST['keyword'])){
+            $keyword=$_POST['search_product'];
+        }
+        else{
+            $keyword= '';
+        }
+        if(isset($_POST['filter_category'])&&($_POST['filter_category'])){
+            $category_id=$_POST['category'];
+        }
+        else{
+            $category_id= 0;
+        }
+        if(isset($_POST['filter_price'])&&($_POST['filter_price'])){
+            $price=$_POST['price_product'];
+        }
+        else{
+            $price= "";
+        }
+
+        $limit=10;  
+        if(isset($_POST['number'])){
+            $number=$_POST['number'];   
+            $start=($number-1)*$limit;
+        }else{
+            $start= 0;
+        }
+        $count=count_product();
+        $list_pro= load_page_product($keyword,$category_id,$price,$start,$limit);
+        $list_product=count_product();
+        $list_category=loadall_category();
+        include '../admin/product/list.php';
+        break;
+    case'product_delete':
+        if(isset($_POST['keyword'])&&($_POST['keyword'])){
+            $keyword=$_POST['search_product'];
+        }
+        else{
+            $keyword= '';
+        }
+        if(isset($_POST['filter_category'])&&($_POST['filter_category'])){
+            $category_id=$_POST['category'];
+        }
+        else{
+            $category_id= 0;
+        }
+        if(isset($_POST['filter_price'])&&($_POST['filter_price'])){
+            $price=$_POST['price_product'];
+        }
+        else{
+            $price= "";
+        }
+
+        $limit=10;  
+        if(isset($_POST['number'])){
+            $number=$_POST['number'];   
+            $start=($number-1)*$limit;
+        }else{
+            $start= 0;
+        }
+        $count= count_product_delete();
+        $list_pro=  load_delete_product($keyword,$category_id,$price,$start,$limit);
+        $list_product=count_product_delete();
+        $list_category=loadall_category();
+        include '../admin/product/product_delete.php';
+        break;
+    case'khoiphuc':
+        if(isset($_GET['product_id'])&&($_GET['product_id']> 0)){
+           khoiphuc($_GET['product_id']);
+        }
+
         if(isset($_POST['keyword'])&&($_POST['keyword'])){
             $keyword=$_POST['search_product'];
         }
@@ -175,6 +302,7 @@ if(isset($_GET['act'])){
         $list_category=loadall_category();
         include ('../admin/product/update.php');
         break;
+    
     case'update_product':
         if(isset($_POST['btn_update'])&&($_POST['btn_update'])){
             $product_id=$_POST['product_id'];
@@ -235,6 +363,8 @@ if(isset($_GET['act'])){
         if(isset($_GET['product_id'])&&($_GET['product_id'])){
             delete_product($_GET['product_id']);
         }
+
+        header("location: index.php?act=list_product");
         $list_product=loadall_product();
         $limit=10;  
         if(isset($_POST['number'])){
@@ -347,7 +477,7 @@ if(isset($_GET['act'])){
             $address=$_POST['address'];
             $role=$_POST['role'];
             $file_name=$_FILES['avatar']['name'];
-            $folder='./image/upload/';
+            $folder='../upload/';
             move_uploaded_file($_FILES['avatar']['tmp_name'], $folder . $file_name);
             update_account( $username, $fullname, $email,$tel, $address,$role, $file_name,$user_id);
             $warring='Update successful';
@@ -379,10 +509,136 @@ if(isset($_GET['act'])){
         $list_account=load_page_account($keyword="",$role="",$start,$limit);
         include ('../admin/account/list.php');
         break;
+    case 'list_order':
+        if(isset($_POST['keyword'])&&($_POST['keyword'])){
+            $keyword=$_POST['search_order'];
+        }
+        else{
+            $keyword= '';
+        }
+        $limit=10;  
+        if(isset($_POST['number'])){
+            $number=$_POST['number'];   
+            $start=($number-1)*$limit;
+        }else{
+            $start= 0;
+        }
+        $count=count_order();
+        $list_order=load_page_order($keyword,$start,$limit);
+        $order=count_order();
+        // $list_order=loadall_order();
+        include '../admin/order/list.php';
+        break;
+    case'order_detail':
+        if(isset($_GET['order_id'])){
+            $list_order=loadone_order($_GET['order_id']);
+            $list_product=load_product($_GET['order_id']);
+        }
+        include '../admin/order/show.php';
+        break;
+    case 'update_order':
+        if(isset($_POST['btn_cencel'])){
+            $status=$_POST['status'];
+            $order_id=$_POST['order_id'];
+            canceled_order($order_id,$status);
+        } if(isset($_POST['btn_update'])){
+            $status=$_POST['status'];
+            $order_id=$_POST['order_id'];
+            order_update($order_id, $status);
+        }
+        if(isset($_POST['keyword'])&&($_POST['keyword'])){
+            $keyword=$_POST['search_order'];
+        }
+        else{
+            $keyword= '';
+        }
+        $limit=10;  
+        if(isset($_POST['number'])){
+            $number=$_POST['number'];   
+            $start=($number-1)*$limit;
+        }else{
+            $start= 0;
+        }
+        $count=count_order();
+        $list_order=load_page_order($keyword,$start,$limit);
+        $order=count_order();
+        include '../admin/order/list.php';
+        break;
+    case'list_thongke':
+        $date = date("Y-m-d",time());
+        $load_category=loadall_category();
+        $list_account=loadall_account();
+        $load_order=loadall_order();
+        $load_product=loadall_product();
+        $list_evaluation=loadall_danhgia();
+        $product_day=product_day($date);
+        $list_star=load_star();
+        $load_tk=loadall_thongke();
+        include('../admin/thongke/view.php');
+        break;
+    
+    case'list_comment':
+        if(isset($_POST['keyword'])&&($_POST['keyword'])){
+            $keyword=$_POST['search_order'];
+        }
+        else{
+            $keyword= '';
+        }
+        $limit=10;  
+        if(isset($_POST['number'])){
+            $number=$_POST['number'];   
+            $start=($number-1)*$limit;
+        }else{
+            $start= 0;
+        }
+        $count=count_evaluation();
+        $list_evaluation=load_page_evaluation($keyword="",$start,$limit);
+        $order=count_evaluation();
+        $list_star=load_star();
+        // $list_evaluation=loadall_danhgia();
+        include "../admin/danhgia/show.php";
+        break;
+    case'delete_evaluation':
+        if(isset($_GET['evaluation_id'])){
+            delete_evaluation($_GET['evaluation_id']);
+        }
+        $list_evaluation=loadall_danhgia();
+        include "../admin/danhgia/show.php";
+        break;
     default:
-    include('../admin/view/home.php');
+    $date = date("Y-m-d",time());
+        // $date=getdate();
+        $limit=10;  
+        if(isset($_POST['number'])){
+            $number=$_POST['number'];   
+            $start=($number-1)*$limit;
+        }else{
+            $start= 0;
+        }
+        $count=count_order();
+        $list_order=load_page_order_today($keyword="",$start,$limit,$date);
+        $order=count_order();
+        include('../admin/thongke/home.php');
+    // include('../admin/view/home.php');
     break;
     }
+    
 }
-include("..//admin/view/footer.php");
+else{
+    $date = date("Y-m-d",time());
+    // $date=getdate();
+   
+    $limit=10;  
+    if(isset($_POST['number'])){
+        $number=$_POST['number'];   
+        $start=($number-1)*$limit;
+    }else{
+        $start= 0;
+    }
+    $count=count_order();
+    $list_order=load_page_order_today($keyword="",$start,$limit,$date);
+    $order=count_order();
+    include('../admin/thongke/home.php');
+}
+include("../admin/view/footer.php");
 ?>

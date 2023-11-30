@@ -5,65 +5,75 @@ if(is_array($product)){
     $product_image=load_image($product_id);
     extract($product_image);
 ?>
+<h1>THÔNG TIN SẢN PHẨM</h1>
 <div class="content">
-    <style>
-        img{
-            width: 100px;
-            height: 70px;
-        }
-    </style>
     <form action="index.php?act=update_product" method="post" enctype="multipart/form-data">
-        <table>
-        <tr>
-                <td><label for="">Category</label></td>
-                <td><select name="category" id="">
-                        <?php
+        <div class="update">
+            <div class="information">
+                <img src="../upload/<?php echo $image_name?>" alt=""> <br>
+                <input class="form-control" type="file" name="product_image" id="product_image" value="<?php echo $image_name?>">
+                <h5>Mô Tả</h5>
+                <div class="form-floating">
+                    <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea" name="product_describe" id="product_describe" style="height: 230px" ><?php echo $product_describe?></textarea>
+                </div>
+            </div>
+            <div class="information">
+                <h5>ID Sản Phẩm</h5> 
+                <input class="form-control" type="text"  aria-label="default input example"  name="product_id"  value="<?=$product_id?>" readonly>
+
+                <h5>Danh Mục</h5> 
+                <select class="form-select" aria-label="Default select example" name="category">
+                <?php
                         foreach($list_category as $ct){
-                            extract($ct);
                         ?>
-                            <option value="<?php echo $category_id?>"<?php echo "selected"?>><?php echo $category_name?></option>
+                            <option <?php if($ct['category_id'] == $category_id) echo "selected"; ?> value="<?php echo $ct['category_id']?>"><?php echo $ct['category_name']?></option>
                         <?php
                         }
                         ?>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td><label for="">Product_name</label></td>
-                <td><input type="text" name="product_name" placeholder="Product_name" value="<?php echo $product_name?>"></td>
-            </tr>
-            <tr>
-                <td><label for="">Product_price</label></td>
-                <td><input type="text" name="product_price" placeholder="Product_price" value="<?php echo $product_price?>"></td>
-            </tr>
-            <tr>
-                <td><label for="">discounted_price</label></td>
-                <td><input type="text" name="discounted_price" placeholder="discounted_price" value="<?php echo $discounted_price?>"></td>
-            </tr>
-            <tr>
-                <td><label for="">Product_image</label></td>
-                <td><img src="../upload/<?php echo $image_name?>" alt=""></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td><input type="file" name="product_image" id="product_image" value="<?php echo $image_name?>"></td>
-            </tr>
-            <tr>
-                <td><label for="">Product_describe</label></td>
-                <td><textarea name="product_describe" id="product_describe" cols="50" rows="10" ><?php echo $product_describe?></textarea></td>
-            </tr>
-            <tr>
-                <td><label for="">Product_status</label></td>
-                <td><input type="number" name="product_status" id="product_status" max="1" min="0" value="<?php echo $status?>"></td>
-            </tr>
-                        
-            <tr>
+                </select>  <br>
+                <h5>Tên Sản Phẩm</h5> 
+                <input class="form-control" type="text"  aria-label="default input example"  name="product_name"  value="<?=$product_name?>">
+
+                <h5>Giá Gốc</h5> 
+                <input class="form-control" type="text"  aria-label="default input example"  name="product_price"  value="<?=$product_price?>">
+                
+                <h5>Giá Khuyến Mãi</h5> 
+                <input class="form-control" type="text"  aria-label="default input example"  name="discounted_price"  value="<?=$discounted_price?>">
+                
+                <h5>Trạng Thái</h5>
+                <select class="form-select" aria-label="Default select example" name="product_status">
+                        <option value="0" <?php if($status == 0) echo "selected" ?>>Ẩn</option>
+                        <option value="1" <?php if($status == 1) echo "selected" ?>>Hoạt động</option>
+                </select>  <br>
+
+                <h5>Ngày Đăng</h5> 
+                <input class="form-control" type="text"  aria-label="default input example"  name="date_add"  value="<?=$date_add?>" readonly>
+            </div>
+        </div>
+       
+
                 <input type="hidden" name="product_id" value="<?php echo $product_id?>">
                 <input type="hidden" name="imgae_id" value="<?php echo $image_id?>">
-                <td><input type="submit" name="btn_update" value="Update"></td>
-                <td><a href="index.php?act=list_product">Danh Sách Sản Phẩm</a></td>
-            </tr>
-        </table>    
-   
+                <td><input type="submit" class="btn btn-primary" name="btn_update" value="Lưu thay đổi"></td>
+                <td><a href="index.php?act=list_product"><button class="btn btn-primary">Danh Sách Sản Phẩm</button></a></td>
     </form>
 </div>
+<style>
+.content{
+    width: 100%;
+}
+.update{
+    display:flex;
+    width: 100%;
+}
+.information{
+    width: 45%;
+    margin: 10px;
+}
+.information img{
+    margin-top: 10px;
+    width: 390px;
+    height: 270px;
+    border-radius:10px;
+}
+    </style>

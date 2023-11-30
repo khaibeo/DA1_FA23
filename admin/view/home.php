@@ -206,8 +206,7 @@
 							<div>
 								<div class="d-flex align-items-center mb-3">
 									<div class="avatar me-3">
-										<img src="./assets/images/user/women_avatar5.jpg" class="rounded-circle"
-											 alt="image">
+										<img src="../assets/images/user/women_avatar5.jpg" class="rounded-circle" alt="image">
 									</div>
 									<div>
 										<h5 class="mb-1">Amara Keel</h5>

@@ -8,41 +8,65 @@ $image="../upload/".$image_name;
 // $edit_detail="index.php?act=edit_detail&product_id=".$product_id;
 ?>
 <style>
-    img{
-        width: 300px;
-        height: 210px;
+    .detail img{
+        width: 390px;
+        height: 290px;
     }
-    table tr {
-        margin: 20px;
+    .detail_information{
+        display: flex;
+        width: 100%;
     }
+    .detail{
+        width: 45%;
+        margin: 10px;
+    }
+    .product_detail_item{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+    
 </style>
 <div class="content">
-    <table>
-        <tr>
-            <td><label for="">ID Product</label></td>
-            <td><input type="text" name="product_id" value="<?=$product_id?>"></td>
-        </tr>
-        <tr>
-            <td><label for="">ID Product</label></td>
-            <td><img src="<?=$image?>" class="rounded" width="40" alt=""></td>
-        </tr>
-         <?php 
-            foreach($product_detail as $detail){
-                extract($detail);
-                $edit_detail="index.php?act=edit_detail&product_detail_id=".$product_detail_id;
-        ?> 
-        <tr>
-            <td><label for=""> Product_size :</label></td>
-            <td><?=$product_size?></td>
-            <td><label for=""> Product_quantity :   </label></td>
-            <td><?=$product_quantity?></td>
-            <input type="hidden" name="product_id" value="<?=$product_detail_id?>">
-            <td><a href="<?=$edit_detail?>"><button>EDIT DETAIL</button></a></td>
-        <?php }
-        ?>  
+    <div class="detail_information">
+        <div class="detail">
+            <img src="<?=$image?>" class="rounded" width="40" alt="">
+        </div>
+        <div class="detail">
+            <h5>ID sản phẩm</h5>
+            <input class="form-control" type="text"  aria-label="default input example"  name="product_id" value="<?=$product_id?>" readonly>
+            <h5>Tên sản phẩm</h5> 
+            <input class="form-control" type="text"  aria-label="default input example"  name="product_name"  value="<?=$product_name?>" readonly>
+            <div class="product_detail">
+                <?php 
+                    foreach($product_detail as $detail){
+                        extract($detail);
+                        $edit_detail="index.php?act=edit_detail&product_detail_id=".$product_detail_id;
+                ?> 
+                <div class="product_detail_item">
+                    <div>
+                     <h6>Size</h6>
+                     <input class="form-control" type="text"  value="<?=$product_size?>" style="width: 100px;">
+                    </div>
+                    <div>
+                    <h6>Số lượng</h6>
+                     <input class="form-control" type="text"  value="<?=$product_quantity?>">
+                    </div>
+                    <input type="hidden" name="product_id" value="<?=$product_detail_id?>">
+                    <a href="<?=$edit_detail?>"><button class="btn btn-success" style="margin-top:25px ;">Sửa</button></a>
+                </div>
+                <?php }
+                ?>  
+            </div>
+        </div>
+    </div>
+         
         <tr>
             <td>
-            <a href="index.php?act=list_product"><button>LIST PRODUCT</button></a>
+                <a class="btn btn-success" href="index.php?act=list_product">Danh sách sản phẩm</a>
+            </td>
+            <td>
+                <a class="btn btn-danger" href="index.php?act=add_detail&id=<?= $product_id ?>">Thêm biến thể</a>
             </td>
         </tr>
     </form>

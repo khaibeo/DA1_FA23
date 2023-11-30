@@ -31,7 +31,7 @@ function load_page_account($keyword,$role,$start,$limit)
 {
     $sql= "SELECT * FROM  user WHERE 1 ";
     if($keyword!=""){
-        $sql.= " AND username LIKE '%$keyword%'";
+        $sql.= " AND tel LIKE '%$keyword%'";
     }
     if($role!=""){
         $sql.="AND role LIKE '%$role%'";
@@ -67,5 +67,11 @@ function insert_account($username,$password,$fullname,$email,$tel,$address,$file
     $sql="INSERT INTO `user` ( `username`, `fullname`, `email`, `password`, `tel`, `address`, `avatar`, `role`) 
     VALUES ('$username', '$fullname', '$email', '$password', '$tel', '$address', '$file_name', '$role')";
     pdo_execute($sql);
+}
+
+function get_user($id){
+    $sql = "select * from user where user_id = $id";
+    $result = pdo_query_one($sql);
+    return $result;
 }
 ?>
