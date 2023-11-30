@@ -98,6 +98,7 @@
 
 <!-- SPECIFIC SCRIPTS -->
 <script src="js/carousel-home.min.js"></script>
+<script src="js/sweetalert.js"></script>
 <script src="js/carousel_with_thumbs.js"></script>
 </body>
 

@@ -125,9 +125,23 @@ function add_review($idsp, $rating, $review, $user)
 
 function get_review($id)
 {
-    $sql = "SELECT evaluation.*,user.username 
-    FROM `evaluation` JOIN user on user.user_id = evaluation.user_id
-    WHERE product_id = $id";
+    $sql = "SELECT 
+    rv.*, 
+    user.username,
+    CASE 
+        WHEN o.status = 'delivered' THEN 'Đã mua hàng' 
+        ELSE NULL 
+    END AS label
+FROM 
+    evaluation rv
+JOIN 
+    user ON user.user_id = rv.user_id
+JOIN products p on p.product_id = rv.product_id
+JOIN products_detail pd on p.product_id = pd.product_id
+JOIN order_detail od on pd.product_detail_id = od.product_detail_id
+LEFT JOIN `order` o on o.order_id = od.order_id AND rv.user_id = o.user_id
+WHERE 
+    rv.product_id = $id GROUP BY rv.evaluation_id;";
 
     return pdo_query($sql);
 }

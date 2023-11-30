@@ -15,6 +15,9 @@
 				<thead>
 					<tr>
 						<th>
+							
+						</th>
+						<th>
 							Sản phẩm
 						</th>
 						<th>
@@ -39,10 +42,13 @@
 						foreach ($cart_info as $cart) : ?>
 							<tr>
 								<td>
+									<input class="form-check-input p-2" type="checkbox" value="<?= $cart['cart_detail_id'] ?>" id="">
+								</td>
+								<td>
 									<div class="thumb_cart">
 										<img src="upload/<?= $cart['img_name'] ?>" data-src="upload/<?= $cart['img_name'] ?>" class="lazy" alt="Image">
 									</div>
-									<span class="item_cart"><?= $cart['product_name'] ?></span>
+									<span class="item_cart"><a href="index.php?act=spchitiet&id=<?= $cart['product_id'] ?>"><?= $cart['product_name'] ?></a></span>
 								</td>
 								<td>
 									<strong><?= $cart['product_size'] ?></strong>
@@ -52,7 +58,7 @@
 								</td>
 								<td>
 									<div class="numbers-row">
-										<input type="number" data-id="<?= $cart['product_detail_id'] ?>" value="<?= $cart['product_quantity'] ?>" id="quantity_1" class="quantity" name="quantity_1" readonly>
+										<input type="number" data-id="<?= $cart['product_detail_id'] ?>" value="<?= $cart['product_quantity'] ?>" min="1" max="<?= $cart['stock'] ?>" id="quantity_1" class="quantity" name="quantity_1" readonly>
 										<div class="inc button_inc">+</div>
 										<div class="dec button_inc">-</div>
 									</div>
@@ -68,11 +74,11 @@
 				</tbody>
 			</table>
 
-			<div class="row add_top_30 flex-sm-row-reverse cart_actions">
+			<!-- <div class="row add_top_30 flex-sm-row-reverse cart_actions">
 				<div class="col-sm-4 text-end">
 					<button type="button" class="btn_1 gray">Update Cart</button>
 				</div>
-			</div>
+			</div> -->
 			<!-- /cart_actions -->
 
 		</div>
@@ -87,7 +93,11 @@
 								<span>Tổng tiền</span> <p id="total-price"><?= number_format($total['tongtien'], 0, ',', '.') . ' đ' ?></p>
 							</li>
 						</ul>
-						<a href="cart-2.html" class="btn_1 full-width cart">Thanh toán</a>
+						<form action="index.php?act=checkout" id="orderForm" method="post">
+							<input type="hidden" name="selectedProductIds" id="selectedProductIds" value="">
+							<button type="button" class="btn_1 full-width cart" id="orderButton">Thanh toán</button>
+						</form>
+						
 					</div>
 				</div>
 			</div>

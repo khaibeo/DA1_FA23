@@ -31,6 +31,7 @@
 	<link href="css/product_page.css" rel="stylesheet">
 	<link href="css/leave_review.css" rel="stylesheet">
 	<link href="css/cart.css" rel="stylesheet">
+	<link href="css/checkout.css" rel="stylesheet">
 
 	<!-- YOUR CUSTOM CSS -->
 	<link href="css/custom.css" rel="stylesheet">
@@ -38,9 +39,7 @@
 </head>
 
 <body>
-
 	<div id="page">
-
 		<header class="version_2">
 			<div class="layer"></div><!-- Mobile menu overlay mask -->
 			<div class="main_header">
@@ -167,7 +166,7 @@
 												<?php endforeach; ?>
 											</ul>
 											<div class="total_drop">
-												<div class="clearfix"><strong>Tổng tiền</strong><span>
+												<div class="clearfix total_c"><strong>Tổng tiền</strong><span>
 													<?php
 													if(isset($total) && $total != ""){
 														$tt = number_format($total['tongtien'], 0, ',', '.') . ' đ';
@@ -178,7 +177,7 @@
 												 	?>
 												 </span>
 												</div>
-												<a href="index.php?act=cart" class="btn_1 outline">Xem giỏ hàng</a><a href="index.php?act=checkout" class="btn_1">Thanh toán</a>
+												<a href="index.php?act=cart" class="btn_1 outline">Xem giỏ hàng</a>
 											</div>
 										</div>
 										<?php } ?>

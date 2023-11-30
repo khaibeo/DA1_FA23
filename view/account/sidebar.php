@@ -6,7 +6,7 @@ if ($user['avatar'] != '') {
 }
 ?>
 
-<div class="col-md-4">
+<div class="col-md-3">
     <div class="d-flex flex-column flex-md-row text-center text-md-start mb-3">
         <figure class="me-4 flex-shrink-0">
             <?php $img = $user['avatar'] ?>
