@@ -163,8 +163,8 @@
         <a href="index.php" class="menu-header-logo">
             <img src="https://vetra.laborasyon.com/assets/images/logo.svg" alt="logo">
         </a>
-        <a href="index.php" class="btn btn-sm menu-close-btn">
-            <i class="bi bi-x"></i>
+        <a href="../index.php" class="btn btn-success">
+            <i class="bi bi-house-door-fill"></i></i>
         </a>
     </div>
     <div class="menu-body">

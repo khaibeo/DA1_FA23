@@ -1,5 +1,5 @@
 
-<div class="col-1">
+<div class="content col-1">
             <div class="card mb-4">
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center" data-bs-toggle="collapse"
@@ -73,7 +73,7 @@
         </div>
              -->
 </div>          
-    <div class="row">
+    <div class="row content">
         <div class="col">
             <div class="card">
                 <div class="card-body">
@@ -113,13 +113,16 @@
                                         </td>
                                         <td><?=$fullname?></td>
                                         <td><?=$tel?></td>
-                                        <td><?=$total?></td>
-                                        <td><?=$date_add?></td>
+                                        <td><?= number_format($total, 0, ',', '.') . ' đ' ?></td>
+                                        <td><?=$created_at?></td>
                                         <?php if($status=="pending"){?>
                                            <td><button type="button" class="btn-primary">Chờ xác nhận</button></td>
                                            <?php } ?>
+                                           <?php if($status=="unpaid"){?>
+                                           <td><button type="button" class="btn-primary">Chưa thanh toán</button></td>
+                                           <?php } ?>
                                         <?php if($status== "processing"){?>
-                                            <td ><button type="button" class=" btn-success ">Chờ xác nhận thành công</button></td>
+                                            <td ><button type="button" class=" btn-success ">Đã xác nhận</button></td>
                                         <?php } ?>
                                         <?php if($status== "canceled"){?>
                                             <td ><button type="button" class=" btn-danger ">Đã hủy</button></td>

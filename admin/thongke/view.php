@@ -1,16 +1,15 @@
 <div class="content">
-    <div class="row">
-        <div class="col-lg-4 ">
+    <div class="row mb-3">
+    <div class="col-lg-4 col-md-12">
             <div class="card h-100">
                 <div class="card-body">
                     <div class="d-flex mb-3">
                         <div class="display-7">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-box-seam-fill" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M15.528 2.973a.75.75 0 0 1 .472.696v8.662a.75.75 0 0 1-.472.696l-7.25 2.9a.75.75 0 0 1-.557 0l-7.25-2.9A.75.75 0 0 1 0 12.331V3.669a.75.75 0 0 1 .471-.696L7.443.184l.01-.003.268-.108a.75.75 0 0 1 .558 0l.269.108.01.003 6.97 2.789ZM10.404 2 4.25 4.461 1.846 3.5 1 3.839v.4l6.5 2.6v7.922l.5.2.5-.2V6.84l6.5-2.6v-.4l-.846-.339L8 5.961 5.596 5l6.154-2.461z"/></svg>
+                            <i class="bi bi-basket"></i>
                         </div>
                         <div class="dropdown ms-auto">
                             <a href="#" data-bs-toggle="dropdown" class="btn btn-sm" aria-haspopup="true"
-                            aria-expanded="false">
+                               aria-expanded="false">
                                 <i class="bi bi-three-dots"></i>
                             </a>
                             <div class="dropdown-menu dropdown-menu-end">
@@ -18,109 +17,52 @@
                             </div>
                         </div>
                     </div>
-                    <h4 class="mb-3">Đơn Hàng</h4>
+                    <h4 class="mb-3">Đơn hàng</h4>
                     <div class="d-flex mb-3">
-                        <div class="display-7"> <?php if(is_array($load_order))
+                        <div class="display-7"><?php if(is_array($load_order))
                                                 {extract($load_order);}
-                                                echo COUNT($load_order);?>
-                        </div>
+                                                echo COUNT($load_order);?></div>
+                        <!-- <div class="ms-auto" id="total-orders"></div> -->
                     </div>
+                    <!-- <div class="text-success">
+                        Over last month 1.4% <i class="small bi bi-arrow-up"></i>
+                    </div> -->
                 </div>
             </div>
         </div>
-        <div class="col-lg-4">
+
+        <div class="col-lg-4 col-md-12">
             <div class="card h-100">
                 <div class="card-body">
                     <div class="d-flex mb-3">
                         <div class="display-7">
-                        <span class="nav-link-icon">
-                       <img src="../upload/sport-shoe.png" alt="" style="width:50px ; height: 50px;">
-                    </span>
+                            <i class="bi bi-credit-card-2-front"></i>
                         </div>
                         <div class="dropdown ms-auto">
                             <a href="#" data-bs-toggle="dropdown" class="btn btn-sm" aria-haspopup="true"
-                            aria-expanded="false">
+                               aria-expanded="false">
                                 <i class="bi bi-three-dots"></i>
                             </a>
                             <div class="dropdown-menu dropdown-menu-end">
-                                <a href="index.php?act=list_order" class="dropdown-item">Danh Sách Sản Phẩm</a>
+                                <a href="#" class="dropdown-item">Xem chi tiết</a>
                             </div>
                         </div>
                     </div>
-                    <h4 class="mb-3">Sản Phẩm</h4>
+                    <h4 class="mb-3">Doanh thu</h4>
                     <div class="d-flex mb-3">
-                        <div class="display-7"><?php if(is_array($load_product))
-                                                {extract($load_product);}
-                                                echo COUNT($load_product);?>
-                        </div>
+                        <div class="display-7"><?= number_format($revenue, 0, ',', '.') . ' đ'?></div>
+                        
                     </div>
+                    
                 </div>
             </div>
         </div>
-        <div class="col-lg-4 ">
+
+        <div class="col-lg-4 col-md-12">
             <div class="card h-100">
                 <div class="card-body">
-                    <div class="d-flex mb-3">
-                        <div class="display-7">
-                        <i class="bi bi-person-circle"></i>
-                        </div>
-                        <div class="dropdown ms-auto">
-                            <a href="#" data-bs-toggle="dropdown" class="btn btn-sm" aria-haspopup="true"
-                            aria-expanded="false">
-                                <i class="bi bi-three-dots"></i>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-end">
-                                <a href="index.php?act=list_order" class="dropdown-item">Danh Sách Tài Khoản</a>
-                            </div>
-                        </div>
-                    </div>
-                    <h4 class="mb-3">Tài Khoản</h4>
-                    <div class="d-flex mb-3">
-                        <div class="display-7"> <?php if(is_array($list_account))
-                                                {extract($list_account);}
-                                                echo COUNT($list_account);?>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-4">
-            <div class="card h-100">
-                <div class="card-body">
-                    <div class="d-flex mb-3">
-                        <div class="display-7">
-                        <i class="bi bi-receipt"></i>
-                        </div>
-                        <div class="dropdown ms-auto">
-                            <a href="#" data-bs-toggle="dropdown" class="btn btn-sm" aria-haspopup="true"
-                            aria-expanded="false">
-                                <i class="bi bi-three-dots"></i>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-end">
-                                <a href="index.php?act=list_order" class="dropdown-item">Danh Sách Danh Mục</a>
-                            </div>
-                        </div>
-                    </div>
-                    <h4 class="mb-3">Categoey</h4>
-                    <div class="d-flex mb-3">
-                        <div class="display-7"><?php if(is_array($load_category))
-                                                {extract($load_category);}
-                                                echo COUNT($load_category);?>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        </div>
-        <div class="canvas" style="width:40%; height:410px;border-radius:10px;margin-left:30px;"><canvas  id="myChart" ></canvas></div>
-</div>
-<div class="view">
-    <div class="myChartone" id="myChartone"></div>
-</div>
-<div class="product_day">
-    <div class="list_view">
-            <div class="d-flex mb-4">
-                <h6 class="card-title mb-0">Trung Bình Đánh Giá</h6>
+                <div class="d-flex mb-4">
+                <h6 class="card-title mb-0">Đánh giá trung bình</h6>
                 <div class="dropdown ms-auto">
                     <a href="#" data-bs-toggle="dropdown" class="btn btn-sm" aria-haspopup="true" aria-expanded="false">
                         <i class="bi bi-three-dots"></i>
@@ -153,70 +95,227 @@
                             </span>
                 </div>
             </div>
-        </div>
-    <div class="list_product_day">
-        <div class="table-responsive">
-            <h5>Sản Phẩm Được Thêm Vào Hôm Nay</h5>
-                    <table class="table table-custom table-lg mb-0" id="products">
-                        <thead>
-                        <tr>
-                            <!-- <th>
-                                <input class="form-check-input select-all" type="checkbox"
-                                    data-select-all-target="#products" id="defaultCheck1">
-                            </th> -->
-                            <th>ID</th>
-                            <th>Ảnh</th>
-                            <th>Tên sản phẩm</th>
-                            <th>Trạng thái</th>
-                            <th>Giá</th>
-                            <th class="text-end">Hành động</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                            
-                            <?php
-                            foreach($product_day as $product){
-                                extract($product);
-                                $product_image=load_image($product_id);
-                                extract($product_image);
-                                $edit_product="index.php?act=edit_product&product_id=".$product_id;
-                                $show_detail="index.php?act=product_detail&product_id=".$product_id;
-                                $image="../upload/".$image_name;    
-                                ?>
-                                        <tr>
-                                            <td>
-                                                <a href="#">#<?=$product_id?></a>
-                                            </td>
-                                            <td>
-                                                <a href="#">
-                                                    <img src="<?=$image?>" class="rounded" width="40" alt="">
-                                                </a>
-                                            </td>
-                                            <td><?=$product_name;?></td>
-                                            <?php if($status==1){?>
-                                            <td>
-                                            <span class="text-success">Hoạt động</span>
-                                            </td>
-                                            <?php } ?>
-                                            <?php if($status== 0){?>
-                                                <td style="color:red;"><span>Ẩn</span></td>
-                                            <?php } ?>
-                                                <td><?=$product_price?></td>
-                                                <td class="text-end"><a href="<?=$edit_product?>"><button>Sửa</button></a>
-                                                <a href="<?= $show_detail?>"><button>Biến thể</button></a>
-                                                </td>
-                                                </tr>
-                            <?php
-                            }
-                            ?>
-                        </tbody>
-                    </table>
-                
-                        
-                        
                     
-                    
+                </div>
+            </div>
         </div>
+
+
+    </div>
+    <div class="row mt-3">
+        <div class="col-lg-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <div class="d-flex mb-3">
+                        <div class="display-7">
+                        <span class="nav-link-icon">
+                       <img src="../upload/sport-shoe.png" alt="" style="width:50px ; height: 50px;">
+                    </span>
+                        </div>
+                        <div class="dropdown ms-auto">
+                            <a href="#" data-bs-toggle="dropdown" class="btn btn-sm" aria-haspopup="true"
+                            aria-expanded="false">
+                                <i class="bi bi-three-dots"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end">
+                                <a href="index.php?act=list_order" class="dropdown-item">Danh Sách Sản Phẩm</a>
+                            </div>
+                        </div>
+                    </div>
+                    <h4 class="mb-3">Sản Phẩm</h4>
+                    <div class="d-flex mb-3">
+                        <div class="display-7"><?php if(is_array($load_product))
+                                                {extract($load_product);}
+                                                echo COUNT($load_product);?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <div class="d-flex mb-3">
+                        <div class="display-7">
+                        <i class="bi bi-receipt"></i>
+                        </div>
+                        <div class="dropdown ms-auto">
+                            <a href="#" data-bs-toggle="dropdown" class="btn btn-sm" aria-haspopup="true"
+                            aria-expanded="false">
+                                <i class="bi bi-three-dots"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end">
+                                <a href="index.php?act=list_order" class="dropdown-item">Danh Sách Danh Mục</a>
+                            </div>
+                        </div>
+                    </div>
+                    <h4 class="mb-3">Danh mục sản phẩm</h4>
+                    <div class="d-flex mb-3">
+                        <div class="display-7"><?php if(is_array($load_category))
+                                                {extract($load_category);}
+                                                echo COUNT($load_category);?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <div class="d-flex mb-3">
+                        <div class="display-7">
+                        <i class="bi bi-person-square"></i>
+                        </div>
+                        <div class="dropdown ms-auto">
+                            <a href="#" data-bs-toggle="dropdown" class="btn btn-sm" aria-haspopup="true"
+                            aria-expanded="false">
+                                <i class="bi bi-three-dots"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end">
+                                <a href="index.php?act=list_account" class="dropdown-item">Danh sách</a>
+                            </div>
+                        </div>
+                    </div>
+                    <h4 class="mb-3">Khách hàng</h4>
+                    <div class="d-flex mb-3">
+                        <div class="display-7"><?php if(is_array($load_tk))
+                                                {extract($load_tk);}
+                                                echo COUNT($load_tk);?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+    </div>
+        <!-- <div class="canvas" style="width:40%; height:410px;border-radius:10px;margin-left:30px;"><canvas  id="myChart" ></canvas></div> -->
+
+
+<!-- <div class="view">
+    <div class="myChartone" id="myChartone"></div>
+</div> -->
+<div class="row mt-4">
+<div class="col-lg-5 col-md-12">
+            <div class="card widget">
+                <div class="card-header">
+                    <h5 class="card-title">Tổng quan</h5>
+                </div>
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <div class="card border-0">
+                            <div class="card-body text-center">
+                                <div class="display-5">
+                                    <i class="bi bi-truck text-secondary"></i>
+                                </div>
+                                <h5 class="my-3">Đang vận chuyển</h5>
+                                <div class="text-muted"><?= $shiped ?> đơn</div>
+                                <!-- <div class="progress mt-3" style="height: 5px">
+                                    <div class="progress-bar bg-secondary" role="progressbar" style="width: 25%"
+                                         aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card border-0">
+                            <div class="card-body text-center">
+                                <div class="display-5">
+                                    <i class="bi bi-receipt text-warning"></i>
+                                </div>
+                                <h5 class="my-3">Giao thành công</h5>
+                                <div class="text-muted"><?= $delivered ?> đơn</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card border-0">
+                            <div class="card-body text-center">
+                                <div class="display-5">
+                                    <i class="bi bi-bar-chart text-info"></i>
+                                </div>
+                                <h5 class="my-3">Đơn hủy</h5>
+                                <div class="text-muted"><?= $canceled ?> đơn</div>
+                                <!-- <div class="progress mt-3" style="height: 5px">
+                                    <div class="progress-bar bg-info" role="progressbar" style="width: 80%"
+                                         aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card border-0">
+                            <div class="card-body text-center">
+                                <div class="display-5">
+                                    <i class="bi bi-cursor text-success"></i>
+                                </div>
+                                <h5 class="my-3">Đang xử lý</h5>
+                                <div class="text-muted"><?= $pending ?> đơn</div>
+                                <!-- <div class="progress mt-3" style="height: 5px">
+                                    <div class="progress-bar bg-success" role="progressbar" style="width: 55%"
+                                         aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-7 col-md-12">
+            <div class="card widget">
+                <div class="card-header d-flex align-items-center justify-content-between">
+                    <h5 class="card-title">Sản phẩm bán chạy</h5>
+                </div>
+                <div class="card-body">
+                    <p class="text-muted">Top sản phẩm bán chạy</p>
+                    <div class="table-responsive">
+                        <table class="table table-custom mb-0" id="recent-products">
+                            <thead>    
+                            <tr>
+                                <th>
+                                    Top
+                                </th>
+                                <th>
+                                    ID
+                                </th>
+                                <th>Ảnh</th>
+                                <th>Tên</th>
+                                <th>Số lượng</th>
+                                <th>Doanh thu</th>
+                                
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <?php $i = 0; foreach ($selling_pro as $pro) { $i++; ?>
+                            <tr>
+                                <td><?= $i ?></td>
+                                <td>
+                                    <?= '#'.$pro['product_id'] ?>
+                                </td>
+                                <td>
+                                    <a href="#">
+                                        <img src="../upload/<?= $pro['img_name'] ?>" class="rounded" width="40"
+                                             alt="...">
+                                    </a>
+                                </td>
+                                <td><?= $pro['product_name'] ?></td>
+                                <td>
+                                    <?= $pro['total_sold'] ?>
+                                </td>
+                                <td><?= number_format($pro['total_revenue'], 0, ',', '.') . ' đ' ?></td>
+                            </tr>
+                            <?php } ?>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     </div>
 </div>
     <!-- <div id="piechart">
@@ -358,20 +457,8 @@ chart.draw(data, options);
     
 </div>
 <style>
-    .content{
-        width: 100%;
-        display: flex;
-    }
-    .row{
-        width: 60%;
-        display: flex;
-        flex-wrap: wrap;
-    }
-    .col-lg-4{
-        width: 50%;
-        height: 200px;
-        margin-bottom: 10px;
-    }
+
+    
     .canvas{
         width: 40%;
         background-color: #fff;
@@ -385,9 +472,9 @@ chart.draw(data, options);
     }
     
 
-    .col-md-8{
+    /* .col-md-8{
         width: 98%;
-    }
+    } */
     /* .view{
         width: 100%;
         display:flex;
@@ -421,7 +508,7 @@ chart.draw(data, options);
         border-radius: 20px;
     }
     .list_product_day{
-        background-color: #CCFFFF;
+        /* background-color: #CCFFFF; */
         width: 68%;
         margin-left: 10px;
         border-radius: 20px;

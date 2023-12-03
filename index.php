@@ -57,7 +57,7 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
 
             $num_pro = get_num_pro($iddm, $search_info);
             $total_row = $num_pro;
-            $num_per_page = 3;
+            $num_per_page = 9;
 
             $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 
@@ -209,15 +209,12 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
             break;
 
         case "checkout":
-            if (isset($_POST['selectedProductIds'])) {
-                $selectedProduct = $_POST['selectedProductIds'];
-
-                $listPro = get_items_from_cart($selectedProduct, $user_cart);
+            if (isset($_POST['btn-cart'])) {
+                $listPro = get_items_from_cart($user_cart);
 
                 $subtotal = 0;
 
                 $_SESSION['buy_product'] = $listPro;
-                $_SESSION['buy'] = $selectedProduct;
 
                 foreach ($listPro as $value) {
                     $subtotal += $value['subtotal'];
@@ -274,7 +271,7 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                         update_quantity_pro($pd, $qt);
                     }
 
-                    update_cart($_SESSION['buy'], $user_id);
+                    update_cart($user_cart);
 
                     if ($voucher) {
                         update_voucher($code);
@@ -299,7 +296,6 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
             if (isset($_GET['id'])) {
                 $id = $_GET['id'];
                 unset($_SESSION['buy_product']);
-                unset($_SESSION['buy']);
                 unset($_SESSION['subtotal']);
             }
             include "view/cart/confirm.php";
@@ -348,10 +344,13 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
 
                 $check = true;
 
-                if (!in_array(strtolower($type), $file_type)) {
-                    $errors['type'] = 'Ảnh không đúng định dạng';
-                    $check = false;
+                if($img != ""){
+                    if (!in_array(strtolower($type), $file_type)) {
+                        $errors['type'] = 'Ảnh không đúng định dạng';
+                        $check = false;
+                    }
                 }
+                
 
                 if ($img != "" && $check == true) {
                     $target_dir = "upload/";
@@ -545,7 +544,7 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                         $status = "Chưa thanh toán";
                         $color = "bg-warning";
                         $btn = "<a class='btn btn-gray border-dark m-3 cancelOrder' id='cancelOrder' href='index.php?act=cancel_order&id=$order_id'>Hủy đơn hàng</a>";
-                        $btn1 = "<a class='btn btn-gray border-dark m-3' id='cancelOrder' href='index.php?act=pay&id=$order_id'>Thanh toán</a>";
+                        $btn1 = "<a class='btn btn-warning text-white m-3' id='cancelOrder' href='index.php?act=pay&id=$order_id'>Thanh toán</a>";
                         break;
                     case 'pending':
                         $status = "Chờ duyệt";
@@ -592,7 +591,7 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                             <span class='badge $color'>$status</span>
                         </div>
                         <div class='d-flex gap-4 align-items-center' data-bs-toggle='collapse' aria-expanded='false' data-bs-target='#myOrders$order_id' role='button'>
-                        <div><strong>Ngày đặt</strong>: {$v['date_add']}</div>
+                        <div><strong>Ngày đặt</strong>: {$v['created_at']}</div>
                         <div>{$v['total_items']} món</div>
                         <div><strong>Tổng tiền</strong>: $total </div>
                         <div class='bi bi-chevron-down ms-auto'></div>
@@ -641,7 +640,7 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                 <div class='text-end'>
                     $btn
                     $btn1
-                    <a class='btn btn-success m-3' href='index.php?act=order_detail&id=$order_id'>Xem chi tiết</a>
+                    <a class='btn btn-primary m-3' href='index.php?act=order_detail&id=$order_id'>Xem chi tiết</a>
                 </div>
             </div></div>
             </div>";

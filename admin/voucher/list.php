@@ -1,4 +1,4 @@
-<div class="col">
+<div class="content">
     <div class="filter">
     <div class="tel">
         <div class="card mb-4">
@@ -32,7 +32,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="d-md-flex gap-4 align-items-center">
-                            <div class="d-none d-md-flex"> <H3>Voucher giảm giá</H3> </div>
+                            <div class="d-none d-md-flex"> <H3>Mã giảm giá</H3> </div>
                         </div>
                     </div>
                 </div>

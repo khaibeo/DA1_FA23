@@ -14,9 +14,7 @@
 			<table class="table table-striped cart-list">
 				<thead>
 					<tr>
-						<th>
-							
-						</th>
+						
 						<th>
 							Sản phẩm
 						</th>
@@ -41,9 +39,7 @@
 						<?php 
 						foreach ($cart_info as $cart) : ?>
 							<tr>
-								<td>
-									<input class="form-check-input p-2" type="checkbox" value="<?= $cart['cart_detail_id'] ?>" id="">
-								</td>
+								
 								<td>
 									<div class="thumb_cart">
 										<img src="upload/<?= $cart['img_name'] ?>" data-src="upload/<?= $cart['img_name'] ?>" class="lazy" alt="Image">
@@ -76,7 +72,7 @@
 
 			<!-- <div class="row add_top_30 flex-sm-row-reverse cart_actions">
 				<div class="col-sm-4 text-end">
-					<button type="button" class="btn_1 gray">Update Cart</button>
+					<button type="button" id="selectAll" class="btn btn-primary">Chọn tất cả</button>
 				</div>
 			</div> -->
 			<!-- /cart_actions -->
@@ -94,10 +90,8 @@
 							</li>
 						</ul>
 						<form action="index.php?act=checkout" id="orderForm" method="post">
-							<input type="hidden" name="selectedProductIds" id="selectedProductIds" value="">
-							<button type="button" class="btn_1 full-width cart" id="orderButton">Thanh toán</button>
+							<input type="submit" name="btn-cart" class="btn_1 full-width cart" id="orderButton" value="Thanh toán"></input>
 						</form>
-						
 					</div>
 				</div>
 			</div>

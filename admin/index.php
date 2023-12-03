@@ -546,6 +546,7 @@ if(isset($_GET['act'])){
             $status=$_POST['status'];
             $order_id=$_POST['order_id'];
             order_update($order_id, $status);
+            header("location: index.php?act=order_detail&order_id=$order_id");
         }
         if(isset($_POST['keyword'])&&($_POST['keyword'])){
             $keyword=$_POST['search_order'];
@@ -575,6 +576,13 @@ if(isset($_GET['act'])){
         $product_day=product_day($date);
         $list_star=load_star();
         $load_tk=loadall_thongke();
+        $selling_pro = get_selling_products();
+        $revenue = get_revenue();
+        $pending = get_pending_status();
+        $delivered = get_order_status("delivered");
+        $shiped= get_order_status("shiped");
+        $canceled= get_order_status("canceled");
+
         include('../admin/thongke/view.php');
         break;
     

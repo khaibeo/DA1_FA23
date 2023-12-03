@@ -22,7 +22,7 @@ function load_page_order($keyword,$start,$limit)
     if($keyword!=""){
         $sql.= " AND tel LIKE '%$keyword%'";
     }
-    $sql.= " order by `order`.`order_id` asc limit $start,$limit ";
+    $sql.= " order by `order`.`created_at` desc limit $start,$limit ";
     $pro=pdo_query($sql);
     return $pro;
 }

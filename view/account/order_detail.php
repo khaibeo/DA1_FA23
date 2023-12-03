@@ -21,7 +21,7 @@
                                                 <span class="badge <?= $color ?>"><?= $status ?></span>
                                             </div>
                                             <div class="row mb-3 g-4">
-                                                <div class=""><strong>Thời gian đặt:</strong> <?= $order_detail['date_add'] ?> </div>
+                                                <div class=""><strong>Thời gian đặt:</strong> <?= $order_detail['created_at'] ?> </div>
                                                 <div class=""><strong>Phương thức thanh toán:</strong> <?= $order_detail['payment_method'] ?></div>
                                                 <div class=""><strong>Ghi chú:</strong> <?= $order_detail['note'] ?></div>
                                             </div>
@@ -67,7 +67,7 @@
                                         </div>
                                     </div>
                                     <div class="card widget">
-                                        <h5 class="card-header bg-success text-white">Sản phẩm đã mua</h5>
+                                        <h5 class="card-header bg-primary text-white">Sản phẩm đã mua</h5>
                                         <div class="card-body">
                                             <div class="table-responsive">
                                                 <table class="table table-custom mb-0">
@@ -137,7 +137,7 @@
                                             </div> -->
                                             <div class="mb-3">
                                                 <?php if($order_detail['status'] == "unpaid"){ ?>
-                                                    <a href="index.php?act=cancel_order&id=<?= $order_id ?>" class="btn btn-outline-primary cancelOrder">Thanh toán</a>
+                                                    <a href="index.php?act=pay&id=<?= $order_id ?>" class="btn btn-outline-primary">Thanh toán</a>
                                                 <?php } ?>
                                             </div>
                                             

@@ -11,4 +11,72 @@ function loadall_thongke(){
     return $listtk;
 }
 
+function get_selling_products()
+{
+    $sql = "SELECT 
+    sp.*,
+    MIN(img.image_name) AS img_name,
+    ROUND(AVG(evaluation.number_stars), 0) AS rating,
+    total_sold, total_revenue
+FROM 
+    (
+        SELECT 
+    sp.product_id,
+    COALESCE(SUM(od.quantity), 0) AS total_sold,
+    COALESCE(SUM(od.quantity * od.price), 0) AS total_revenue
+FROM 
+    products sp 
+    JOIN products_detail pd ON pd.product_id = sp.product_id 
+    JOIN order_detail od ON od.product_detail_id = pd.product_detail_id 
+    LEFT JOIN `order` o ON od.order_id = o.order_id
+    WHERE o.status = 'delivered'
+GROUP BY 
+    sp.product_id 
+ORDER BY 
+    total_sold DESC 
+LIMIT 0, 5
+    ) sold_products
+JOIN 
+    products sp ON sold_products.product_id = sp.product_id
+JOIN 
+    products_image img ON img.product_id = sp.product_id
+LEFT JOIN 
+    evaluation ON sp.product_id = evaluation.product_id WHERE sp.status = 1  
+GROUP BY 
+    sp.product_id order BY total_sold desc;";
+
+    return pdo_query($sql);
+}
+
+function get_revenue(){
+    $sql = "SELECT sum(total) as total_revenue FROM `order` WHERE `status` = 'delivered';";
+    $result = pdo_query_one($sql);
+    return $result['total_revenue'];
+}
+
+function get_order_status($status){
+    $sql = "SELECT 
+    status,
+    COUNT(*) AS total_count
+FROM 
+    `order`
+    WHERE `status` = '$status' 
+GROUP BY 
+    status;
+";
+    $result = pdo_query_one($sql);
+    return $result['total_count'];
+}
+
+function get_pending_status(){
+    $sql = "SELECT 
+    SUM(CASE WHEN `status` = 'pending' OR `status` = 'processing' THEN 1 ELSE 0 END) AS total_pending
+FROM 
+    `order`;";
+    $result = pdo_query_one($sql);
+    return $result['total_pending'];
+}
+
+
+
 ?>

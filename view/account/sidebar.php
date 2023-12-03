@@ -18,20 +18,20 @@ if ($user['avatar'] != '') {
         </div>
     </div>
     <div class="card sticky-top mb-4 mb-md-0">
-        <div class="card-body">
+        <div class="card-body bg-primary text-white">
             <ul class="nav nav-pills flex-column gap-2" id="myTab" role="tablist">
                 <li class="nav-item mb-1">
-                    <a class="nav-link" id="profile-tab" href="index.php?act=profile" aria-controls="profile" aria-selected="true">
+                    <a class="nav-link text-white" id="profile-tab" href="index.php?act=profile" aria-controls="profile" aria-selected="true">
                         <i class="bi bi-person me-2"></i> Thông tin tài khoản
                     </a>
                 </li>
-                <li class="nav-item mb-1" role="presentation">
-                    <a class="nav-link" id="password-tab" href="index.php?act=repass" aria-controls="password" aria-selected="false">
+                <li class="nav-item mb-1 " role="presentation">
+                    <a class="nav-link text-white" id="password-tab" href="index.php?act=repass" aria-controls="password" aria-selected="false">
                         <i class="bi bi-lock me-2"></i> Đổi mật khẩu
                     </a>
                 </li>
-                <li class="nav-item mb-1" role="presentation">
-                    <a class="nav-link" id="password-tab" href="index.php?act=myorder" aria-controls="password" aria-selected="false">
+                <li class="nav-item mb-1 " role="presentation">
+                    <a class="nav-link text-white" id="password-tab" href="index.php?act=myorder" aria-controls="password" aria-selected="false">
                         <i class="bi bi-lock me-2"></i> Đơn hàng
                     </a>
                 </li>

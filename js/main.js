@@ -478,31 +478,6 @@
 			$('#other_addr_c').fadeOut('fast');
 	});
 
-	$('#orderButton').click(function() {
-		var selectedProductIds = [];
-  
-		$('.table input[type="checkbox"]').each(function() {
-		  if ($(this).prop('checked')) {
-			// Lấy id của sản phẩm từ id của checkbox
-			var productId = $(this).val();
-			selectedProductIds.push(productId);
-		  }
-		});
-
-		if (selectedProductIds.length === 0) {
-			$('.table input[type="checkbox"]').each(function() {
-			  var productId = $(this).val();
-			  selectedProductIds.push(productId);
-			});
-		  }
-  
-		// Gán giá trị danh sách id sản phẩm vào trường ẩn
-		$('#selectedProductIds').val(selectedProductIds.join(','));
-  
-		// Submit form
-		$('#orderForm').submit();
-	  });
-
 	// hủy đơn
 	$(".cancelOrder").on("click", function() {
 		// Sử dụng hàm confirm để hiển thị hộp thoại xác nhận
@@ -546,6 +521,10 @@
             }
         });
     });
+
+	$("#selectAll").click(function() {
+		$(".checkbox").prop("checked", true);
+	  });
 
 	// Image popups
 	$(".magnific-gallery").each(function () {
