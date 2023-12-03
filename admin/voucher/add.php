@@ -13,7 +13,7 @@
                 <option value="0">Phần Trăm</option>
             </select>
             <h5>Số Lượng Giảm</h5> 
-            <input class="form-control" type="number" placeholder="số lượng giảm" aria-label="default input example"  name="value"  value="<?php if(isset($value)){echo $value;}?>">
+            <input class="form-control" type="number" placeholder="số lượng giảm" aria-label="default input example"  name="value"  value="<?php if(isset($value)){echo $value;}?>" min="1">
             <div class="warring"> <p><?php if(isset($warring['value'])){echo $warring['value'];}?></p></div>
         
     </div>
@@ -29,7 +29,7 @@
             <div class="warring"> <p><?php if(isset($warring['date_end'])){echo $warring['date_end'];}?></p></div>
 
             <h5>Số Lượng Phát Hành</h5> 
-            <input class="form-control" type="number" placeholder="Số lượng phát hàng" aria-label="default input example"  name="quantity"  value="<?php if(isset($quantity)){echo $quantity ;}?>">
+            <input class="form-control" type="number" placeholder="Số lượng phát hàng" aria-label="default input example"  name="quantity"  value="<?php if(isset($quantity)){echo $quantity ;}?>" min='1'>
             <div class="warring"><p><?php if(isset($warring['quantity'])){echo $warring['quantity'];}?></p></div>
        
             <button type="submit" class="btn btn-primary" name="btn_add">THÊM</button>
@@ -37,13 +37,14 @@
     </div>
         
         </form>
-        </div>
+    </div>
     <div class="warring" style="color:red;">
-    <?php 
+    <h1><?php 
         if(isset($warring['all'])){
-            echo ''.$warring['all'].'';
+            echo $warring['all'];
         }
         ?>
+        </h1>
     </div>
 
 <style>
@@ -54,6 +55,9 @@
     .content_item{
         width: 45%;
         margin: 20px;
+    }
+    p{
+        color:black
     }
     a{
         color:#FFF;

@@ -8,6 +8,9 @@
         <button type="button" class="btn btn-primary" ><a href="index.php?act=list_category">Danh Sách Danh Mục</a></button>
     </form>
 </div>
+<?php if(isset($warring['all'])){
+    echo $warring['all'];
+}?>
 <style>
     .warring{
         color:red;

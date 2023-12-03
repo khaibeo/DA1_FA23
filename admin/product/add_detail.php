@@ -14,8 +14,8 @@
 
         <input type="hidden" name="idsp" value="<?= $id ?>">
         <button type="button" class="btn btn-primary" id="add-variant">Thêm biến thể</button>
-
         <button class="btn btn-success">Thêm</button>
+        <button class="btn btn-success"><a href="index.php?act=add_detail">Danh sách biến thể</a></button>
     </form>
 </div>
 
@@ -26,3 +26,8 @@
         variantsContainer.appendChild(newVariant);
     });
 </script>
+<style>
+    a{
+        color:#fff;
+    }
+</style>

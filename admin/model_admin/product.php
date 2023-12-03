@@ -49,13 +49,13 @@ function insert_product($category_id,$product_name, $product_price, $discounted_
 }
 
 function update_image($imgae_id,$product_id,$file_name){
-    if($file_name!=""){
-
+    if($file_name== ""){
+        $sql ="UPDATE `products_image` SET `product_id` = '{$product_id}' WHERE `products_image`.`image_id` = {$imgae_id}";
     }
     else{
-    $sql="UPDATE `products_image` SET `product_id` = '{$product_id}', `image_name` = '{$file_name}' WHERE `products_image`.`image_id` = {$imgae_id}";
+    $sql ="UPDATE `products_image` SET `product_id` = '{$product_id}', `image_name` = '{$file_name}' WHERE `products_image`.`image_id` = {$imgae_id}";
     }
-    pdo_execute($sql);
+    return pdo_execute($sql);
 }
 function update_product($product_id,$category_id,$product_name,$product_price,$discounted_price,$product_describe,$product_status)
 {   

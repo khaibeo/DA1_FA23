@@ -155,7 +155,8 @@
                                         <?php if($status== 0){?>
                                             <td style="color:red;"><span>Ẩn</span></td>
                                         <?php } ?>
-                                            <td><?=$product_price?></td>
+                                            <td><h6>Khuyến mãi: <?=number_format($discounted_price,0,'.','.').'đ' ; ?></h6><br>
+                                                <del><?=number_format($product_price,0,'.','.').'đ' ; ?></del></td>
                                             <td><?=$date_add?></td>
                                             <td class="text-end"><a href="<?=$edit_product?>"><button>Sửa</button></a>
                                             <a href="<?=$delete_product?>"><button>Xóa</button></a>

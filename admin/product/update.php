@@ -2,6 +2,7 @@
 if(is_array($product)){
     extract($product);
     }
+    $show_detail="index.php?act=product_detail&product_id=".$product_id;
     $product_image=load_image($product_id);
     extract($product_image);
 ?>
@@ -11,7 +12,7 @@ if(is_array($product)){
         <div class="update">
             <div class="information">
                 <img src="../upload/<?php echo $image_name?>" alt=""> <br>
-                <input class="form-control" type="file" name="product_image" id="product_image" value="<?php echo $image_name?>">
+                <input class="form-control" type="file" name="product_image" id="product_image" >
                 <h5>Mô Tả</h5>
                 <div class="form-floating">
                     <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea" name="product_describe" id="product_describe" style="height: 230px" ><?php echo $product_describe?></textarea>
@@ -53,8 +54,9 @@ if(is_array($product)){
        
 
                 <input type="hidden" name="product_id" value="<?php echo $product_id?>">
-                <input type="hidden" name="imgae_id" value="<?php echo $image_id?>">
+                <input type="text" name="imgae_id" value="<?php echo $image_id?>">
                 <td><input type="submit" class="btn btn-primary" name="btn_update" value="Lưu thay đổi"></td>
+                <td><button class="btn btn-primary"><a href="<?=$show_detail?>">Sửa biến thể</a></button></td>
                 <td><a href="index.php?act=list_product"><button class="btn btn-primary">Danh Sách Sản Phẩm</button></a></td>
     </form>
 </div>
@@ -75,5 +77,8 @@ if(is_array($product)){
     width: 390px;
     height: 270px;
     border-radius:10px;
+}
+a{
+    color:#fff;
 }
     </style>

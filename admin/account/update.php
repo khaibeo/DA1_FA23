@@ -9,16 +9,12 @@
         <div class="information">
             <div class="information_item">
                 <img src="../upload/<?=$avatar?>" alt=""> <br>
-                <input class="form-control" type="file"  name="avatar" value="<?=$avatar?>">
-                
-
-               
-                
+                <input class="form-control" type="file"  name="avatar" ><?=$avatar?>
             </div>
 
             <div class="information_item">
                 <h5>Tên đăng nhập</h5> 
-                <input class="form-control" type="text"  aria-label="default input example"  name="user_name"  value="<?=$username?>" readonly>
+                <input class="form-control" type="text"  aria-label="default input example"  name="username"  value="<?=$username?>" readonly>
 
                 <h5>Họ và tên</h5> 
                 <input class="form-control" type="text"  aria-label="default input example"  name="fullname"  value="<?=$fullname?>">
@@ -38,7 +34,7 @@
                     <option value="customer" <?php if($role == "customer") echo "selected"?> >Customer</option>
                 </select>  <br>
                 <input type="hidden" name="user_id" value="<?php echo $user_id?>">
-                <button type="submit" class="btn btn-primary" name="btn_update">Lưu thay đổi</button>
+                <input type="submit" class="btn btn-primary" name="btn_update"></button>
                
                 
             </div>

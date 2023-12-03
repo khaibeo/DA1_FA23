@@ -10,5 +10,20 @@ function loadall_thongke(){
     $listtk=pdo_query($sql);
     return $listtk;
 }
-
-?>
+function all_doanhthu()
+{
+    $sql="SELECT SUM(`total`) AS `total` FROM `order` WHERE `status`='delivered' order by total  ";
+    $all_doanhthu=pdo_query_one($sql);
+    return $all_doanhthu;
+}
+function month_doanhthu()
+{
+    $month=date('m');
+    $years=date('Y');
+    $sql="SELECT DATE(`created_at`) AS `ngay` , SUM(`total`) AS `total_month`  FROM `order` 
+    WHERE MONTH(`created_at`)='$month' AND YEAR(`created_at`) = '$years' AND `status` = 'delivered' 
+    GROUP BY ngay ";
+    $moth_total=pdo_query($sql);
+    return $moth_total;
+}
+?> 

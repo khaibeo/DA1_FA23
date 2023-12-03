@@ -1,3 +1,60 @@
+<div class="col" >
+    <h1>Thống kê doanh thu</h1>
+    <hr>
+    <div class="doanhthu">
+            <div class="card h-100" style="width: 50%;">
+                <div class="card-body" >
+                    <div class="d-flex mb-3" style="display:flex ; justify-content: space-between;">
+                        <div class="display-7"><?php if(is_array($all_doanhthu))
+                                                {extract($all_doanhthu);}
+                                                // var_dump($all_doanhthu);
+                                                echo number_format($all_doanhthu['total'],0,'.','.').'<u>đ</u>';
+                                                ?>
+                        </div>
+                        <div class="display-7" >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-cash-coin" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M11 15a4 4 0 1 0 0-8 4 4 0 0 0 0 8m5-4a5 5 0 1 1-10 0 5 5 0 0 1 10 0"/>
+                            <path d="M9.438 11.944c.047.596.518 1.06 1.363 1.116v.44h.375v-.443c.875-.061 1.386-.529 1.386-1.207 0-.618-.39-.936-1.09-1.1l-.296-.07v-1.2c.376.043.614.248.671.532h.658c-.047-.575-.54-1.024-1.329-1.073V8.5h-.375v.45c-.747.073-1.255.522-1.255 1.158 0 .562.378.92 1.007 1.066l.248.061v1.272c-.384-.058-.639-.27-.696-.563h-.668zm1.36-1.354c-.369-.085-.569-.26-.569-.522 0-.294.216-.514.572-.578v1.1h-.003zm.432.746c.449.104.655.272.655.569 0 .339-.257.571-.709.614v-1.195l.054.012z"/>
+                            <path d="M1 0a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h4.083c.058-.344.145-.678.258-1H3a2 2 0 0 0-2-2V3a2 2 0 0 0 2-2h10a2 2 0 0 0 2 2v3.528c.38.34.717.728 1 1.154V1a1 1 0 0 0-1-1z"/>
+                            <path d="M9.998 5.083 10 5a2 2 0 1 0-3.132 1.65 5.982 5.982 0 0 1 3.13-1.567z"/>
+                        </svg>
+                            
+                        </div>
+                    </div>
+                    <div class="dropdown ms-auto">
+                            <h6 class="mb-3">Tổng Doanh Thu </h6>
+                        </div>
+                </div>
+            </div>
+            <div class="card h-100" style="width: 50%;">
+                <div class="card-body" >
+                    <div class="d-flex mb-3" style="display:flex ; justify-content: space-between;">
+                        <div class="display-7"><?php 
+                                                // var_dump($month_total);
+                                                foreach ( $month_total as $month){
+                                                // $month= &$month_total["total_month"];
+                                                extract($month);
+                                                echo number_format($month['total_month'],0,'.','.').'<u>đ</u>';
+                                                }
+                                               
+                                                ?>
+                        </div>
+                        <div class="display-7" >
+                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-cash-coin" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M11 15a4 4 0 1 0 0-8 4 4 0 0 0 0 8m5-4a5 5 0 1 1-10 0 5 5 0 0 1 10 0"/>
+                                <path d="M9.438 11.944c.047.596.518 1.06 1.363 1.116v.44h.375v-.443c.875-.061 1.386-.529 1.386-1.207 0-.618-.39-.936-1.09-1.1l-.296-.07v-1.2c.376.043.614.248.671.532h.658c-.047-.575-.54-1.024-1.329-1.073V8.5h-.375v.45c-.747.073-1.255.522-1.255 1.158 0 .562.378.92 1.007 1.066l.248.061v1.272c-.384-.058-.639-.27-.696-.563h-.668zm1.36-1.354c-.369-.085-.569-.26-.569-.522 0-.294.216-.514.572-.578v1.1h-.003zm.432.746c.449.104.655.272.655.569 0 .339-.257.571-.709.614v-1.195l.054.012z"/>
+                                <path d="M1 0a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h4.083c.058-.344.145-.678.258-1H3a2 2 0 0 0-2-2V3a2 2 0 0 0 2-2h10a2 2 0 0 0 2 2v3.528c.38.34.717.728 1 1.154V1a1 1 0 0 0-1-1z"/>
+                                <path d="M9.998 5.083 10 5a2 2 0 1 0-3.132 1.65 5.982 5.982 0 0 1 3.13-1.567z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="dropdown ms-auto">
+                            <h6 class="mb-3">Doanh Thu Tháng Này </h6>
+                        </div>
+                </div>
+            </div>
+        </div>
+        </div>
 <div class="content">
     <div class="row">
         <div class="col-lg-4 ">
@@ -101,7 +158,7 @@
                             </div>
                         </div>
                     </div>
-                    <h4 class="mb-3">Categoey</h4>
+                    <h4 class="mb-3">Danh Mục</h4>
                     <div class="d-flex mb-3">
                         <div class="display-7"><?php if(is_array($load_category))
                                                 {extract($load_category);}
@@ -113,7 +170,10 @@
         </div>
         </div>
         <div class="canvas" style="width:40%; height:410px;border-radius:10px;margin-left:30px;"><canvas  id="myChart" ></canvas></div>
+        
 </div>
+
+
 <div class="view">
     <div class="myChartone" id="myChartone"></div>
 </div>
@@ -201,9 +261,9 @@
                                             <?php if($status== 0){?>
                                                 <td style="color:red;"><span>Ẩn</span></td>
                                             <?php } ?>
-                                                <td><?=$product_price?></td>
-                                                <td class="text-end"><a href="<?=$edit_product?>"><button>Sửa</button></a>
-                                                <a href="<?= $show_detail?>"><button>Biến thể</button></a>
+                                                <td><?=number_format($product_price,0,'.','.'),'đ'?></td>
+                                                <td class="text-end"><a href="<?=$edit_product?>"><button class="btn btn-primary">Sửa</button></a>
+                                                <a href="<?= $show_detail?>"><button class="btn btn-primary">Biến thể</button ></a>
                                                 </td>
                                                 </tr>
                             <?php
@@ -330,7 +390,7 @@ const ctx = document.getElementById('myChart');
   new Chart(ctx,config);
 
 </script>
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<!-- <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script>
 google.charts.load('current',{packages:['corechart']});
 google.charts.setOnLoadCallback(drawChart);
@@ -338,23 +398,35 @@ google.charts.setOnLoadCallback(drawChart);
 function drawChart() {
 // Set Data
 const data = google.visualization.arrayToDataTable([
-  ['Price', 'Size'],
-  [50,7],[60,8],[70,8],[80,9],[90,9],
-  [100,9],[110,10],[120,11],
-  [130,14],[140,14],[150,15]
+  ['Tháng', 'Tiền'],
+  [<?php 
+    if(is_array($month_total)){
+        extract($month_total);
+    }
+    foreach($month_total as $month_total){
+    for($month=1;$month<=12;$month++){
+            echo "'".$month."',".$month_total['total_month']."";
+    }}
+    // for($i=1;$i<=12;$i++){
+    //     echo $i;
+    // }
+  ?>],
+//   [1,35],[2,150],[3,45],[4,64],[5,40],[6,68],
+//   [7,35],[8,50],[9,30],
+//   [10,30],[11,80],[12,100]
 ]);
 // Set Options
 const options = {
-  title: 'House Prices vs. Size',
-  hAxis: {title: 'Square Meters'},
-  vAxis: {title: 'Price in Millions'},
+  title: 'Thống kê doanh thu',
+  hAxis: {title: 'Tháng'},
+  vAxis: {title: 'Tiền (triệu)'},
   legend: 'none'
 };
 // Draw
 const chart = new google.visualization.LineChart(document.getElementById('myChartone'));
 chart.draw(data, options);
 }
-</script>
+</script> -->
     
 </div>
 <style>
@@ -364,8 +436,6 @@ chart.draw(data, options);
     }
     .row{
         width: 60%;
-        display: flex;
-        flex-wrap: wrap;
     }
     .col-lg-4{
         width: 50%;
@@ -426,5 +496,10 @@ chart.draw(data, options);
         margin-left: 10px;
         border-radius: 20px;
         padding: 10px;
+    }
+    .doanhthu{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
     }
 </style>

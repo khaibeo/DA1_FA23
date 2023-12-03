@@ -13,7 +13,7 @@ if(is_array($list_order)){
             <div class="order">
                 <label for="">Trạng thái Đơn hàng : </label>
                     <?php if($status== "processing"){?>
-                        <button type="button" class=" btn-success  ">Chờ xác nhận</button>
+                        <button type="button" class=" btn-success  ">Xác nhận thành công</button>
                         <input type="hidden" name="status" value="<?=$status?>">
                         <button type="submit" class="btn-dark" name="btn_update">Cập Nhật Đơn Hàng</button>
                     <?php } ?>
@@ -32,7 +32,7 @@ if(is_array($list_order)){
                     <?php } ?>
                 
                     <?php if($status=="pending"){?>
-                    <button type="button" class="btn-primary">Đặt hàng</button>
+                    <button type="button" class="btn-primary">Chờ xác nhận</button>
                     <input type="hidden" name="status" value="<?=$status?>">
             </div>
                 <div class="order">
@@ -75,12 +75,12 @@ if(is_array($list_order)){
                 <label for=""> <?=$product['product_name']?></label>
             </div>
             <div class="product_detail_item">
-                <label for="">Size : <?=$product_size?></label> 
+                <label for="">Size : <?=$product_size?></label> -
                 <label for="">Số lượng : <?=$quantity?></label>
             </div>
             <div class="product_detail_item">
                 <!-- <label for=""><h6>Giá khuyến mãi : <?=$discounted_price?></h6></label>  -->
-                <label for="">Giá : <?=$product_price?></label>
+                <label for="">Giá : <?=number_format($product_price,0,'.','.').'đ'?></label>
             </div>
         </div>
         <?php
@@ -93,7 +93,9 @@ if(is_array($list_order)){
             <label for=""><?=$note?></label>
         </div>
         <div class="all">
-            <h5>Tổng tiền :<?=$total?></h5>
+            <label for="">Tổng tiền: <?=number_format($total_price_pro,0,'.','.').'đ'?></label> <br>
+            <label for="">voucher: -<?=number_format($discounted,0,'.','.').'đ'?></label> <br>
+            <h5>Thành tiền: <?=number_format($total,0,'.','.').'đ'?></h5>
         </div>
     </div>
 </div>
@@ -121,7 +123,9 @@ if(is_array($list_order)){
         justify-content: space-between;
         border-bottom: solid 1px black;
         margin-top: 10px;
-        background-color:#C8E2B1 ;
+        padding: 10px;
+        border-radius: 10px;
+        background-color:#fff;
         /* border-radius: 5px; */
     }
     .product_detail_item{
