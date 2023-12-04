@@ -8,9 +8,9 @@
                     <div>Tìm Kiếm</div>
                     <div class="bi bi-chevron-down"></div>
                 </div>
-                <div class="collapse show mt-4" id="keywordsCollapseExample">
+                <div class="collapse show mt-4" id="keywordsCollapseExample" >
                     <form action="index.php?act=list_voucher" method="post">
-                        <div class="input-group">
+                        <div class="input" style="display:flex ;">
                             <input type="text" class="form" placeholder="mã giảm giá" name="search_voucher">
                             <input type="submit" name="keyword" value="search" class="keyword">
                             <!-- <button class="btn btn-outline-light" type="sumbit" name="keyword">

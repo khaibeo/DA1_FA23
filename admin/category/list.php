@@ -20,10 +20,11 @@
             </div>
             <style>
                 form{
+                    width: 100%;
                     display: flex;
                 }
                 form .form-control{
-                    width: 800px;
+                    width: 100%;
                 }
                 .btn {
                     margin-left: -58px;

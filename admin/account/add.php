@@ -43,20 +43,20 @@
                 <option value="admin" selected>Admin</option>
                 <option value="customer">Customer</option>
             </select> <br>
-        <input type="submit" value="Thêm" name="btn_add">
-        <a href="index.php?act=list_account">Danh Sách Tài Khoản</a>
+        <button type="submit" class="btn btn-primary" name="btn_add">THÊM</button>
+        <button type="button" class="btn btn-primary" ><a href="index.php?act=list_account">Danh Sách Tài Khoản</a></button>
     </div>
         
-        </form>
-    
-    <div class="warring" style="color:red;">
-    <?php 
+</div>
+<div class="warring" style="color:red;">
+   <h1> <?php 
         if(isset($warring['all'])){
-            echo ''.$warring['all'].'';
+            echo $warring['all'];
         }
         ?>
+        </h1>
     </div>
-</div>
+    </form>
 <style>
     .content{
         width: 100%;
@@ -65,5 +65,8 @@
     .content_item{
         width: 45%;
         margin: 20px;
+    }
+    a{
+        color:#fff;
     }
 </style>

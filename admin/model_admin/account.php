@@ -42,7 +42,7 @@ function load_page_account($keyword,$role,$start,$limit)
 }
 function update_account( $username, $fullname, $email,$tel, $address,$role, $file_name,$user_id)
 {
-    if($file_name !=" "){
+    if($file_name ==""){
         $sql="UPDATE `user` SET `username` = '$username',
         `fullname` = '$fullname', `email` = '$email',
         `tel` = '$tel', `address` = '$address', 

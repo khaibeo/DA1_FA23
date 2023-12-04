@@ -53,7 +53,12 @@ function load_product($order_id){
 }
 function order_update($order_id,$status)
 {
-    if($status=="pending")
+    if($status=="unpaid")
+    {
+        $status="pending";
+        $sql="UPDATE `order` SET `status`='$status' WHERE `order`.`order_id`='$order_id'";
+    }
+    else if($status=="pending")
     {
     $status="processing";
     $sql="UPDATE `order` SET `status`='$status' WHERE `order`.`order_id`='$order_id'";

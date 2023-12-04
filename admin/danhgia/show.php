@@ -14,8 +14,7 @@
                     <table class="table table-custom table-lg mb-0" id="products">
                         <thead>
                         <tr>
-                        <th>Sản phẩm</th>
-                        <th>Khách hàng</th>
+                        <th>Sản phẩm / Khách hàng</th>
                         <th>Số sao</th>
                         <th>Nội dung</th>
                         <th>Hành động</th>
@@ -31,10 +30,9 @@
                                     <tr>
                                         <td>
                                             ID: #<?=$product_id?> <br>
-                                            TÊN: <?=$product_name?>
+                                            TÊN: <?=$product_name?><br>
 
-                                        </td>
-                                        <td>ID: #<?=$user_id?> <br>
+                                            ID: #<?=$user_id?> <br>
                                             TÊN: <?=$fullname?>
                                         </td>
                                         <td><?php if(is_array($list_star))

@@ -95,7 +95,7 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div>_
 		<!-- /box_cart -->
 	<?php } else { ?>
 		<div style="height: 500px;" class="d-flex justify-content-center align-items-center text-center"><p>Không có sản phẩm trong giỏ hàng</p></div>

@@ -115,14 +115,15 @@
                                         <td><?=$tel?></td>
                                         <td><?= number_format($total, 0, ',', '.') . ' đ' ?></td>
                                         <td><?=$created_at?></td>
-                                        <?php if($status=="pending"){?>
-                                           <td><button type="button" class="btn-primary">Chờ xác nhận</button></td>
-                                           <?php } ?>
                                            <?php if($status=="unpaid"){?>
                                            <td><button type="button" class="btn-primary">Chưa thanh toán</button></td>
                                            <?php } ?>
+                                           <?php if($status=="pending"){?>
+                                           <td><button type="button" class="btn-primary">Chờ xác nhận</button></td>
+                                           <?php } ?>
                                         <?php if($status== "processing"){?>
                                             <td ><button type="button" class=" btn-success ">Đã xác nhận</button></td>
+
                                         <?php } ?>
                                         <?php if($status== "canceled"){?>
                                             <td ><button type="button" class=" btn-danger ">Đã hủy</button></td>

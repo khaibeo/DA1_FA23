@@ -8,7 +8,7 @@
 
 function delete_voucher($voucher_id)
 {
-    $sql="DELETE FROM voucher WHERE `voucher`.`voucher_id` = '$voucher_id'";
+    $sql="UPDATE `voucher` SET `quantity`='0' WHERE  `voucher`.`voucher_id` = '$voucher_id'";
     pdo_execute($sql);
 }
 function count_voucher()
@@ -35,6 +35,12 @@ function load_page_voucher($keyword,$start,$limit)
 function insert_voucher($code,$category_code,$value,$date_start,$date_end,$quantity){
     $sql="INSERT INTO `voucher` (`code`,`category_code`,`value`,`date_start`,`date_end`,`quantity`)
     VALUES ('$code','$category_code','$value','$date_start','$date_end','$quantity')";
+    pdo_execute($sql);
+}
+function delete_voucher_date_end()
+{
+    $date_end=date('Y-m-d');
+    $sql="UPDATE `voucher` SET `quantity`='0' WHERE DATE(date_end)='$date_end'";
     pdo_execute($sql);
 }
 ?>

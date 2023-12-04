@@ -66,15 +66,16 @@
             <a class="btn btn-secondary" href="index.php?act=list_product">Danh Sách Sản Phẩm</a> <br>
         </div>   
         </div>
-    <div class="warring" style="color:red;">
-    <?php 
+    
+</div>
+<div class="warring" style="color:red;">
+   <h1> <?php 
         if(isset($warring['all'])){
             echo ''.$warring['all'].'';
         }
         ?>
+        </h1>
     </div>
-</div>
-
 </form>
 
 <script>

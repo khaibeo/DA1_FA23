@@ -7,14 +7,13 @@ if (is_array($list_order)) {
 <div class="content bg-white">
     <h1>THÔNG TIN ĐƠN HÀNG</h1>
     <div class="header-1">
-        <div class="order">
             <form action="index.php?act=update_order" method="post">
                 <label for="">ID Đơn hàng : #<?= $order_id ?> </label>
         </div>
         <div class="order">
             <label for="">Trạng thái Đơn hàng : </label>
             <?php if ($status == "processing") { ?>
-                <button type="button" class=" btn-success  ">Chờ xác nhận</button>
+                <button type="button" class=" btn-success  ">Xác nhận thành công</button>
                 <input type="hidden" name="status" value="<?= $status ?>">
                 <button type="submit" class="btn-dark" name="btn_update">Cập Nhật Đơn Hàng</button>
             <?php } ?>
@@ -67,13 +66,15 @@ if (is_array($list_order)) {
             <label for="">Phương thức thanh toán: <br> <?php if ($payment_method == "cod") {
                                                             echo "Thanh toán khi nhận hàng";
                                                         } else {
-                                                            $payment_method;
+                                                            echo $payment_method;
                                                         } ?></label> <br>
             <label for="">Ngày đặt : <br> <?= $created_at ?></label>
         </div>
     </div>
     <hr>
     <div class="product">
+
+     
         <div class="card widget">
             <!-- <h5 class="card-header">Order Items</h5> -->
             <div class="card-body">
@@ -112,6 +113,7 @@ if (is_array($list_order)) {
                         </tbody>
                     </table>
                 </div>
+
             </div>
         </div>
     </div>
@@ -123,6 +125,7 @@ if (is_array($list_order)) {
         </div> -->
         <div class="all">
             <h5>Tổng tiền : <?= number_format($total, 0, ',', '.') . ' đ' ?></h5>
+
         </div>
     </div>
 </div>
@@ -154,6 +157,8 @@ if (is_array($list_order)) {
         justify-content: space-between;
         border-bottom: solid 1px black;
         margin-top: 10px;
+        padding: 10px;
+        border-radius: 10px;
         background-color: #C8E2B1;
         /* border-radius: 5px; */
     }

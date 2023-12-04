@@ -9,22 +9,17 @@
             
             <h5>Loại Mã Giảm Giá</h5> 
             <select class="form-select mb-3" aria-label="Default select example" name="category_code">
-                <option value="1" selected>TIền</option>
-                <option value="0">Phần Trăm</option>
+                <option value="1" selected>Tiền</option>
+                <option value="2">Phần Trăm</option>
             </select>
+
             <h5>Giá trị</h5> 
             <input class="form-control" type="number" placeholder="số lượng giảm" aria-label="default input example"  name="value"  value="<?php if(isset($value)){echo $value;}?>">
             <div class="warring"> <p><?php if(isset($warring['value'])){echo $warring['value'];}?></p></div>
 
-            <div class="warring" style="color:red;">
-    <?php 
-        if(isset($warring['all'])){
-            echo ''.$warring['all'].'';
-        }
-        ?>
+           
     </div>
         
-    </div>
 
     <div class="content_item">
             
@@ -46,9 +41,16 @@
         
         </form>
         
-        </div>
         
-    
+</div>
+        <div class="warring" style="color:red;">
+    <?php 
+        if(isset($warring['all'])){
+            echo ''.$warring['all'].'';
+        } ?>
+    </div>
+        
+
 
 <style>
     .content{
@@ -58,6 +60,9 @@
     .content_item{
         width: 45%;
         margin: 20px;
+    }
+    p{
+        color:black
     }
     a{
         color:#FFF;
