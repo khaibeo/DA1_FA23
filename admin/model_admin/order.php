@@ -22,7 +22,7 @@ function load_page_order($keyword,$start,$limit)
     if($keyword!=""){
         $sql.= " AND tel LIKE '%$keyword%'";
     }
-    $sql.= " order by `order`.`order_id` asc limit $start,$limit ";
+    $sql.= " order by `order`.`created_at` desc limit $start,$limit ";
     $pro=pdo_query($sql);
     return $pro;
 }
@@ -53,7 +53,12 @@ function load_product($order_id){
 }
 function order_update($order_id,$status)
 {
-    if($status=="pending")
+    if($status=="unpaid")
+    {
+        $status="pending";
+        $sql="UPDATE `order` SET `status`='$status' WHERE `order`.`order_id`='$order_id'";
+    }
+    else if($status=="pending")
     {
     $status="processing";
     $sql="UPDATE `order` SET `status`='$status' WHERE `order`.`order_id`='$order_id'";

@@ -281,7 +281,7 @@
 		</div>
 		<div class="row">
 			<div class="col-lg-6">
-				<a class="box_news" href="blog.html">
+				<a class="box_news" href="#">
 					<figure>
 						<img src="upload/post4.jpg" data-src="upload/post4.jpg" alt="" width="400" height="266" class="lazy">
 						<!-- <figcaption><strong>28</strong>Dec</figcaption> -->
@@ -296,7 +296,7 @@
 			</div>
 			<!-- /box_news -->
 			<div class="col-lg-6">
-				<a class="box_news" href="blog.html">
+				<a class="box_news" href="#">
 					<figure>
 						<img src="upload/post2.jpg" data-src="upload/post2.jpg" alt="" width="400" height="266" class="lazy">
 						<!-- <figcaption><strong>28</strong>Dec</figcaption> -->
@@ -311,7 +311,7 @@
 			</div>
 			<!-- /box_news -->
 			<div class="col-lg-6">
-				<a class="box_news" href="blog.html">
+				<a class="box_news" href="#">
 					<figure>
 						<img src="upload/post3.jpg" data-src="upload/post3.jpg" alt="" width="400" height="266" class="lazy">
 						<!-- <figcaption><strong>28</strong>Dec</figcaption> -->
@@ -326,7 +326,7 @@
 			</div>
 			<!-- /box_news -->
 			<div class="col-lg-6">
-				<a class="box_news" href="blog.html">
+				<a class="box_news" href="#">
 					<figure>
 						<img src="upload/post1.jpg" data-src="upload/post1.jpg" alt="" width="400" height="266" class="lazy">
 						<!-- <figcaption><strong>28</strong>Dec</figcaption> -->

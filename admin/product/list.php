@@ -119,7 +119,6 @@
                         <th>ID</th>
                         <th>Ảnh</th>
                         <th>Tên sản phẩm</th>
-                        <th>Trạng thái</th>
                         <th>Giá</th>
                         <th>Thời gian đăng</th>
                         <th class="text-end">Hành động</th>
@@ -147,19 +146,11 @@
                                             </a>
                                         </td>
                                         <td><?=$product_name;?></td>
-                                        <?php if($status==1){?>
-                                           <td>
-                                           <span class="text-success">Hoạt động</span>
-                                           </td>
-                                           <?php } ?>
-                                        <?php if($status== 0){?>
-                                            <td style="color:red;"><span>Ẩn</span></td>
-                                        <?php } ?>
                                             <td><h6>Khuyến mãi: <?=number_format($discounted_price,0,'.','.').'đ' ; ?></h6><br>
                                                 <del><?=number_format($product_price,0,'.','.').'đ' ; ?></del></td>
                                             <td><?=$date_add?></td>
                                             <td class="text-end"><a href="<?=$edit_product?>"><button>Sửa</button></a>
-                                            <a href="<?=$delete_product?>"><button>Xóa</button></a>
+                                            <a onclick="return confirm('Bạn có chắc là muốn xóa không ?')" href="<?=$delete_product?>"><button>Xóa</button></a>
                                             <a href="<?= $show_detail?>"><button>Biến thể</button></a>
                                             </td>
                                             </tr>

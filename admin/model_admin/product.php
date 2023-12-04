@@ -126,8 +126,13 @@ function add_detail($product_id,$product_size,$product_quantity)
     pdo_execute($sql);
 }
 function load_image($product_id){
-    $sql="SELECT * FROM products_image WHERE product_id=$product_id ";
+    $sql = "SELECT * FROM `products_image` WHERE product_id=$product_id";
     $list_image=pdo_query_one($sql);
+    return $list_image;
+}
+function loadall_image($product_id){
+    $sql = "SELECT * FROM `products_image` WHERE product_id=$product_id";
+    $list_image=pdo_query($sql);
     return $list_image;
 }
 
@@ -145,5 +150,10 @@ function product_day($date){
     WHERE `products`.`date_add` LIKE '%$date%'";
     $product_day=pdo_query($sql);
     return $product_day;
+}
+function delete_image($image_id)
+{
+    $sql="DELETE FROM products_image WHERE `products_image`.`image_id` = '$image_id'";
+    pdo_execute($sql);
 }
 ?>

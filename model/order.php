@@ -2,7 +2,7 @@
 function get_user_order($user_id){
     $sql = "SELECT
     o.order_id,
-    o.date_add,
+    o.created_at,
     o.status,
     COUNT(od.product_detail_id) AS total_items,
     o.total
@@ -11,7 +11,7 @@ FROM
 JOIN
     order_detail od ON o.order_id = od.order_id
 WHERE
-    o.user_id = $user_id GROUP BY o.order_id order by o.date_add desc;";
+    o.user_id = $user_id GROUP BY o.order_id order by o.created_at desc;";
 
 return pdo_query($sql);
 }

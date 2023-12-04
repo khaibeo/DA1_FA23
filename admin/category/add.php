@@ -7,10 +7,11 @@
         <button type="submit" class="btn btn-primary" name="add_category">THÊM</button>
         <button type="button" class="btn btn-primary" ><a href="index.php?act=list_category">Danh Sách Danh Mục</a></button>
     </form>
-</div>
-<?php if(isset($warring['all'])){
+    <?php if(isset($warring['all'])){
     echo $warring['all'];
 }?>
+</div>
+
 <style>
     .warring{
         color:red;

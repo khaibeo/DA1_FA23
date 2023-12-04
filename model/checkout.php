@@ -1,5 +1,5 @@
 <?php
-function get_items_from_cart($cart_detail_id,$cart_id){
+function get_items_from_cart($cart_id){
     $sql = "SELECT
     MIN(pi.image_name) AS image,
     p.product_id,
@@ -16,7 +16,7 @@ JOIN
 JOIN
     products p ON pd.product_id = p.product_id
 JOIN
-    products_image pi ON p.product_id = pi.product_id WHERE cd.cart_detail_id in ($cart_detail_id) AND cart.cart_id = $cart_id 
+    products_image pi ON p.product_id = pi.product_id WHERE cart.cart_id = $cart_id 
     GROUP BY cd.cart_detail_id;";
 
     return pdo_query($sql);
@@ -32,9 +32,9 @@ function create_order_detail($order_id,$product_detail_id,$price,$quantity){
     pdo_execute($sql);
 }
 
-function update_cart($cart_detail_id){
+function update_cart($user_cart){
     $sql = "DELETE FROM cart_detail
-    WHERE cart_detail.cart_detail_id IN ($cart_detail_id);
+    WHERE cart_id = $user_cart;
     ";
     pdo_execute($sql);
 }

@@ -299,6 +299,7 @@ if(isset($_GET['act'])){
     case'edit_product':
         if(isset($_GET['product_id'])&&($_GET['product_id']> 0)){
             $product=loadone_product($_GET['product_id']);
+            $product_image=loadall_image($_GET['product_id']);
         }
         $list_category=loadall_category();
         include ('../admin/product/update.php');
@@ -314,12 +315,29 @@ if(isset($_GET['act'])){
             $discounted_price=$_POST['discounted_price'];
             $product_describe=$_POST['product_describe'];
             $product_status=$_POST['product_status'];
+            $images = $_FILES['image'];
             $file_name=$_FILES['product_image']['name'];
             $target_dir="../upload/";
             $target_file=$target_dir . basename($_FILES["product_image"]["name"]);
             move_uploaded_file($_FILES['product_image']['tmp_name'],$target_file);
             update_product($product_id,$category_id,$product_name,$product_price,$discounted_price,$product_describe,$product_status);
             update_image($image_id,$product_id,$file_name);
+            if (!empty($images['name'][0])) {
+                // $images = $_FILES['product_image'];
+                // $uploadedImages = [];
+        
+                for ($i = 0; $i < count($images['name']); $i++) {
+                    $imageName = $images['name'][$i];
+                    $tmpName = $images['tmp_name'][$i];
+        
+                    $uploadPath = '../upload/' . $imageName;
+        
+                    move_uploaded_file($tmpName, $uploadPath);
+
+                    insert_image($product_id,$imageName);
+                    // $uploadedImages[] = $uploadPath;
+                }
+            }   
             $warring= 'Sửa Thành Công';
         }
         $list_category=loadall_category();
@@ -378,6 +396,13 @@ if(isset($_GET['act'])){
         $count=count_product();
         $list_pro= load_page_product($keyword="",$category_id="",$price="",$start,$limit);
         include ('../admin/product/list.php');
+        break;
+    case 'delete_image':
+        if(isset($_GET['image_id'])&&($_GET['image_id']>0)){
+            delete_image($_GET['image_id']);
+        }
+        header("location: index.php?act=list_product");
+        // include ('../admin/product/list.php');
         break;
     case 'add_account':
         if(isset($_POST['btn_add'])){
@@ -559,6 +584,7 @@ if(isset($_GET['act'])){
             $status=$_POST['status'];
             $order_id=$_POST['order_id'];
             order_update($order_id, $status);
+            header("location: index.php?act=order_detail&order_id=$order_id");
         }
         if(isset($_POST['keyword'])&&($_POST['keyword'])){
             $keyword=$_POST['search_order'];
@@ -590,6 +616,13 @@ if(isset($_GET['act'])){
         $list_star=load_star();
         $all_doanhthu=all_doanhthu();
         $load_tk=loadall_thongke();
+        $selling_pro = get_selling_products();
+        $revenue = get_revenue();
+        $pending = get_pending_status();
+        $delivered = get_order_status("delivered");
+        $shiped= get_order_status("shiped");
+        $canceled= get_order_status("canceled");
+
         include('../admin/thongke/view.php');
         break;
     
@@ -638,6 +671,7 @@ if(isset($_GET['act'])){
         $count=count_voucher();
         $list_voucher=load_page_voucher($keyword,$start,$limit);
         $voucher=count_voucher();
+        delete_voucher_date_end();
         // $list_evaluation=loadall_danhgia();
         include "../admin/voucher/list.php";
         break;
@@ -675,10 +709,10 @@ if(isset($_GET['act'])){
                 if(strlen($code)< 6 && strlen($code) >10 ){
                     $warring['code']="mã giảm giá phải lớn hơn 6 và nhỏ hơn 10 kí tự";
                 }
-                if(!is_numeric($category_code)){
-                    $warring['category_code']="Trường này chỉ nhận dữ liệu số";
-                }
-                if($category_code==0&&$value>=100){
+                // if(!is_numeric($category_code)){
+                //     $warring['category_code']="Trường này chỉ nhận dữ liệu số";
+                // }
+                if($category_code==2 && $value>=100 ){
                     $warring['value']="loại mã giảm giá chỉ nhận max là 100 và min là 1";
                 }
                 if($date_start>$date_end){

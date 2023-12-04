@@ -156,7 +156,7 @@
                                         <?php } ?>
                                             <td><?=$product_price?></td>
                                             <td><?=$date_add?></td>
-                                            <td><a href="<?=$delete_product?>"><button>Khôi phục</button></a>
+                                            <td><a onclick="return confirm('Bạn có chắc muốn khôi phục không ?')" href="<?=$delete_product?>"><button>Khôi phục</button></a>
                                             </td>
                                             </tr>
                         <?php
