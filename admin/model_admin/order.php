@@ -5,9 +5,18 @@ function loadall_order()
     $list_order=pdo_query($sql);
     return $list_order;
 }
-function count_order()
+function count_order($keyword,$search_code,$status_order)
 {
-    $sql= "SELECT * FROM `order` ";
+    $sql= "SELECT * FROM `order` WHERE 1 ";
+    if($keyword!=""){
+        $sql.= " AND tel LIKE '%$keyword%' AND `tel`='$keyword' ";
+    }
+    if($search_code!=""){
+        $sql.= " AND order_id LIKE '%$search_code%'";
+    }
+    if($status_order!=""){
+        $sql.= " AND status LIKE '%$status_order%'  AND `status`='$status_order' ";
+    }
     $pro=pdo_query($sql);
     $i=0;
     foreach($pro as $row){
@@ -16,11 +25,17 @@ function count_order()
     $number=ceil($i/10);
     return $number;
 }
-function load_page_order($keyword,$start,$limit)
+function load_page_order($keyword,$search_code,$status_order,$start,$limit)
 {
     $sql= "SELECT * FROM  `order`  WHERE 1 ";
     if($keyword!=""){
-        $sql.= " AND tel LIKE '%$keyword%'";
+        $sql.= " AND tel LIKE '%$keyword%' AND `tel`='$keyword' ";
+    }
+    if($search_code!=""){
+        $sql.= " AND order_id LIKE '%$search_code%'";
+    }
+    if($status_order!=""){
+        $sql.= " AND status LIKE '%$status_order%'  AND `status`='$status_order' ";
     }
     $sql.= " order by `order`.`created_at` desc limit $start,$limit ";
     $pro=pdo_query($sql);
@@ -32,7 +47,7 @@ function load_page_order_today($keyword,$start,$limit,$date)
     if($keyword!=""){
         $sql.= " AND tel LIKE '%$keyword%'";
     }
-    $sql.= " AND `created_at` LIKE '%$date%' order by `order`.`order_id` asc limit $start,$limit ";
+    $sql.= " AND `created_at` LIKE '%$date%' order by `order`.`order_id` desc limit $start,$limit ";
     $pro=pdo_query($sql);
     return $pro;
 }
@@ -65,6 +80,7 @@ GROUP BY
     order_detail.product_detail_id  -- Assuming there's a primary key or unique identifier for product_detail
 ORDER BY 
     `products`.`product_id` ASC;";
+  
     $list_product=pdo_query($sql);
     return $list_product;
 }

@@ -16,9 +16,15 @@ function delete_account($user_id)
     $sql= "DELETE FROM user WHERE `user`.`user_id`=$user_id";
     pdo_execute($sql);
 }
-function count_account()
+function count_account($keyword,$role)
 {
-    $sql= "SELECT * FROM `user`" ;
+    $sql= "SELECT * FROM `user` WHERE 1 " ;
+    if($keyword!=""){
+        $sql.= " AND tel LIKE '%$keyword%'";
+    }
+    if($role!=""){
+        $sql.="AND role LIKE '%$role%'";
+    }
     $pro=pdo_query($sql);
     $i=0;
     foreach($pro as $row){
@@ -36,7 +42,7 @@ function load_page_account($keyword,$role,$start,$limit)
     if($role!=""){
         $sql.="AND role LIKE '%$role%'";
     }
-    $sql.= " order by user.user_id asc limit $start,$limit";
+    $sql.= " order by user.user_id desc limit $start,$limit";
     $pro=pdo_query($sql);
     return $pro;
 }

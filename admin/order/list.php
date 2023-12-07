@@ -20,70 +20,61 @@
                     </div>
                 </div>
             </div>
-        <!-- </div>
-        <div class="filter">
-            <div class="price">
-            <div class="card mb-4">
-                <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-center" data-bs-toggle="collapse"
-                            aria-expanded="true" data-bs-target="#priceCollapseExample" role="button">
-                        <div>Price</div>
-                        <div class="bi bi-chevron-down"></div>
-                    </div>
-                        <div class="collapse show mt-4" id="priceCollapseExample">
-                            <form action="index.php?act=list_product" method="post">
-                                <input type="text" id="price_filter" name="price_product"  class="form-control">
-                                <input type="submit" name="filter_price" class="search" value="Lọc">
-                            </form>
-                        </div>
-                </div>
-            </div>
-            </div>
-            <div class="category">
-            <div class="card mb-4">
-                <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-center" data-bs-toggle="collapse"
-                         aria-expanded="true" data-bs-target="#categoriesCollapseExample" role="button">
-                        <div>Danh Mục</div>
-                        <div class="bi bi-chevron-down"></div>
-                    </div>
-                    <div class="collapse show mt-4" id="categoriesCollapseExample">
-                        <div class="d-flex flex-column gap-3">
-                            <div class="form-check">
-                                <form action="index.php?act=list_product" method="post">
-                                    <select name="category" id="" class="form-control">
-                                    <?php 
-                                        foreach($list_category as $ct){
-                                            extract($ct);
-                                    ?>
-                                        <option value="<?=$category_id?>"<?php echo 'selected'?>><?=$category_name?></option>
-                                         
-                                    <?php
-                                        }
-                                    ?>
-                                    </select>
-                                        <input type="submit" name="filter_category" class="search" value="Lọc">
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                    </div>
-                    </div>
-                    </div>
-        </div>
-             -->
 </div>          
     <div class="row content">
         <div class="col">
             <div class="card">
                 <div class="card-body">
-                    <div class="d-md-flex gap-4 align-items-center">
-                        <div class="d-none d-md-flex">Danh sách đơn hàng</div>
+                    <style>
+                        .list{
+                            width: 100%;
+                            display: flex;
+                            justify-content: space-between;
+                        }
+                        .content-list,
+                            .search_code{
+                                width: 50%;
+                        }
+                        .filter_code{
+                            display:flex;
+                            justify-content: space-between;
+                        }
+                        .select_code{
+                            display:flex;
+                        }
+                    </style>
+                    <div class="list" >
+                        <div class="content-list" style="margin-top:10px ;"> <h5>Danh sách đơn hàng</h5> </div>
+                            <div class="filter_code">
+                                <div class="search_code">
+                                    <form action="index.php?act=list_order" method="post">
+                                    <div class="input-group" style="border:solid 1px black; border-radius:20px ;">
+                                        <input type="text" class="form-control" placeholder="mã đơn" name="search_code" style="border:solid 1px #fff ; border-radius:20px ;">
+                                        <input class="btn" type="submit" name="btn_search" value="search">
+                                            
+                                    </div>
+                                    </form>
+                            
+                            </div>
+                           
+                            <div class="select_code" style="border:solid 1px black ; height: 45px; border-radius: 20px; padding: 3px; width: 180px;" >
+                                <form action="index.php?act=list_order" method="post">
+                                <select  name="status" style="border:solid 1px #fff; border-radius:20px ;">
+                                    <option value="Pending">Pending</option>
+                                    <option value="processing">processing</option>
+                                    <option value="shiped">shiped</option>
+                                    <option value="canceled">canceled</option>
+                                    <option value="delivered">delivered</option>
+                                </select>
+                               <input type="submit" value="search" name="filter_status" style="width: 70px; height: 35px; border-radius: 10px; border: solid 1px #fff; background-color: #fff;">
+                            </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="table-responsive">
-                <table class="table table-custom table-lg mb-0" id="products">
+            <div class="table" >
+                <table class="table table-custom table-lg mb-0" id="products" style="width: 100%;">
                     <thead>
                     <tr>
                         <!-- <th>
@@ -91,11 +82,12 @@
                                    data-select-all-target="#products" id="defaultCheck1">
                         </th> -->
                         <th>ID</th>
-                        <th>Người mua</th>
+                        <!-- <th>Người mua</th> -->
                         <th>Số điện thoại</th>
                         <th>Tổng tiền</th>
                         <th>Ngày</th>
                         <th>Trạng thái</th>
+                        <th>Cập nhật</th>
                         <th class="text-end">Hành động</th>
                     </tr>
                     </thead>
@@ -107,36 +99,57 @@
                             
                             $edit_order="index.php?act=order_detail&order_id=".$order_id;
                             ?>
+                            <form action="index.php?act=list_order" method="post">
                                     <tr>
                                         <td>
                                             <a href="#">#<?=$order_id?></a>
                                         </td>
-                                        <td><?=$fullname?></td>
                                         <td><?=$tel?></td>
                                         <td><?= number_format($total, 0, ',', '.') . ' đ' ?></td>
                                         <td><?=$created_at?></td>
-                                           <?php if($status=="unpaid"){?>
+                                        <?php if($status=="unpaid"){?>
                                            <td><button type="button" class="btn-primary">Chưa thanh toán</button></td>
+                                           <input type="hidden" name="status" value="<?= $status ?>">
+                                           <input type="hidden" name="order_id" value="<?= $order_id ?>">
+                                           <td><button type="submit" class="btn-dark" name="btn_update">Cập Nhật</button></td>
                                            <?php } ?>
-                                           <?php if($status=="pending"){?>
+                                           
+                                        <?php if($status=="pending"){?>
                                            <td><button type="button" class="btn-primary">Chờ xác nhận</button></td>
+                                           <input type="hidden" name="status" value="<?= $status ?>">
+                                           <td><button type="submit" class=" btn-danger" name="btn_cencel">Hủy Đơn</button>
+                                           <input type="hidden" name="order_id" value="<?= $order_id ?>">
+                                           <button type="submit" class="btn-dark" name="btn_update">Cập Nhật</button></td>
                                            <?php } ?>
                                         <?php if($status== "processing"){?>
                                             <td ><button type="button" class=" btn-success ">Đã xác nhận</button></td>
-
+                                            <input type="hidden" name="order_id" value="<?= $order_id ?>">
+                                            <input type="hidden" name="status" value="<?= $status ?>">
+                                            <td><button type="submit" class="btn-dark" name="btn_update">Cập Nhật</button> 
+                                            </td>
+                                            
                                         <?php } ?>
                                         <?php if($status== "canceled"){?>
                                             <td ><button type="button" class=" btn-danger ">Đã hủy</button></td>
+                                            <input type="hidden" name="order_id" value="<?= $order_id ?>">
+                                            <input type="hidden" name="status" value="<?= $status ?>">
+                                            <td></td>
                                         <?php } ?>
                                         <?php if($status== "shiped"){?>
                                             <td ><button type="button" class=" btn-info">Đang giao hàng</button></td>
+                                            <input type="hidden" name="status" value="<?= $status ?>">
+                                            <input type="hidden" name="order_id" value="<?= $order_id ?>">
+                                            <td><button type="submit" class="btn-dark" name="btn_update">Cập Nhật</button></td>
+                                            
                                         <?php } ?>
                                         <?php if($status== "delivered"){?>
                                             <td ><button type="button" class=" btn-success">Giao thành công</button></td>
+                                            <td></td>
                                         <?php } ?>
                                         <td><a href="<?=$edit_order?>" style="text-align:center ; display:block;"  >Chi tiết</a></td>
                                             <!-- <a style="text-align:center ; display:block;" href="<?=$edit_order?>">Chi tiết  -->
-                                    </tr>             
+                                    </tr>        
+                                    </form>     
                         <?php
                         }
                         ?>
@@ -150,11 +163,11 @@
             </div>
             <form action="index.php?act=list_order" method="post">
             <nav class="mt-4" aria-label="Page navigation example">
-                <ul class="pagination justify-content-center">
+                <ul class="pagination ">
                     <?php
                         for ($i=0; $i < $count; $i++) { 
                     ?>
-                        <input type="submit" name="number" class="page" value="<?=$i+1?>">
+                            <input type="submit" name="number" class="page" value="<?=$i+1?>">
                     <?php
                         }
                     ?>

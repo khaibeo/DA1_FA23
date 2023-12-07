@@ -31,7 +31,7 @@ function load_page_category($keyword,$start,$limit)
     if($keyword!=""){
         $sql.= " AND category_name LIKE '%$keyword%'";
     }
-    $sql.= " order by categories.category_id asc limit $start,$limit";
+    $sql.= " order by categories.category_id desc limit $start,$limit";
     $pro=pdo_query($sql);
     return $pro;
 }

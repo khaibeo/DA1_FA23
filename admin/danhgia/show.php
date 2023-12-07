@@ -5,8 +5,17 @@
             <div class="col">
                 <div class="card">
                     <div class="card-body">
-                        <div class="d-md-flex gap-4 align-items-center">
+                        <div class="d-md-flex gap-4 align-items-center" style="display:flex ; justify-content: space-between;">
                             <div class="d-none d-md-flex"> <H3>Đánh giá từ khách hàng</H3> </div>
+                            <div class="filter" style="width: 400px; display: flex;justify-content: space-between; border-radius: 20px;"  >
+                                <form action="index.php?act=list_comment" method="post">
+                                    <div class="product">
+                                        <input type="text" name="product" placeholder="product_name" style="width:35% ; border: 1px solid black;color: black;">
+                                        <input type="text" name="username" placeholder="username" style="width:35% ; border: 1px solid black; color: black;">
+                                        <input type="submit" style="width:15% ; border: 1px solid #FFF;" value="search" name="keyword">
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>

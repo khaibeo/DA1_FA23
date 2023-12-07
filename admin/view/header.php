@@ -161,7 +161,7 @@
 <div class="menu">
     <div class="menu-header">
         <a href="index.php" class="menu-header-logo">
-            <img src="https://vetra.laborasyon.com/assets/images/logo.svg" alt="logo">
+            <img src="../img/logo_black.svg" alt="logo">
         </a>
         <a href="../index.php" class="btn btn-success">
             <i class="bi bi-house-door-fill"></i></i>
@@ -396,6 +396,15 @@
                     <li><a href="index.php?act=add_voucher">Thêm Voucher</a></li>
                 </ul>
             </li>
+            <li>
+                <a href="index.php?act=list_bill">
+                    <span class="nav-link-icon">
+                    <img src="../upload/bill.png" alt="">
+                    </span>
+                    <span>Bill</span>
+                </a>
+            </li>
+            
             <!-- <li>
                 <a href="#">
                     <span class="nav-link-icon">

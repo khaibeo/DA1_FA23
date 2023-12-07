@@ -51,7 +51,6 @@ if (is_array($list_order)) {
         <input type="hidden" name="order_id" value="<?= $order_id ?>">
         </form>
     </div>
-
 <br>
 <hr>
 
@@ -77,6 +76,7 @@ if (is_array($list_order)) {
         <div class="row mb-3">
             <div class="col-6 text-end">Tiền sản phẩm :</div>
             <div class="col-6"><?= number_format($total_price_pro, 0, ',', '.') . ' đ' ?></div>
+
         </div>
         <div class="row mb-3">
             <div class="col-6 text-end">Mã giảm giá   :</div>

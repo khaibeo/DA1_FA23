@@ -9,8 +9,8 @@
             
             <h5>Loại Mã Giảm Giá</h5> 
             <select class="form-select mb-3" aria-label="Default select example" name="category_code">
-                <option value="1" selected>Tiền</option>
-                <option value="2">Phần Trăm</option>
+                <option value="0" selected>Tiền</option>
+                <option value="1">Phần Trăm</option>
             </select>
 
             <h5>Giá trị</h5> 

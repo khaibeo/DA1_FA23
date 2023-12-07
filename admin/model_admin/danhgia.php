@@ -30,16 +30,21 @@ function count_evaluation()
     $number=ceil($i/10);
     return $number;
 }
-function load_page_evaluation($keyword,$start,$limit)
+function load_page_evaluation($product_name,$user_name,$start,$limit)
 {
     $sql= "SELECT * FROM  evaluation 
     INNER JOIN `products` ON `products`.`product_id`=`evaluation`.`product_id`
-    INNER JOIN `user` ON `user`.`user_id`=`evaluation`.`user_id`
-     ";
-    if($keyword!=""){
-        $sql.= " AND product_name LIKE '%$keyword%'";
+    INNER JOIN `user` ON `user`.`user_id`=`evaluation`.`user_id` WHERE 1" ;
+    if($product_name!="" && $user_name==""){
+        $sql.=" AND `product_name` LIKE '%$product_name%'";
     }
-    $sql.= " order by `evaluation`.`evaluation_id` asc limit $start,$limit ";
+    if($product_name=="" && $user_name!=""){
+        $sql.=" AND `username` LIKE '%$user_name%'";
+    }
+    if($product_name!="" && $user_name!=""){
+        $sql.=" AND `product_name` LIKE '%$product_name%' AND `username` LIKE '%$user_name%' ";
+    }
+    $sql.= " order by `evaluation`.`evaluation_id` desc limit $start,$limit ";
     $pro=pdo_query($sql);
     return $pro;
 }
