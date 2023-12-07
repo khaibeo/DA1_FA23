@@ -102,8 +102,8 @@ GROUP BY
     status;
 ";
     $result = pdo_query_one($sql);
-    return $result;
-    // return $result['total_count'];
+    // return $result;
+    return $result['total_count'];
 }
 
 function get_pending_status(){

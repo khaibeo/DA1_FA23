@@ -20,9 +20,35 @@
                                                 <span>Mã đơn hàng : <a href="#">#<?= $order_detail['order_id'] ?></a></span>
                                                 <span class="badge <?= $color ?>"><?= $status ?></span>
                                             </div>
+                                            <?php if($order_detail['status'] != "canceled" && $order_detail['status'] != "unpaid"){ ?>
+                                            <div class="row mb-3">
+                                                <div class="progress" role="progressbar" aria-label="Success example" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                                                    <?php if($order_detail['status'] == "pending"){
+                                                        echo "<div class='progress-bar bg-success' style='width: 25%'>25%</div>";
+                                                    }
+                                                    if($order_detail['status'] == "processing"){
+                                                        echo "<div class='progress-bar bg-success' style='width: 50%'>50%</div>";
+                                                    }
+                                                    if($order_detail['status'] == "shiped"){
+                                                        echo "<div class='progress-bar bg-success' style='width: 75%'>75%</div>";
+                                                    }
+                                                    if($order_detail['status'] == "delivered"){
+                                                        echo "<div class='progress-bar bg-success' style='width: 100%'>100%</div>";
+                                                    }
+                                                    ?>
+                                                
+                                                </div>
+                                                <div class="d-flex justify-content-between">
+                                                    <p>Chờ xác nhận</p>
+                                                    <p>Đã xác nhận</p>
+                                                    <p>Đang vận chuyển</p>
+                                                    <p>Giao thành công</p>
+                                                </div>
+                                            </div>
+                                            <?php } ?>
                                             <div class="row mb-3 g-4">
                                                 <div class=""><strong>Thời gian đặt:</strong> <?= $order_detail['created_at'] ?> </div>
-                                                <div class=""><strong>Phương thức thanh toán:</strong> <?= $order_detail['payment_method'] ?></div>
+                                                <div class=""><strong>Phương thức thanh toán:</strong> <?= $order_detail['payment_method'] == "banking" ? "Thanh toán qua VNPay" : "Thanh toán khi nhận hàng" ?></div>
                                                 <div class=""><strong>Ghi chú:</strong> <?= $order_detail['note'] ?></div>
                                             </div>
                                             <div class="row g-4">
@@ -142,7 +168,7 @@
                                             </div>
                                             
                                             <div class="mb-3">
-                                                <?php if($order_detail['status'] == "pending" || $order_detail['status'] == "processing" || $order_detail['status'] == "unpaid"){ ?>
+                                                <?php if($order_detail['status'] == "pending" || $order_detail['status'] == "unpaid"){ ?>
                                                     <a href="index.php?act=cancel_order&id=<?= $order_id ?>" class="btn btn-outline-primary cancelOrder">Hủy đơn hàng</a>
                                                 <?php } ?>
                                             </div>

@@ -339,7 +339,7 @@
                                     <i class="bi bi-truck text-secondary"></i>
                                 </div>
                                 <h6 class="my-3">Đang vận chuyển</h6>
-                                <div class="text-muted"><?=COUNT($shiped) ?> đơn</div>
+                                <div class="text-muted"><?= $shiped ?> đơn</div>
                                 <!-- <div class="progress mt-3" style="height: 5px">
                                     <div class="progress-bar bg-secondary" role="progressbar" style="width: 25%"
                                         aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
@@ -354,7 +354,7 @@
                                     <i class="bi bi-receipt text-warning"></i>
                                 </div>
                                 <h6 class="my-3">Giao thành công</h6>
-                                <div class="text-muted"><?= COUNT($delivered) ?> đơn</div>
+                                <div class="text-muted"><?= $delivered ?> đơn</div>
                             </div>
                         </div>
                     </div>
@@ -365,7 +365,7 @@
                                     <i class="bi bi-bar-chart text-info"></i>
                                 </div>
                                 <h6 class="my-3">Đơn hủy</h6>
-                                <div class="text-muted"><?=COUNT($canceled) ?> đơn</div>
+                                <div class="text-muted"><?= $canceled ?> đơn</div>
                                 <!-- <div class="progress mt-3" style="height: 5px">
                                     <div class="progress-bar bg-info" role="progressbar" style="width: 80%"
                                         aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
@@ -392,7 +392,7 @@
             </div>
     </div>
 
-    <div class="col" style=" with:70%;">
+    <div class="col">
         <div class="card widget" style="width:100% ;">
             <div class="card-header d-flex align-items-center justify-content-between">
                 <h5 class="card-title">Sản phẩm bán chạy</h5>
