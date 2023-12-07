@@ -13,10 +13,13 @@ include("../admin/model_admin/account.php");
 include("../admin/model_admin/thongke.php");
 include("../admin/model_admin/danhgia.php");
 include("../admin/model_admin/voucher.php");
+include("../admin/model_admin/bill.php");
 // include("home.php");
 $user = get_user($_SESSION['user_id']);
 include("../admin/view/header.php");
 $warring=[];
+$date_end=date('Y-m-d');
+delete_voucher_date_end($date_end);
 if(isset($_GET['act'])){
     $act=$_GET['act'];
     switch($act){
@@ -220,9 +223,9 @@ if(isset($_GET['act'])){
         }else{
             $start= 0;
         }
-        $count=count_product();
+        $count=count_product($keyword,$category_id,$price);
         $list_pro= load_page_product($keyword,$category_id,$price,$start,$limit);
-        $list_product=count_product();
+        $list_product=count_product($keyword,$category_id,$price);
         $list_category=loadall_category();
         include '../admin/product/list.php';
         break;
@@ -290,9 +293,9 @@ if(isset($_GET['act'])){
         }else{
             $start= 0;
         }
-        $count=count_product();
+        $count=count_product($keyword,$category_id,$price);
         $list_pro= load_page_product($keyword,$category_id,$price,$start,$limit);
-        $list_product=count_product();
+        $list_product=count_product($keyword,$category_id,$price);
         $list_category=loadall_category();
         include '../admin/product/list.php';
         break;
@@ -348,7 +351,7 @@ if(isset($_GET['act'])){
         }else{
             $start= 0;
         }
-        $count=count_product();
+        $count=count_product($keyword,$category_id,$price);
         // $product_image=load_image($product_id);
         $list_pro= load_page_product($keyword="",$category_id="",$price="",$start,$limit);
         include '../admin/product/list.php';
@@ -393,7 +396,7 @@ if(isset($_GET['act'])){
         }else{
             $start= 0;
         }
-        $count=count_product();
+        $count=count_product($keyword,$category_id,$price);
         $list_pro= load_page_product($keyword="",$category_id="",$price="",$start,$limit);
         include ('../admin/product/list.php');
         break;
@@ -406,50 +409,62 @@ if(isset($_GET['act'])){
         break;
     case 'add_account':
         if(isset($_POST['btn_add'])){
-        $username=$_POST['username'];
-        $password=$_POST['password'];
-        $fullname=$_POST['fullname'];
-        $email=$_POST['email'];
-        $tel=$_POST['tel'];
-        $address=$_POST['address'];
-        $file_name=$_FILES['avatar']['name'];
-        $target_dir="../upload/";
-        $target_file=$target_dir . basename($_FILES["avatar"]["name"]);
-        move_uploaded_file($_FILES['avatar']['tmp_name'],$target_file);
-        $role=$_POST['role'];
-        $pattern = '/^(0|\+84|\+841|\+849|\+8498)([2-9]\d{8})$/';
-        if(!empty($username&&$password&&$fullname&&$email&&$tel&&$role&&$file_name)){
-            if(strlen($username)<6){
-                $warring['username']="Tên đăng nhập phải lớn hơn 6 kí tự";
+            $username=$_POST['username'];
+            $password=$_POST['password'];
+            $fullname=$_POST['fullname'];
+            $email=$_POST['email'];
+            $tel=$_POST['tel'];
+            $address=$_POST['address'];
+            $file_name=$_FILES['avatar']['name'];
+            $target_dir="../upload/";
+            $target_file=$target_dir . basename($_FILES["avatar"]["name"]);
+            move_uploaded_file($_FILES['avatar']['tmp_name'],$target_file);
+            $role=$_POST['role'];
+            $pattern = '/^(0|\+84|\+841|\+849|\+8498)([2-9]\d{8})$/';
+            if(!empty($username&&$password&&$fullname&&$email&&$tel&&$role&&$file_name)){
+                if(strlen($username)<6){
+                    $warring['username']="Tên đăng nhập phải lớn hơn 6 kí tự";
+                }
+                if(strlen($password)<6){
+                    $warring['password']="Mật khẩu phải lớn hơn 6 kí tự";
+                }
+                if(is_numeric($fullname)){
+                    $warring['fullname']="Trường này chỉ nhận dữ liệu chuỗi";
+                }
+                if(is_numeric($address)){
+                    $warring['address']="Trường này chỉ nhận dữ liệu chuỗi";
+                }
+                if(!preg_match($pattern,$tel)){
+                    $warring['tel']="Số điện thoại không đúng định dạng";
+                }
+                if(!preg_match('/^\\S+@\\S+\\.\\S+$/',$email)){
+                    $errors['email'] = "Không đúng định dạng Email";
+                }
+                if(is_numeric($role)){
+                    $warring['role']="Trường này chỉ nhận dữ liệu chuỗi";
+                }
+                if(!empty($warring)){
+                }else{
+                    insert_account($username,$password,$fullname,$email,$tel,$address,$file_name,$role);
+                    $warring['all']="Thêm Thành công";
+                }
             }
-            if(strlen($password)<6){
-                $warring['password']="Mật khẩu phải lớn hơn 6 kí tự";
+            else{
+                $warring['all']="Bạn cần nhập đầy đủ dữ liệu";
             }
-            if(is_numeric($fullname)){
-                $warring['fullname']="Trường này chỉ nhận dữ liệu chuỗi";
-            }
-            if(is_numeric($address)){
-                $warring['address']="Trường này chỉ nhận dữ liệu chuỗi";
-            }
-            if(!preg_match($pattern,$tel)){
-                $warring['tel']="Số điện thoại không đúng định dạng";
-            }
-            if(!preg_match('/^\\S+@\\S+\\.\\S+$/',$email)){
-                $errors['email'] = "Không đúng định dạng Email";
-            }
-            if(is_numeric($role)){
-                $warring['role']="Trường này chỉ nhận dữ liệu chuỗi";
-            }
-            if(!empty($warring)){
-            }else{
-                insert_account($username,$password,$fullname,$email,$tel,$address,$file_name,$role);
-                $warring['all']="Thêm Thành công";
-            }
+        }
+        if(isset($_POST['keyword'])&&($_POST['keyword'])){
+            $keyword=$_POST['search_account'];
         }
         else{
-            $warring['all']="Bạn cần nhập đầy đủ dữ liệu";
+            $keyword= '';
         }
-    }
+        if(isset($_POST['filter_account'])&&($_POST['filter_account'])){
+            $role=$_POST['account'];
+        }
+        else{
+            $role= '';
+        }
         $limit=10;  
         if(isset($_POST['number'])){
             $number=$_POST['number'];   
@@ -457,7 +472,7 @@ if(isset($_GET['act'])){
         }else{
             $start= 0;
         }
-        $count=count_account();
+        $count=count_account($keyword="",$role="");
         $list_account=load_page_account($keyword="",$role="",$start,$limit);
         include ('../admin/account/add.php');
         break;
@@ -482,9 +497,9 @@ if(isset($_GET['act'])){
         }else{
             $start= 0;
         }
-        $count=count_account();
+        $count=count_account($keyword,$role);
         $list_account=load_page_account($keyword,$role,$start,$limit);
-        $account=count_account();
+        $account=count_account($keyword,$role);
         include ('../admin/account/list.php');
         break;
     case'edit_account':
@@ -528,13 +543,25 @@ if(isset($_GET['act'])){
         }else{
             $start= 0;
         }
-        $count=count_account();
+        $count=count_account($keyword,$role);
         $list_account=load_page_account($keyword,$role,$start,$limit);
         include ('../admin/account/list.php');
         break;
     case'delete_account':
         if(isset($_GET['user_id'])&&($_GET['user_id']>0)){
             delete_account($_GET['user_id']);
+        }
+        if(isset($_POST['keyword'])&&($_POST['keyword'])){
+            $keyword=$_POST['search_account'];
+        }
+        else{
+            $keyword= '';
+        }
+        if(isset($_POST['filter_account'])&&($_POST['filter_account'])){
+            $role=$_POST['account'];
+        }
+        else{
+            $role= '';
         }
         $list_account=loadall_account();
         $limit=10;  
@@ -544,7 +571,7 @@ if(isset($_GET['act'])){
         }else{
             $start= 0;
         }
-        $count=count_account();
+        $count=count_account($keyword,$role);
         $list_account=load_page_account($keyword="",$role="",$start,$limit);
         include ('../admin/account/list.php');
         break;
@@ -555,6 +582,28 @@ if(isset($_GET['act'])){
         else{
             $keyword= '';
         }
+        if(isset($_POST['btn_search'])&&($_POST['btn_search'])){
+            $search_code=$_POST['search_code'];
+        }
+        else{
+            $search_code="";
+        }
+        if(isset($_POST['filter_status'])&&($_POST['filter_status'])){
+            $status_order=$_POST['status'];
+        }
+        else{
+            $status_order="";
+        }
+        if(isset($_POST['btn_cencel'])){
+            $status=$_POST['status'];
+            $order_id=$_POST['order_id'];
+            canceled_order($order_id,$status);
+        } if(isset($_POST['btn_update'])){
+            $status=$_POST['status'];
+            $order_id=$_POST['order_id'];
+            order_update($order_id, $status);
+            header("location: index.php?act=list_order&order_id=$order_id");
+        }
         $limit=10;  
         if(isset($_POST['number'])){
             $number=$_POST['number'];   
@@ -562,9 +611,9 @@ if(isset($_GET['act'])){
         }else{
             $start= 0;
         }
-        $count=count_order();
-        $list_order=load_page_order($keyword,$start,$limit);
-        $order=count_order();
+        $count=count_order($keyword,$search_code,$status_order);
+        $list_order=load_page_order($keyword,$search_code,$status_order,$start,$limit);
+        $order=count_order($keyword,$search_code,$status_order);
         // $list_order=loadall_order();
         include '../admin/order/list.php';
         break;
@@ -599,9 +648,9 @@ if(isset($_GET['act'])){
         }else{
             $start= 0;
         }
-        $count=count_order();
-        $list_order=load_page_order($keyword,$start,$limit);
-        $order=count_order();
+        $count=count_order($keyword,$search_code,$status_order);
+        $list_order=load_page_order($keyword,$search_code,$status,$start,$limit);
+        $order=count_order($keyword,$search_code,$status_order);
         include '../admin/order/list.php';
         break;
     case'list_thongke':
@@ -611,7 +660,18 @@ if(isset($_GET['act'])){
         $load_order=loadall_order();
         $load_product=loadall_product();
         $list_evaluation=loadall_danhgia();
-        $month_total=month_doanhthu();
+        if(isset($_POST['search_year'])){
+            if($_POST['year']!=""){
+                $years=$_POST['year'];
+            }
+            if ($_POST['month']!=""){
+            $month=$_POST['month'];
+            }}
+            else{
+                $years="";
+                $month="";
+            }
+        $month_total=month_doanhthu($month, $years);
         $product_day=product_day($date);
         $list_star=load_star();
         $all_doanhthu=all_doanhthu();
@@ -628,10 +688,12 @@ if(isset($_GET['act'])){
     
     case'list_comment':
         if(isset($_POST['keyword'])&&($_POST['keyword'])){
-            $keyword=$_POST['search_order'];
+            $product_name=$_POST['product'];
+            $user_name=$_POST['username'];
         }
         else{
-            $keyword= '';
+            $product_name="";
+            $user_name="";
         }
         $limit=10;  
         if(isset($_POST['number'])){
@@ -641,7 +703,7 @@ if(isset($_GET['act'])){
             $start= 0;
         }
         $count=count_evaluation();
-        $list_evaluation=load_page_evaluation($keyword,$start,$limit);
+        $list_evaluation=load_page_evaluation($product_name,$user_name,$start,$limit);
         $order=count_evaluation();
         $list_star=load_star();
         // $list_evaluation=loadall_danhgia();
@@ -671,7 +733,6 @@ if(isset($_GET['act'])){
         $count=count_voucher();
         $list_voucher=load_page_voucher($keyword,$start,$limit);
         $voucher=count_voucher();
-        delete_voucher_date_end();
         // $list_evaluation=loadall_danhgia();
         include "../admin/voucher/list.php";
         break;
@@ -712,7 +773,7 @@ if(isset($_GET['act'])){
                 // if(!is_numeric($category_code)){
                 //     $warring['category_code']="Trường này chỉ nhận dữ liệu số";
                 // }
-                if($category_code==2 && $value>=100 ){
+                if($category_code==1 && $value>=100 ){
                     $warring['value']="loại mã giảm giá chỉ nhận max là 100 và min là 1";
                 }
                 if($date_start>$date_end){
@@ -750,6 +811,35 @@ if(isset($_GET['act'])){
         $voucher=count_voucher();
         include ('../admin/voucher/add.php');
         break;
+    case 'list_bill':
+        if(isset($_POST['keyword'])){
+            $keyword=$_POST['search_bill'];
+        }
+        else{
+            $keyword="";
+        }
+        $limit=10;  
+        if(isset($_POST['number'])){
+            $number=$_POST['number'];   
+            $start=($number-1)*$limit;
+        }else{
+            $start= 0;
+        }
+        $count=count_bill();
+        $list_bill=load_page_bill($keyword,$start,$limit);
+        $bill=count_voucher();
+        include("../admin/bill/list.php");
+        break;
+    case'bill_detail':
+        if(isset($_GET['bill_id'])&&($_GET['order_id'])){
+           $loadone_bill=Loadone_bill($_GET['bill_id']);
+           $list_product=load_product_bill($_GET['order_id']);
+        }
+        include('../admin/bill/show.php');
+        break;
+    case 'show_bill':
+        include('../admin/bill/show.php');
+        break;
     default:
     $date = date("Y-m-d",time());
         // $date=getdate();
@@ -760,9 +850,9 @@ if(isset($_GET['act'])){
         }else{
             $start= 0;
         }
-        $count=count_order();
+        $count=count_order($keyword="",$search_code="",$status_order="");
         $list_order=load_page_order_today($keyword="",$start,$limit,$date);
-        $order=count_order();
+        $order=count_order($keyword="",$search_code="",$status_order="");
         include('../admin/thongke/home.php');
     // include('../admin/view/home.php');
     break;
@@ -780,9 +870,9 @@ else{
     }else{
         $start= 0;
     }
-    $count=count_order();
+    $count=count_order($keyword="",$search_code="",$status_order="");
     $list_order=load_page_order_today($keyword="",$start,$limit,$date);
-    $order=count_order();
+    $order=count_order($keyword="",$search_code="",$status_order="");
     include('../admin/thongke/home.php');
 }
 include("../admin/view/footer.php");

@@ -5,9 +5,18 @@ function loadall_order()
     $list_order=pdo_query($sql);
     return $list_order;
 }
-function count_order()
+function count_order($keyword,$search_code,$status_order)
 {
-    $sql= "SELECT * FROM `order` ";
+    $sql= "SELECT * FROM `order` WHERE 1 ";
+    if($keyword!=""){
+        $sql.= " AND tel LIKE '%$keyword%' AND `tel`='$keyword' ";
+    }
+    if($search_code!=""){
+        $sql.= " AND order_id LIKE '%$search_code%'";
+    }
+    if($status_order!=""){
+        $sql.= " AND status LIKE '%$status_order%'  AND `status`='$status_order' ";
+    }
     $pro=pdo_query($sql);
     $i=0;
     foreach($pro as $row){
@@ -16,11 +25,17 @@ function count_order()
     $number=ceil($i/10);
     return $number;
 }
-function load_page_order($keyword,$start,$limit)
+function load_page_order($keyword,$search_code,$status_order,$start,$limit)
 {
     $sql= "SELECT * FROM  `order`  WHERE 1 ";
     if($keyword!=""){
-        $sql.= " AND tel LIKE '%$keyword%'";
+        $sql.= " AND tel LIKE '%$keyword%' AND `tel`='$keyword' ";
+    }
+    if($search_code!=""){
+        $sql.= " AND order_id LIKE '%$search_code%'";
+    }
+    if($status_order!=""){
+        $sql.= " AND status LIKE '%$status_order%'  AND `status`='$status_order' ";
     }
     $sql.= " order by `order`.`created_at` desc limit $start,$limit ";
     $pro=pdo_query($sql);
@@ -32,7 +47,7 @@ function load_page_order_today($keyword,$start,$limit,$date)
     if($keyword!=""){
         $sql.= " AND tel LIKE '%$keyword%'";
     }
-    $sql.= " AND `created_at` LIKE '%$date%' order by `order`.`order_id` asc limit $start,$limit ";
+    $sql.= " AND `created_at` LIKE '%$date%' order by `order`.`order_id` desc limit $start,$limit ";
     $pro=pdo_query($sql);
     return $pro;
 }
@@ -46,8 +61,9 @@ function loadone_order($order_id)
 function load_product($order_id){
     $sql="SELECT * FROM `order_detail`
     INNER JOIN `products_detail` ON `order_detail`.`product_detail_id`=`products_detail`.`product_detail_id`
-    INNER JOIN `products` ON `products_detail`.`product_id` = `products`.`product_id` WHERE `order_detail`.`order_id`='$order_id'
-    order by `products`.`product_id` asc";
+    INNER JOIN `products` ON `products_detail`.`product_id` = `products`.`product_id` 
+    WHERE `order_detail`.`order_id`='$order_id'
+    order by `products`.`product_id` desc";
     $list_product=pdo_query($sql);
     return $list_product;
 }

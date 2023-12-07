@@ -147,7 +147,7 @@
                                         </td>
                                         <td><?=$product_name;?></td>
                                             <td><h6>Khuyến mãi: <?=number_format($discounted_price,0,'.','.').'đ' ; ?></h6><br>
-                                                <del><?=number_format($product_price,0,'.','.').'đ' ; ?></del></td>
+                                                <?=number_format($product_price,0,'.','.').'đ' ; ?></td>
                                             <td><?=$date_add?></td>
                                             <td class="text-end"><a href="<?=$edit_product?>"><button>Sửa</button></a>
                                             <a onclick="return confirm('Bạn có chắc là muốn xóa không ?')" href="<?=$delete_product?>"><button>Xóa</button></a>

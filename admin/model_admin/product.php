@@ -13,7 +13,7 @@ function loadone_product($product_id)
 }
 function count_product_delete()
 {
-    $sql= "SELECT * FROM products  ";
+    $sql= "SELECT * FROM products WHERE status =0 ";
     $pro=pdo_query($sql);
     $i=0;
     foreach($pro as $row){
@@ -70,9 +70,18 @@ function delete_product($product_id)
     $sql= "UPDATE `products` SET `status` = '0' WHERE `products`.`product_id` = $product_id ";
     pdo_execute($sql);
 }
-function count_product()
+function count_product($keyword,$category_id,$price)
 {
-    $sql= "SELECT * FROM products  ";
+    $sql= "SELECT * FROM products WHERE status=1   ";
+    if($keyword!=""){
+        $sql.= " AND product_name LIKE '%$keyword%'";
+    }
+    if($category_id>0){
+        $sql.=" AND category_id ='".$category_id."'";
+    }
+    if($price!=""){
+        $sql.= " AND product_price LIKE'%$price%'";
+    }
     $pro=pdo_query($sql);
     $i=0;
     foreach($pro as $row){
@@ -93,7 +102,7 @@ function load_page_product($keyword,$category_id,$price,$start,$limit)
     if($price!=""){
         $sql.= " AND product_price LIKE'%$price%'";
     }
-    $sql.= " order by products.product_id asc limit $start,$limit ";
+    $sql.= " order by products.product_id desc limit $start,$limit ";
     $pro=pdo_query($sql);
     return $pro;
 }

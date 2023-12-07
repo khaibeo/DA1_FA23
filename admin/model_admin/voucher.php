@@ -28,7 +28,7 @@ function load_page_voucher($keyword,$start,$limit)
     if($keyword !=""){
         $sql.= " AND `code` LIKE '%$keyword%'";
     }
-    $sql.= " order by voucher.voucher_id asc limit $start,$limit ";
+    $sql.= " order by voucher.voucher_id desc limit $start,$limit ";
     $pro=pdo_query($sql);
     return $pro;
 }
@@ -37,9 +37,8 @@ function insert_voucher($code,$category_code,$value,$date_start,$date_end,$quant
     VALUES ('$code','$category_code','$value','$date_start','$date_end','$quantity')";
     pdo_execute($sql);
 }
-function delete_voucher_date_end()
+function delete_voucher_date_end($date_end)
 {
-    $date_end=date('Y-m-d');
     $sql="UPDATE `voucher` SET `quantity`='0' WHERE DATE(date_end)='$date_end'";
     pdo_execute($sql);
 }

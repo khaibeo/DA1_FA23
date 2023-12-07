@@ -29,17 +29,37 @@
             <div class="card h-100" style="width: 50%;">
                 <div class="card-body" >
                     <div class="d-flex mb-3" style="display:flex ; justify-content: space-between;">
-                        <div class="display-7"><?php 
+                        <div class="display"><?php 
                                                 // var_dump($month_total);
                                                 foreach ( $month_total as $month){
                                                 // $month= &$month_total["total_month"];
                                                 // $month=month_doanhthu();
                                                 // var_dump($month);
                                                 extract($month);
-                                                echo number_format($month['total_month'],0,'.','.').'<u>đ</u>';
-                                                }
-                                               
                                                 ?>
+                                               <h4><?= number_format($month['total_month'],0,'.','.').'<u>đ</u>'?></h4>
+                                               <?php
+                                                }
+                                                ?>
+                                                </div>
+                                                <div class="filter_thongke" style="border:solid 1px black ; padding: 5px; margin-top: -5px; border-radius: 10px;height: 40px;">
+                                                <form action="index.php?act=list_thongke" method="post">
+                                                    <select name="month" id="" style="border-radius:5px ; border: solid 1px #fff;">
+                                                        <?php
+                                                            for($i=1;$i<=12;$i++){
+                                                        ?>
+                                                        <option value="<?=$i?>"><?=$i?></option>
+                                                        <?php }?>
+                                                    </select>
+                                                    <select name="year" id="" style="border-radius:5px;border: solid 1px #fff;">
+                                                        <?php
+                                                            for($i=2020;$i<=2030;$i++){
+                                                        ?>
+                                                        <option value="<?=$i?>"><?=$i?></option>
+                                                        <?php }?>
+                                                    </select>
+                                                    <input type="submit" name="search_year" value="search" style="border-radius:5px;border: solid 1px  #ff6e40;background-color:  #ff6e40;color:#fff; ">
+                                                </form>
                         </div>
                         <div class="display-7" >
                             <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-cash-coin" viewBox="0 0 16 16">
@@ -51,7 +71,7 @@
                         </div>
                     </div>
                     <div class="dropdown ms-auto">
-                            <h6 class="mb-3">Doanh Thu Tháng Này </h6>
+                            <h6 class="mb-3">Doanh Thu </h6>
                         </div>
                 </div>
             </div>
@@ -345,7 +365,7 @@
                                     <i class="bi bi-bar-chart text-info"></i>
                                 </div>
                                 <h6 class="my-3">Đơn hủy</h6>
-                                <div class="text-muted"><?=  $canceled ?> đơn</div>
+                                <div class="text-muted"><?=COUNT($canceled) ?> đơn</div>
                                 <!-- <div class="progress mt-3" style="height: 5px">
                                     <div class="progress-bar bg-info" role="progressbar" style="width: 80%"
                                         aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>

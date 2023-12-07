@@ -15,12 +15,12 @@ if (is_array($list_order)) {
             <?php if ($status == "processing") { ?>
                 <button type="button" class=" btn-success  ">Xác nhận thành công</button>
                 <input type="hidden" name="status" value="<?= $status ?>">
-                <button type="submit" class="btn-dark" name="btn_update">Cập Nhật Đơn Hàng</button>
+                <!-- <button type="submit" class="btn-dark" name="btn_update">Cập Nhật Đơn Hàng</button> -->
             <?php } ?>
             <?php if ($status == "unpaid") { ?>
                 <button type="button" class=" btn-primary  ">Chưa thanh toán</button>
                 <input type="hidden" name="status" value="<?= $status ?>">
-                <button type="submit" class="btn-dark" name="btn_update">Cập Nhật Đơn Hàng</button>
+                <!-- <button type="submit" class="btn-dark" name="btn_update">Cập Nhật Đơn Hàng</button> -->
             <?php } ?>
             <?php if ($status == "canceled") { ?>
                 <button type="button" class=" btn-danger ">Đã hủy</button>
@@ -29,7 +29,7 @@ if (is_array($list_order)) {
             <?php if ($status == "shiped") { ?>
                 <button type="button" class=" btn-info">Đang giao hàng</button>
                 <input type="hidden" name="status" value="<?= $status ?>">
-                <button type="submit" class="btn-dark" name="btn_update">Cập Nhật Đơn Hàng</button>
+                <!-- <button type="submit" class="btn-dark" name="btn_update">Cập Nhật Đơn Hàng</button> -->
             <?php } ?>
             <?php if ($status == "delivered") { ?>
                 <button type="button" class=" btn-success">Giao thành công</button>
@@ -42,8 +42,8 @@ if (is_array($list_order)) {
         </div>
         <div class="order">
 
-            <button type="submit" class=" btn-danger" name="btn_cencel">Hủy Đơn</button>
-            <button type="submit" class="btn-dark" name="btn_update">Cập Nhật Đơn Hàng</button>
+            <!-- <button type="submit" class=" btn-danger" name="btn_cencel">Hủy Đơn</button> -->
+            <!-- <button type="submit" class="btn-dark" name="btn_update">Cập Nhật Đơn Hàng</button> -->
         <?php } ?>
         <input type="hidden" name="order_id" value="<?= $order_id ?>">
         </form>
@@ -60,7 +60,7 @@ if (is_array($list_order)) {
             <label for="">Email : <?= $email ?> </label><br>
             <label for="">Số Điện Thoại : <?= $tel ?> </label><br>
             <h6>Địa Chỉ : <?= $address ?></h6>
-            <h6>Ghi chú : <?= $note ?></h6>
+            <h6>Ghi chú : <?php if($note=='null'){echo "";}else{echo $note;} ?></h6>
         </div>
         <div class="information_item">
             <label for="">Phương thức thanh toán: <br> <?php if ($payment_method == "cod") {

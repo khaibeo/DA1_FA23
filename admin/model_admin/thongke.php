@@ -13,22 +13,37 @@ function loadall_thongke(){
 
 function all_doanhthu()
 {
-    $sql="SELECT SUM(`total`) AS `total` FROM `order` WHERE `status`='delivered' order by total  ";
+    $sql="SELECT SUM(`total`) AS `total` FROM `order` WHERE `status`='delivered' order by total " ;
     $all_doanhthu=pdo_query_one($sql);
     return $all_doanhthu;
 }
-function month_doanhthu()
+function month_doanhthu($month, $years)
 {
-    $month=date('m');
-    $years=date('Y');
+    // $month=date('m');
+    // $years=date('Y');
     // $sql="SELECT DATE(`date_add`) AS `ngay` , SUM(`total`) AS `total_month`  FROM `order` 
     // WHERE MONTH(`created_at`)='$month' AND YEAR(`created_at`) = '$years' AND `status` = 'delivered' 
     // GROUP BY ngay ";
     // $moth_total=pdo_query($sql);
     // return $moth_total;
 
-    $sql="SELECT  SUM(`total`) AS `total_month`  FROM `order` 
-    WHERE MONTH(`created_at`)='$month' AND YEAR(`created_at`) = '$years' AND `status` = 'delivered' ";
+    $sql="SELECT  SUM(`total`) AS `total_month`  FROM `order` WHERE 1";
+    if($month=="" && $years==""){
+       $month=date('m');
+        $years=date('Y');
+        $sql.=" AND MONTH(`created_at`)='$month' AND YEAR(`created_at`) = '$years' AND `status` = 'delivered' ";
+    }
+    if($month!="" && $years==""){
+        $years=date('Y');
+        $sql.=" AND MONTH(`created_at`)='$month' AND YEAR(`created_at`) = '$years' AND `status` = 'delivered' ";
+    }
+    if($month=="" && $years!=""){
+        $month=date('m');
+        $sql.=" AND MONTH(`created_at`)='$month' AND YEAR(`created_at`) = '$years' AND `status` = 'delivered' ";
+    }
+    if($month!="" &&  $years!=""){
+        $sql.=" AND MONTH(`created_at`)='$month' AND YEAR(`created_at`) = '$years' AND `status` = 'delivered' ";
+    }
     $moth_total=pdo_query($sql);
     return $moth_total;
 }
