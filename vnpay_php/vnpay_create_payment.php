@@ -12,8 +12,8 @@ require_once("./config.php");
 
 $vnp_TxnRef = $_SESSION['id_order']; //Mã giao dịch thanh toán tham chiếu của merchant
 $vnp_Amount = $_SESSION['total_order']; // Số tiền thanh toán
-$vnp_Locale = $_POST['language']; //Ngôn ngữ chuyển hướng thanh toán
-$vnp_BankCode = $_POST['bankCode']; //Mã phương thức thanh toán
+$vnp_Locale = "vn"; //Ngôn ngữ chuyển hướng thanh toán
+$vnp_BankCode = "VNBANK"; //Mã phương thức thanh toán
 $vnp_IpAddr = $_SERVER['REMOTE_ADDR']; //IP Khách hàng thanh toán
 
 $inputData = array(

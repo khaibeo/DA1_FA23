@@ -16,8 +16,8 @@
                                 <tr>
                                 <th>ID</th>
                                 <th>Người mua </th>
-                                <th>Số điện thoại</th>
-                                <th>Ngày</th>
+                                <th>Tổng tiền</th>
+                                <th>Thời gian</th>
                                 <th>Trạng thái</th>
                                 <th class="text-end">Hành động</th>
                                 </tr>
@@ -34,7 +34,7 @@
                                                     <a href="#">#<?=$order_id?></a>
                                                 </td>
                                                 <td><?=$fullname?></td>
-                                                <td><?=$tel?></td>
+                                                <td><?=number_format($total, 0, ',', '.') . ' đ'?></td>
                                                 <td><?=$created_at?></td>
                                                 <?php if($status=="unpaid"){?>
                                                 <td><button type="button" class="btn-primary">Chưa thanh toán</button></td>

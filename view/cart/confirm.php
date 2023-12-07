@@ -14,7 +14,7 @@
 						</div>
 					<h2>Đặt hàng thành công!</h2>
 					<p>Cuộc sống có rất nhiều lựa chọn, cảm ơn bạn đã chọn chúng tôi!</p>
-					<a href="index.php?act=cart" class="btn btn-outline-danger m-2">Quay lại giỏ hàng</a>
+					<a href="index.php" class="btn btn-outline-danger m-2">Quay lại trang chủ</a>
 					<a href="index.php?act=order_detail&id=<?= $id ?>" class="btn btn-outline-info">Xem đơn hàng</a>
 					</div>
 				</div>

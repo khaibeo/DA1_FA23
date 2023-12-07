@@ -16,9 +16,12 @@
     </head>
     <body>
         <?php
+        session_start();
         require_once("./config.php");
         include("../model/pdo.php");
         include("../model/checkout.php");
+        include("../model/order.php");
+
         $vnp_SecureHash = $_GET['vnp_SecureHash'];
         $inputData = array();
         foreach ($_GET as $key => $value) {
@@ -91,7 +94,20 @@
                                 $magiaodich = $_GET['vnp_TransactionNo'];
                                 $manganhang = $_GET['vnp_BankCode'];
                                 create_bill($order_id,$sotien,$note,$magiaodich,$manganhang);
-                                update_status($order_id,"processing");
+                                update_status($order_id,"pending");
+
+                                $order_info = get_order_detail($order_id);
+                                $fullname = $order_info['fullname'];
+                                $tel = $order_info['tel'];
+                                $email = $order_info['email'];
+                                $address = $order_info['address'];
+                                $note = $order_info['note'];
+                                $payment = $order_info['payment_method'];
+
+                                if(!empty($email)){
+                                    sendOrder($fullname,$email,$tel,$address,$note,$_SESSION['buy_product'],$payment);
+                                }
+
                                 header("location: ../index.php?act=confirm&id={$_GET['vnp_TxnRef']}");
                             } else {
                                 echo "<span style='color:red'>GD Khong thanh cong</span>";
@@ -101,7 +117,6 @@
                             echo "<span style='color:red'>Chu ky khong hop le</span>";
                         }
                         ?>
-
                     </label>
                 </div> 
             </div>

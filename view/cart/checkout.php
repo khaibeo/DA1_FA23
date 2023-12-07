@@ -21,22 +21,22 @@
 							<div class="tab-pane fade show active" id="tab_1" role="tabpanel" aria-labelledby="tab_1">
 								<div class="form-group">
 									<label for="" class="form-label">Họ và tên</label>
-									<input type="text" name="fullname" class="form-control" value="<?= isset($fullname) ? $fullname : "" ?>" placeholder="" required>
+									<input type="text" name="fullname" class="form-control" value="<?= isset($fullname) ? $fullname : $user['fullname'] ?>" placeholder="" required>
 								</div>
 								<div class="form-group">
 									<label for="" class="form-label">Email</label>
-									<input type="email" value="<?= isset($email) ? $email : "" ?>" name="email" class="form-control" placeholder="">
+									<input type="email" value="<?= isset($email) ? $email : $user['email'] ?>" name="email" class="form-control" placeholder="">
 									<span class="error"><?php if(!empty($errors['email'])) echo $errors['email'] ?></span>
 								</div>
 								<div class="form-group">
 									<label for="" class="form-label">Số điện thoại</label>
-									<input type="text" value="<?= isset($tel) ? $tel : "" ?>" name="tel" class="form-control" placeholder="" required>
+									<input type="text" value="<?= isset($tel) ? $tel : $user['tel'] ?>" name="tel" class="form-control" placeholder="" required>
 									<span class="error"><?php if(!empty($errors['tel'])) echo $errors['tel'] ?></span>
 								</div>
 
 								<div class="form-group">
 									<label for="" class="form-label">Địa chỉ nhận hàng</label>
-									<input type="text" name="address" class="form-control" value="<?= isset($address) ? $address : "" ?>" placeholder="Địa chỉ cụ thể" required>
+									<input type="text" name="address" class="form-control" value="<?= isset($address) ? $address : $user['address'] ?>" placeholder="Địa chỉ cụ thể" required>
 								</div>
 								<div class="form-group">
 									<label for="" class="form-label">Lưu ý cho đơn hàng</label>
