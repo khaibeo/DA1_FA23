@@ -653,6 +653,29 @@ if(isset($_GET['act'])){
         $order=count_order($keyword,$search_code,$status_order);
         include '../admin/order/list.php';
         break;
+    case 'update_order_today':
+        if(isset($_POST['btn_cencel'])){
+            $status=$_POST['status'];
+            $order_id=$_POST['order_id'];
+            canceled_order($order_id,$status);
+        } if(isset($_POST['btn_update'])){
+            $status=$_POST['status'];
+            $order_id=$_POST['order_id'];
+            order_update($order_id, $status);
+        }
+        $date = date("Y-m-d",time());
+        $limit=10;  
+        if(isset($_POST['number'])){
+            $number=$_POST['number'];   
+            $start=($number-1)*$limit;
+        }else{
+            $start= 0;
+        }
+        $count=count_order($keyword="",$search_code="",$status_order="");
+        $list_order=load_page_order_today($keyword="",$start,$limit,$date);
+        $order=count_order($keyword="",$search_code="",$status_order="");
+        include('../admin/thongke/home.php');
+        break;
     case'list_thongke':
         $date = date("Y-m-d",time());
         $load_category=loadall_category();
