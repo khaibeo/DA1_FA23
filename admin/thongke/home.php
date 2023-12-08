@@ -1,8 +1,126 @@
-<div class="order_day">
-        <div class="content ">
-            <div class="col">
-                <div class="row">
-                    <div class="col-md-8">
+<div class="content">
+<div class="row">
+    <div class="col-lg-5 col-md-12">
+            <div class="card widget" style="width:100% ;">
+                <div class="card-header">
+                    <h5 class="card-title">Tổng quan</h5>
+                </div>
+                <div class="row g-4" style="width: 100%; display:flex ;" >
+                    <div class="col-md-6" style="width: 50%;">
+                        <div class="card border-0">
+                            <div class="card-body text-center">
+                                <div class="display-5">
+                                    <i class="bi bi-truck text-secondary"></i>
+                                </div>
+                                <h6 class="my-3">Đang vận chuyển</h6>
+                                <div class="text-muted"><?= $shiped ?> đơn</div>
+                                <!-- <div class="progress mt-3" style="height: 5px">
+                                    <div class="progress-bar bg-secondary" role="progressbar" style="width: 25%"
+                                        aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6" style="width: 50%;">
+                        <div class="card border-0">
+                            <div class="card-body text-center">
+                                <div class="display-5">
+                                    <i class="bi bi-receipt text-warning"></i>
+                                </div>
+                                <h6 class="my-3">Giao thành công</h6>
+                                <div class="text-muted"><?= $delivered ?> đơn</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6" style="width: 50%;">
+                        <div class="card border-0">
+                            <div class="card-body text-center">
+                                <div class="display-5">
+                                    <i class="bi bi-bar-chart text-info"></i>
+                                </div>
+                                <h6 class="my-3">Đơn hủy</h6>
+                                <div class="text-muted"><?= $canceled ?> đơn</div>
+                                <!-- <div class="progress mt-3" style="height: 5px">
+                                    <div class="progress-bar bg-info" role="progressbar" style="width: 80%"
+                                        aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6" style="width: 50%;">
+                        <div class="card border-0">
+                            <div class="card-body text-center">
+                                <div class="display-5">
+                                    <i class="bi bi-cursor text-success"></i>
+                                </div>
+                                <h6 class="my-3">Đang xử lý</h6>
+                                <div class="text-muted"><?= $pending ?> đơn</div>
+                                <!-- <div class="progress mt-3" style="height: 5px">
+                                    <div class="progress-bar bg-success" role="progressbar" style="width: 55%"
+                                        aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+    <div class="col-7">
+        <div class="card widget">
+            <div class="card-header d-flex align-items-center justify-content-between">
+                <h5 class="card-title">Sản phẩm bán chạy</h5>
+            </div>
+            <div class="card-body" style="width:100% ;">
+                <p class="text-muted">Top sản phẩm bán chạy</p>
+                <div class="table-responsive">
+                    <table class="table table-custom mb-0" id="recent-products">
+                        <thead>    
+                        <tr>
+                            <th>
+                                Top
+                            </th>
+                            <th>
+                                ID
+                            </th>
+                            <th>Ảnh</th>
+                            <th>Tên</th>
+                            <th>Số lượng</th>
+                            <th>Doanh thu</th>
+                            
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php $i = 0; foreach ($selling_pro as $pro) { $i++; ?>
+                        <tr>
+                            <td><?= $i ?></td>
+                            <td>
+                                <?= '#'.$pro['product_id'] ?>
+                            </td>
+                            <td>
+                                <a href="#">
+                                    <img src="../upload/<?= $pro['img_name'] ?>" class="rounded" width="40"
+                                        alt="...">
+                                </a>
+                            </td>
+                            <td><?= $pro['product_name'] ?></td>
+                            <td>
+                                <?= $pro['total_sold'] ?>
+                            </td>
+                            <td><?= number_format($pro['total_revenue'], 0, ',', '.') . ' đ' ?></td>
+                        </tr>
+                        <?php } ?>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+<div class="col">
                         <div class="card">
                             <div class="card-body">
                                 <div class="d-md-flex gap-4 align-items-center">
@@ -66,19 +184,7 @@
                         <nav class="mt-4" aria-label="Page navigation example">
                         </nav>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-<style>
-    .col-md-8{
-        width: 98%;
-        height: auto;
-        border: solid 1px #DDDDDD;
-        border-radius:30px ;
-        padding: 20px;
-    }
-    .card-body{
-        width: 100%;
-    }
-</style>
+</div>
+
+
+</div>

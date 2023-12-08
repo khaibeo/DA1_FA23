@@ -154,9 +154,7 @@
 
 	</div>
 	<!-- /container -->
-</main>
-<!-- /main -->
-
+	
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     // Lắng nghe sự kiện khi nút "Lọc" được nhấn
@@ -202,3 +200,5 @@
 	filterForm.submit();
   }
 </script>
+</main>
+<!-- /main -->

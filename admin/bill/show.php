@@ -30,10 +30,7 @@
                     <td> <?=$manganhang?></td>
                 </tr>
                 <?php }?>
-                <tr>
-                    <td>Phương thức thanh toán :</td>
-                    <td> <?=$payment_method?></td>
-                </tr>
+                
                 <tr>
                     <td>Date :</td>
                     <td> <?=$time?></td>
