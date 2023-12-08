@@ -3,7 +3,7 @@
     <div class="form_product">
     <form action="index.php?act=add_product" method="post" enctype="multipart/form-data">
             <h5>Danh Mục</h5> 
-            <select class="form-select" aria-label="Default select example" name="category">
+            <select class="form-select mb-3" aria-label="Default select example" name="category">
                         <?php
                         foreach($list_category as $ct){
                             extract($ct);
@@ -50,7 +50,7 @@
         <div id="variants-container" >
             <div class="variant">
                 <label for="size"><h5>Kích Thước</h5></label>
-                <input class="form-control" type="text"  aria-label="default input example" placeholder="size"  name="size[]" required >
+                <input class="form-control mb-3" type="text"  aria-label="default input example" placeholder="size"  name="size[]" required >
                 <!-- <input type="text" name="size[]" required><br><br> -->
 
                 <label for="variantQuantity"><h5>Số Lượng</h5></label>

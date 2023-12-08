@@ -1,6 +1,4 @@
-<div class="col" >
-    <h5>Thống kê </h5>
-    <hr>
+<div class="content" >
     <div class="doanhthu">
             <div class="card h-100" style="width: 50%; margin-right: 10px;">
                 <div class="card-body" >
@@ -31,13 +29,13 @@
                     <div class="d-flex mb-3" style="display:flex ; justify-content: space-between;">
                         <div class="display"><?php 
                                                 // var_dump($month_total);
-                                                foreach ( $month_total as $month){
+                                                foreach ( $month_total as $m){
                                                 // $month= &$month_total["total_month"];
                                                 // $month=month_doanhthu();
                                                 // var_dump($month);
-                                                extract($month);
+                                                extract($m);
                                                 ?>
-                                               <h4><?= number_format($month['total_month'],0,'.','.').'<u>đ</u>'?></h4>
+                                               <h4><?= number_format($m['total_month'],0,'.','.').'<u>đ</u>'?></h4>
                                                <?php
                                                 }
                                                 ?>
@@ -46,19 +44,30 @@
                                                 <form action="index.php?act=list_thongke" method="post">
                                                     <select name="month" id="" style="border-radius:5px ; border: solid 1px #fff;">
                                                         <?php
-                                                            for($i=1;$i<=12;$i++){
-                                                        ?>
-                                                        <option value="<?=$i?>"><?=$i?></option>
+                                                            if(!empty($month)){
+                                                                $currentMonth = $month;
+                                                            }else{
+                                                                $currentMonth = date("m");
+                                                            }
+                                                            
+                                                            for($i=1;$i<=12;$i++){ ?>
+                                                        <option value="<?=$i?>" <?php if($i == $currentMonth) echo "selected"?>><?=$i?></option>
                                                         <?php }?>
                                                     </select>
                                                     <select name="year" id="" style="border-radius:5px;border: solid 1px #fff;">
                                                         <?php
+                                                            if(!empty($years)){
+                                                                $currentYear = $years;
+                                                            }else{
+                                                                $currentYear = date("Y");
+                                                            }
+                                                            
                                                             for($i=2020;$i<=2030;$i++){
                                                         ?>
-                                                        <option value="<?=$i?>"><?=$i?></option>
+                                                        <option value="<?=$i?>" <?php if($i == $currentYear) echo "selected"?>><?=$i?></option>
                                                         <?php }?>
                                                     </select>
-                                                    <input type="submit" name="search_year" value="search" style="border-radius:5px;border: solid 1px  #ff6e40;background-color:  #ff6e40;color:#fff; ">
+                                                    <input type="submit" name="search_year" value="Lọc" style="border-radius:5px;border: solid 1px  #ff6e40;background-color:  #ff6e40;color:#fff; ">
                                                 </form>
                         </div>
                         <div class="display-7" >
@@ -71,7 +80,7 @@
                         </div>
                     </div>
                     <div class="dropdown ms-auto">
-                            <h6 class="mb-3">Doanh Thu </h6>
+                            <h6 class="mb-3">Doanh Thu Theo Tháng</h6>
                         </div>
                 </div>
             </div>
@@ -226,7 +235,7 @@
         <div class="canvas" style="width:40%; height:410px;border-radius:10px;margin-left:30px;"><canvas  id="myChart" ></canvas></div>
 </div>
 
-<div class="product_day">
+<div class="content">
     <div class="list_view">
                 <div class="d-flex mb-4">
                 <h6 class="card-title mb-0">Đánh giá trung bình</h6>
@@ -247,8 +256,8 @@
                                         $count=COUNT($list_star);
                                     foreach($list_star as $star){
                                     ?><?php $star['number_stars'] ; 
-                                    $sum += $star['number_stars']?>
-                                    <?php  } echo $avg= $sum/$count ;?></div>
+                                    $sum += $star['number_stars'];$avg = $sum/$count ; ?>
+                                    <?php  } echo round($avg,1)?></div>
                 <div class="d-flex justify-content-center gap-3 my-3">
                     <?php $floor=floor($avg);
                     for($i=1;$i<=$floor;$i++){
@@ -264,186 +273,9 @@
                 </div>
             </div>
         </div>
-    <div class="list_product_day">
-        <div class="table-responsive">
-            <h5>Sản Phẩm Được Thêm Vào Hôm Nay</h5>
-            <table class="table table-custom table-lg mb-0" id="products">
-                <thead>
-                <tr>
-                    <!-- <th>
-                        <input class="form-check-input select-all" type="checkbox"
-                            data-select-all-target="#products" id="defaultCheck1">
-                    </th> -->
-                    <th>ID</th>
-                    <th>Ảnh</th>
-                    <th>Tên sản phẩm</th>
-                    <th>Trạng thái</th>
-                    <th>Giá</th>
-                    <th class="text-end">Hành động</th>
-                </tr>
-                </thead>
-                <tbody>
-                    
-                    <?php
-                    foreach($product_day as $product){
-                        extract($product);
-                        $product_image=load_image($product_id);
-                        extract($product_image);
-                        $edit_product="index.php?act=edit_product&product_id=".$product_id;
-                        $show_detail="index.php?act=product_detail&product_id=".$product_id;
-                        $image="../upload/".$image_name;    
-                        ?>
-                                <tr>
-                                    <td>
-                                        <a href="#">#<?=$product_id?></a>
-                                    </td>
-                                    <td>
-                                        <a href="#">
-                                            <img src="<?=$image?>" class="rounded" width="40" alt="">
-                                        </a>
-                                    </td>
-                                    <td><?=$product_name;?></td>
-                                    <?php if($status==1){?>
-                                    <td>
-                                    <span class="text-success">Hoạt động</span>
-                                    </td>
-                                    <?php } ?>
-                                    <?php if($status== 0){?>
-                                        <td style="color:red;"><span>Ẩn</span></td>
-                                    <?php } ?>
-                                        <td><?=number_format($product_price,0,'.','.'),'đ'?></td>
-                                        <td class="text-end"><a href="<?=$edit_product?>"><button class="btn btn-primary">Sửa</button></a>
-                                        <a href="<?= $show_detail?>"><button class="btn btn-primary">Biến thể</button ></a>
-                                        </td>
-                                        </tr>
-                    <?php
-                    }
-                    ?>
-                </tbody>
-            </table>
-        </div>
-    </div>
+    
 </div>
 
-<div class="row-1" style="width: 100%; display:flex ;">
-    <div class="col-lg-5 col-md-12" style="width: 35%;">
-            <div class="card widget" style="width:100% ;">
-                <div class="card-header">
-                    <h5 class="card-title">Tổng quan</h5>
-                </div>
-                <div class="row g-4" style="width: 100%; display:flex ;" >
-                    <div class="col-md-6" style="width: 50%;">
-                        <div class="card border-0">
-                            <div class="card-body text-center">
-                                <div class="display-5">
-                                    <i class="bi bi-truck text-secondary"></i>
-                                </div>
-                                <h6 class="my-3">Đang vận chuyển</h6>
-                                <div class="text-muted"><?=COUNT($shiped) ?> đơn</div>
-                                <!-- <div class="progress mt-3" style="height: 5px">
-                                    <div class="progress-bar bg-secondary" role="progressbar" style="width: 25%"
-                                        aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div> -->
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6" style="width: 50%;">
-                        <div class="card border-0">
-                            <div class="card-body text-center">
-                                <div class="display-5">
-                                    <i class="bi bi-receipt text-warning"></i>
-                                </div>
-                                <h6 class="my-3">Giao thành công</h6>
-                                <div class="text-muted"><?= COUNT($delivered) ?> đơn</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6" style="width: 50%;">
-                        <div class="card border-0">
-                            <div class="card-body text-center">
-                                <div class="display-5">
-                                    <i class="bi bi-bar-chart text-info"></i>
-                                </div>
-                                <h6 class="my-3">Đơn hủy</h6>
-                                <div class="text-muted"><?=COUNT($canceled) ?> đơn</div>
-                                <!-- <div class="progress mt-3" style="height: 5px">
-                                    <div class="progress-bar bg-info" role="progressbar" style="width: 80%"
-                                        aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div> -->
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6" style="width: 50%;">
-                        <div class="card border-0">
-                            <div class="card-body text-center">
-                                <div class="display-5">
-                                    <i class="bi bi-cursor text-success"></i>
-                                </div>
-                                <h6 class="my-3">Đang xử lý</h6>
-                                <div class="text-muted"><?= $pending ?> đơn</div>
-                                <!-- <div class="progress mt-3" style="height: 5px">
-                                    <div class="progress-bar bg-success" role="progressbar" style="width: 55%"
-                                        aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div> -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-    </div>
-
-    <div class="col" style=" with:70%;">
-        <div class="card widget" style="width:100% ;">
-            <div class="card-header d-flex align-items-center justify-content-between">
-                <h5 class="card-title">Sản phẩm bán chạy</h5>
-            </div>
-            <div class="card-body" style="width:100% ;">
-                <p class="text-muted">Top sản phẩm bán chạy</p>
-                <div class="table-responsive">
-                    <table class="table table-custom mb-0" id="recent-products">
-                        <thead>    
-                        <tr>
-                            <th>
-                                Top
-                            </th>
-                            <th>
-                                ID
-                            </th>
-                            <th>Ảnh</th>
-                            <th>Tên</th>
-                            <th>Số lượng</th>
-                            <th>Doanh thu</th>
-                            
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <?php $i = 0; foreach ($selling_pro as $pro) { $i++; ?>
-                        <tr>
-                            <td><?= $i ?></td>
-                            <td>
-                                <?= '#'.$pro['product_id'] ?>
-                            </td>
-                            <td>
-                                <a href="#">
-                                    <img src="../upload/<?= $pro['img_name'] ?>" class="rounded" width="40"
-                                        alt="...">
-                                </a>
-                            </td>
-                            <td><?= $pro['product_name'] ?></td>
-                            <td>
-                                <?= $pro['total_sold'] ?>
-                            </td>
-                            <td><?= number_format($pro['total_revenue'], 0, ',', '.') . ' đ' ?></td>
-                        </tr>
-                        <?php } ?>
-
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
     <!-- </div>
 </div> -->
     <!-- <div id="piechart">

@@ -781,6 +781,7 @@ if(isset($_GET['act'])){
         $voucher=count_voucher();
         include ('../admin/voucher/list.php');
         break;
+
     case 'add_voucher':
         if(isset($_POST['btn_add'])){
             $code=$_POST['code'];
@@ -893,6 +894,12 @@ else{
     }else{
         $start= 0;
     }
+    $selling_pro = get_selling_products();
+    $revenue = get_revenue();
+    $pending = get_pending_status();
+    $delivered = get_order_status("delivered");
+    $shiped= get_order_status("shiped");
+    $canceled= get_order_status("canceled");
     $count=count_order($keyword="",$search_code="",$status_order="");
     $list_order=load_page_order_today($keyword="",$start,$limit,$date);
     $order=count_order($keyword="",$search_code="",$status_order="");

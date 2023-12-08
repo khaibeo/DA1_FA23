@@ -101,6 +101,8 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                     $size = get_product_sizes($idsp);
 
                     $reviews = get_review($idsp);
+                    $check_buy = check_buy($_SESSION['user_id'],$idsp);
+
                     $total_review = get_total_review($idsp);
 
                     // Tách chuỗi thành mảng dựa trên dấu phẩy
@@ -282,13 +284,18 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
 
                     if ($payment == "banking") {
                         update_status($new_order, "unpaid");
-                        header("location: vnpay_php/vnpay_pay.php");
+                        header("location: vnpay_php/vnpay_create_payment.php");
                     } else {
+                        if(!empty($email)){
+                            sendOrder($fullname,$email,$tel,$address,$note,$listPro,$payment);
+                        }
+                        
                         header("location: index.php?act=confirm&id=$new_order");
                     }
                 }
             }
 
+            $user = get_user($_SESSION['user_id']);
             include "view/cart/checkout.php";
             break;
 
@@ -555,7 +562,7 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                     case 'processing':
                         $status = "Đang xử lý";
                         $color = "bg-success";
-                        $btn = "<a class='btn btn-gray border-dark m-3 cancelOrder' id='cancelOrder' href='index.php?act=cancel_order&id=$order_id'>Hủy đơn hàng</a>";
+                        $btn = "";
                         $btn1 = "";
                         break;
 
@@ -678,7 +685,7 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                 $_SESSION['id_order'] = $id;
                 $_SESSION['total_order'] = $order['total'];
 
-                header("location: vnpay_php/vnpay_pay.php");
+                header("location: vnpay_php/vnpay_create_payment.php");
             }
 
             break;

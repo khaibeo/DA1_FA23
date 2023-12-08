@@ -193,17 +193,17 @@
 													<!-- <em>Published 54 minutes ago</em> -->
 												</div>
 												
-												<h4><?= $rv['username'] ?> <?= $rv['label'] != NULL ? "<span class='badge bg-success'>Đã mua hàng</span>" : "" ?></h4>
+												<h4><?= $rv['username'] ?></h4>
 												<p><?= $rv['content'] ?></p>
 											</div>
 										</div>
 									<?php endforeach; ?>
 								</div>
 								<!-- /row -->
-								<?php if (isset($_SESSION['user'])) { ?>
+								<?php if ($check_buy == 1) { ?>
 									<p class="text-end"><a href="index.php?act=danhgia&id=<?= $product_id ?>" class="btn_1">Đánh giá</a></p>
 								<?php } else { ?>
-									<p class="text-end">Bạn hãy đăng nhập để đánh giá sản phẩm này nhé</p>
+									<p class="text-end">Bạn cần mua hàng để đánh giá sản phẩm</p>
 								<?php } ?>
 
 							</div>

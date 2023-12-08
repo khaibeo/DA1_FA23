@@ -50,7 +50,7 @@
                                     <form action="index.php?act=list_order" method="post">
                                     <div class="input-group" style="border:solid 1px black; border-radius:20px ;">
                                         <input type="text" class="form-control" placeholder="mã đơn" name="search_code" style="border:solid 1px #fff ; border-radius:20px ;">
-                                        <input class="btn" type="submit" name="btn_search" value="search">
+                                        <input class="btn" type="submit" name="btn_search" value="Tìm kiếm">
                                             
                                     </div>
                                     </form>
@@ -60,13 +60,13 @@
                             <div class="select_code" style="border:solid 1px black ; height: 45px; border-radius: 20px; padding: 3px; width: 180px;" >
                                 <form action="index.php?act=list_order" method="post">
                                 <select  name="status" style="border:solid 1px #fff; border-radius:20px ;">
-                                    <option value="Pending">Pending</option>
-                                    <option value="processing">processing</option>
-                                    <option value="shiped">shiped</option>
-                                    <option value="canceled">canceled</option>
-                                    <option value="delivered">delivered</option>
+                                    <option value="Pending">Chờ xác nhận</option>
+                                    <option value="processing">Đang xử lý</option>
+                                    <option value="shiped">Đang giao</option>
+                                    <option value="canceled">Đã hủy</option>
+                                    <option value="delivered">Giao thành công</option>
                                 </select>
-                               <input type="submit" value="search" name="filter_status" style="width: 70px; height: 35px; border-radius: 10px; border: solid 1px #fff; background-color: #fff;">
+                               <input type="submit" value="Lọc" name="filter_status" style="width: 70px; height: 35px; border-radius: 10px; border: solid 1px #fff; background-color: #fff;">
                             </div>
                             </form>
                         </div>

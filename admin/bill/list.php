@@ -76,7 +76,7 @@
                    
                 
             </div>
-            <form action="index.php?act=list_order" method="post">
+            <form action="index.php?act=list_bill" method="post">
             <nav class="mt-4" aria-label="Page navigation example">
                 <ul class="pagination ">
                     <?php

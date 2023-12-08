@@ -125,21 +125,11 @@ function add_review($idsp, $rating, $review, $user)
 
 function get_review($id)
 {
-    $sql = "SELECT 
-    rv.*, 
-    user.username,
-    CASE 
-        WHEN o.status = 'delivered' THEN 'Đã mua hàng' 
-        ELSE NULL 
-    END AS label
+    $sql = "SELECT rv.*, user.username 
 FROM 
     evaluation rv
 JOIN 
-    user ON user.user_id = rv.user_id
-JOIN products p on p.product_id = rv.product_id
-JOIN products_detail pd on p.product_id = pd.product_id
-JOIN order_detail od on pd.product_detail_id = od.product_detail_id
-LEFT JOIN `order` o on o.order_id = od.order_id AND rv.user_id = o.user_id
+    user ON user.user_id = rv.user_id 
 WHERE 
     rv.product_id = $id GROUP BY rv.evaluation_id;";
 
@@ -204,4 +194,22 @@ function get_new_product()
     GROUP BY sp.product_id  
     ORDER BY sp.date_add DESC LIMIT 0,8";
     return pdo_query($sql);
+}
+
+function check_buy($id,$product_id){
+    $sql = "SELECT 1 AS kq 
+    FROM 
+        `order` o
+    JOIN `user` u ON u.user_id = o.user_id
+    JOIN order_detail od ON o.order_id = od.order_id  -- Sửa đường liên kết tại đây
+    JOIN products_detail pd ON od.product_detail_id = pd.product_detail_id
+    JOIN products p ON p.product_id = pd.product_id 
+    WHERE o.user_id = $id AND o.status = 'delivered' AND p.product_id = $product_id;";
+    $result = pdo_query_one($sql);
+
+    if(!empty($result)){
+        return 1;
+    }else{
+        return 0;
+    }
 }
